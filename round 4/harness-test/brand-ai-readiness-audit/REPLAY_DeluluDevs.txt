@@ -1,0 +1,57 @@
+TEST_SITE_URLS:   https://www.duolingo.com/
+LLM_MODEL:        Claude Opus 5.5 (model id: claude-opus-5-5)
+AGENT_HARNESS:    Claude Code v2.1.281
+ENV_SETUP:        Python >= 3.9 (standard library only, no requirements.txt) + Node.js >= 18 for the harness: npm install -g @anthropic-ai/claude-code@2.1.281 ; RECOMMENDED, used in the video: pip install playwright==1.62.0 && python -m playwright install chromium
+TEST_STEPS:
+  1. Unzip our Round 3 package and enter it, then expose the entrypoint skill to Claude Code (a link, no file is changed or copied):
+       unzip brand-ai-readiness-audit.zip && cd brand-ai-readiness-audit
+       mkdir -p .claude/skills && ln -s ../../skills/audit-orchestrator .claude/skills/audit-orchestrator
+     Windows (cmd) equivalent of the last line:
+       mkdir .claude\skills && mklink /J .claude\skills\audit-orchestrator skills\audit-orchestrator
+     Then start the harness from that folder:
+       claude --model claude-opus-5-5 --allowedTools "Skill" "Bash(python:*)" "Read" "Write"
+  2. Prompt given to the agent, verbatim:
+       Use the audit-orchestrator skill to audit https://www.duolingo.com/ . Write the report to audit-report.json and audit-report.md in this folder, then list the findings sorted by fix priority, with the evidence for the top finding.
+  3. The agent invokes the audit-orchestrator skill, which runs skills/audit-orchestrator/scripts/run_audit.py (crawl -> profile -> 6 detectors -> compose). The report is written to audit-report.json (machine-readable) and audit-report.md (human-readable) in the package root; the agent then prints the findings sorted by fix priority in the terminal. Validate with:
+       python skills/audit-orchestrator/scripts/validate_report.py audit-report.json
+EXPECTED_OUTPUT:  brand-ai-readiness-audit/audit-report.json   (plus audit-report.md alongside it)
+
+# ---------------------------------------------------------------------------
+# Notes for the judges (comments; every labelled field above is complete).
+#
+# ENGINE INTEGRITY: the video runs a fresh extract of the unmodified Round 3 zip.
+#   SHA-256 of brand-ai-readiness-audit.zip:
+#   2030D8C7BB543D60F32268139B747D2D2FF0DA7CE4121181AA78D9FB2492CF61
+#   The only thing added is the .claude/skills link in step 1, which points at
+#   the submitted skill folder and changes no file.
+#
+# FALLBACK RUN PATHS (same engine, same findings; the LLM only drives the run):
+#   a) Headless Claude Code, from the same folder after step 1:
+#        claude -p "Use the audit-orchestrator skill to audit https://www.duolingo.com/ . Write the report to audit-report.json and audit-report.md in this folder, then list the findings sorted by fix priority, with the evidence for the top finding." --model claude-opus-5-5 --allowedTools "Skill" "Bash(python:*)" "Read" "Write"
+#   b) Any other harness (Codex, Copilot CLI, OpenCode, ...): point it at
+#        skills/audit-orchestrator/SKILL.md and give it the prompt from step 2.
+#   c) No harness at all (the deterministic engine the agent calls):
+#        python skills/audit-orchestrator/scripts/run_audit.py https://www.duolingo.com/ --out audit-report.json --markdown audit-report.md
+#
+# YOUR OWN URL: replace https://www.duolingo.com/ in the step-2 prompt (or in c).
+#
+# WHAT TO EXPECT ON https://www.duolingo.com/ (substance, as recorded):
+#   - RND-001 critical: homepage raw HTML carries 0 words of main content vs
+#     163 after JavaScript (needs Playwright; without it the engine reports the
+#     same defect as RND-002, estimated rather than measured, and says so).
+#   - SDA-006 high: no Organization/WebSite JSON-LD on the home page.
+#   - RND-012 / ANS-004 / RND-014: no <h1>, one-word title "Duolingo", no lang.
+#   - ~22 findings in total; overall score around 58/100, render gate weakest.
+#
+# KNOWN LIVE-SITE VARIANCE (not engine nondeterminism): the engine is
+#   deterministic for a given crawl (re-analysing one crawl gives identical
+#   findings), but a live site changes between crawls. On duolingo.com,
+#   englishtest.duolingo.com/faq sometimes returns 403 (-> ACC-024 broken URL)
+#   and sometimes loads with a canonical to a zendesk.com host (-> ACC-018).
+#   To re-analyse a saved crawl: add --cache <dir> --keep-cache to (c), then
+#   re-run with --cache <dir> --reuse-cache.
+#
+# KNOWN LIMITATION, stated in the video: on a client-rendered homepage the
+#   engagement checks ENG-002 / ENG-011 read the server HTML, so they can report
+#   "no action / no links" where a human's browser does show them. The root
+#   cause is the render gap RND-001 already reports.

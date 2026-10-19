@@ -1,0 +1,46 @@
+I ran the audit on airtable.com and saved the report to `audit-report.json` and `audit-report.md`. The JSON passes the schema check. It has 18 findings: 0 critical, 4 high, 8 medium and 6 low. The overall score is 65.2/100. By area, Access scored 97, Render 36, Extract 46, Trust 94 and Engagement 65.
+
+## Findings sorted by fix priority
+Findings with the same priority stay in the report's own order.
+
+| Finding ID | Check ID | Severity | Fix priority | Effort | Title |
+|---|---|---|---|---|---|
+| F-001 | RND-006 | high | high | medium | Facts appear to be locked inside images with no text equivalent |
+| F-003 | ANS-006 | high | high | medium | Pricing pages contain no readable price |
+| F-004 | SDA-006 | high | high | medium | Home pages have no Organization/WebSite structured data |
+| F-007 | RND-011 | medium | high | low | Much of the page text is hidden behind tabs or accordions at load time |
+| F-011 | ENG-009 | medium | high | low | Media is set to play automatically |
+| F-002 | RND-010 | high | medium | high | Primary content appears to live inside an iframe |
+| F-005 | RND-001 | medium | medium | high | Page content is assembled by JavaScript and is missing from the server response |
+| F-006 | RND-007 | medium | medium | medium | Most images have no alt text |
+| F-008 | SDA-005 | medium | medium | medium | About pages have no Organization structured data |
+| F-009 | ENG-004 | medium | medium | medium | Some pages ship a very large HTML document |
+| F-010 | ENG-005 | medium | medium | medium | Pages load many render-blocking or third-party scripts |
+| F-012 | ENG-010 | medium | medium | medium | A consent or subscription overlay may be gating the page content |
+| F-014 | ANS-003 | low | medium | low | Different pages share the same title |
+| F-015 | SDA-007 | low | medium | low | Article structured data is missing required fields |
+| F-016 | ENT-002 | low | medium | low | The site never declares which external profiles belong to this brand |
+| F-018 | ENG-003 | low | medium | low | Navigation relies on repeated, undescriptive link text |
+| F-013 | ACC-024 | low | low | medium | Internal links and sitemap entries point at pages that fail to load |
+| F-017 | ENT-009 | low | low | medium | Articles have no named author in structured data |
+
+## Evidence for the top two findings
+
+**F-001 · RND-006: Facts locked inside images** (high severity, high confidence, found by reading the page source)
+> 232 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. `https://static.airtable.com/images/marketing-nav-platform-graphic.webp` on `https://www.airtable.com/`.
+
+- 232 of 568 sampled images are affected, across pages like `/`, `/about`, `/ai`, `/pricing`, `/templates`, `/developers` and `/articles`.
+- Other examples: `marketing-nav-solution.webp`, `marketing-nav-resource.webp`, and several `homepage-variant-b/avatar-*.png` images.
+- **Weak spot:** many of the examples are headshots (`avatar-sooyoung.png`, `avatar-gemma.png`) and menu graphics, not charts or price lists. The missing alt text is real, but "facts locked in images" probably overstates it. This overlaps with F-006 (most images have no alt text).
+
+**F-003 · ANS-006: Pricing pages contain no readable price** (high severity, high confidence, found by reading the page source)
+> 3 of 5 sampled pricing/product pages contain no numeric price in their text, e.g. `https://www.airtable.com/articles/product`.
+
+- The three flagged pages are `/articles/product`, `/solutions/product` and `/lp/product/feature-prioritization`. None of them contains wording about getting a quote.
+- **Likely a false positive:** these look like an article index, a solutions page and a landing page. They were probably classed as "pricing/product" pages only because "product" is in the URL. The actual `/pricing` page isn't among them, so check this before acting on it.
+
+F-002 (the iframe finding) looks similarly doubtful. All five flagged pages have exactly 22 words and embed the same Marketo form widget. That suggests the pages are built in the browser (the same issue as F-005) rather than content sitting inside an iframe.
+
+I left the report exactly as the pipeline wrote it and didn't change any severities. The audit reported no missed steps or gaps in coverage.
+
+Separately, the TikTok connector failed to connect this session, and several other connectors (Figma, GitHub, Slack, HubSpot and others) need to be authorized in claude.ai connector settings or via `/mcp` before they can be used. None of them was needed for this audit.

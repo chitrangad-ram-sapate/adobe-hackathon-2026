@@ -1,0 +1,731 @@
+{
+  "site": "calendly.com",
+  "site_url": "https://calendly.com/",
+  "audited_at": "2026-09-24T19:01:17Z",
+  "summary": {
+    "total_findings": 12,
+    "critical": 0,
+    "high": 2,
+    "medium": 4,
+    "low": 5,
+    "info": 1,
+    "by_category": {
+      "discoverability": 9,
+      "engagement": 3
+    },
+    "headline": "12 findings on calendly.com: the most severe is high and sits at the render gate - machines cannot read what visitors can see. Start with \"Facts appear to be locked inside images with no text equivalent\"."
+  },
+  "scores": {
+    "overall": 82.2,
+    "gates": {
+      "access": 92,
+      "render": 60,
+      "extract": 86,
+      "trust": 94,
+      "engagement": 81
+    }
+  },
+  "audit": {
+    "marketplace_version": "1.0.0",
+    "duration_seconds": 78.6,
+    "pages_crawled": 30,
+    "pages_requested": 30,
+    "site_profile": {
+      "site_type": "media_publisher",
+      "site_type_confidence": "medium",
+      "platform": "unknown",
+      "platform_confidence": "low",
+      "hosting_stack": [
+        "Cloudflare"
+      ],
+      "analytics": [
+        "Google Analytics 4",
+        "Google Tag Manager"
+      ],
+      "primary_language": "en",
+      "page_types_seen": [
+        "about",
+        "article",
+        "careers",
+        "case_study",
+        "contact",
+        "docs",
+        "home",
+        "legal",
+        "other",
+        "pricing",
+        "section_home"
+      ]
+    },
+    "checks_run": [
+      "access",
+      "answer",
+      "engagement",
+      "entity",
+      "render",
+      "schema"
+    ],
+    "detector_finding_counts": {
+      "access": 2,
+      "answer": 2,
+      "engagement": 3,
+      "entity": 2,
+      "render": 2,
+      "schema": 3
+    },
+    "checks_skipped": [
+      {
+        "check_id": "ANS-002",
+        "reason": "homepage H1 is unrecognised vocabulary rather than identifiable marketing abstraction; not flagged to avoid a false positive"
+      },
+      {
+        "check_id": "ANS-006",
+        "reason": "site type is media_publisher; a published price is not expected"
+      },
+      {
+        "check_id": "ANS-009",
+        "reason": "site type is media_publisher; comparison and use-case pages are not expected"
+      },
+      {
+        "check_id": "ENT-010",
+        "reason": "site is not a local business; NAP consistency is not applicable"
+      },
+      {
+        "check_id": "ENT-012",
+        "reason": "only 1 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+      },
+      {
+        "check_id": "ENT-013",
+        "reason": "no fetched profile carried enough text to compare against the site's own description"
+      },
+      {
+        "check_id": "RND-002",
+        "reason": "superseded by the measured render-gap comparison (RND-001)"
+      },
+      {
+        "check_id": "RND-008",
+        "reason": "no PDF documents were linked from the sampled pages"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 careers page(s) lacked expected markup - too few to conclude a pattern"
+      },
+      {
+        "check_id": "SDA-008",
+        "reason": "site type is media_publisher; offer markup is not expected"
+      }
+    ],
+    "capabilities": {
+      "javascript_rendering": true,
+      "web_search": false,
+      "pdf_text_extraction": false,
+      "offsite_verification": true
+    },
+    "limitations": [
+      "4 of 5 declared external profile(s) could not be verified because the host blocked the request, disallows it in robots.txt, or the time budget ran out. Those profiles are reported as unverified, never as defects. Run with --no-offsite to skip off-site verification entirely."
+    ],
+    "notes": [
+      "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed",
+      "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+    ]
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "93 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. /_astro/timeline-background.UWFBJqGi.svg on https://calendly.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/timeline-background.UWFBJqGi.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22847%22%20height%3D%22656%22%20viewBox%3D%220%200%20847%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/cta-marquee-discovery-scheduled.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22847%22%20height%3D%22656%22%20viewBox%3D%220%200%20847%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/cta-marquee-discovery-scheduled.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://calendly.com/",
+        "https://calendly.com/about",
+        "https://calendly.com/contact-us",
+        "https://calendly.com/customers",
+        "https://calendly.com/leadership",
+        "https://calendly.com/pricing"
+      ],
+      "affected_count": 93,
+      "sampled_count": 685,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "F-002",
+      "check_id": "RND-007",
+      "title": "Most images have no alt text",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "580 of 685 images across 30 sampled pages (85%) have a missing or empty alt attribute.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/hero-animation-background.AxdOoA_y.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/fallback-hero-gradient.ylUwiRpO.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/timeline-background.UWFBJqGi.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/book-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/book-active-foreground-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/prep-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/prep-inactive.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/capture-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/capture-inactive.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/follow-active-bg-gradient-1.png"
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 580,
+      "sampled_count": 685,
+      "mechanism": "Alt text is the only description of an image available to a text reader, and it is one of the few places where an image's meaning enters the page's extractable content. Its absence also makes the page unusable with a screen reader, which is an engagement failure as much as a discoverability one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add descriptive alt text to meaningful images and empty alt to decorative ones.",
+        "priority": "high",
+        "how": [
+          "Describe what the image conveys in context, in a sentence fragment.",
+          "Use alt=\"\" for decoration so readers skip it rather than announcing a filename.",
+          "Add an alt field to the CMS image component so authors cannot omit it silently."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-003",
+      "check_id": "ACC-016",
+      "title": "Pages that should be findable are marked noindex",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 30 sampled pages carry a noindex directive, e.g. https://calendly.com/contact.",
+      "evidence_detail": {
+        "meta_noindex": [
+          "https://calendly.com/contact",
+          "https://calendly.com/ai-assistant"
+        ],
+        "header_noindex": []
+      },
+      "affected_urls": [
+        "https://calendly.com/contact"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "noindex tells indexing systems to discard the page after fetching it. Content behind it can never be surfaced or cited, and because the page still renders normally for visitors, the exclusion is invisible from inside the organisation.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Remove noindex from pages that are meant to be found.",
+        "priority": "high",
+        "how": [
+          "Remove `<meta name=\"robots\" content=\"noindex\">` and any `X-Robots-Tag: noindex` header from these pages.",
+          "Check whether the directive is applied by a template or an edge rule rather than by the page itself.",
+          "A staging-environment configuration reaching production is the usual cause - verify the deploy pipeline."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Fetch each URL and confirm no noindex appears in the meta robots tag or the X-Robots-Tag header."
+      }
+    },
+    {
+      "id": "F-004",
+      "check_id": "ANS-007",
+      "title": "No contact details appear as text",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "Neither an email address nor a phone number appears in the text of 4 sampled contact/home page(s) (https://calendly.com/contact).",
+      "evidence_detail": {
+        "has_email": false,
+        "has_phone": false,
+        "site_type": "media_publisher"
+      },
+      "affected_urls": [
+        "https://calendly.com/contact",
+        "https://calendly.com/contact-us",
+        "https://calendly.com/partners/contact",
+        "https://calendly.com/contacts"
+      ],
+      "affected_count": 4,
+      "sampled_count": 4,
+      "mechanism": "\"How do I contact them\" is one of the most common questions asked about any organisation. Details that exist only inside a contact form, an image, or a script-rendered widget cannot be extracted, so the answer is either absent or taken from a third-party directory listing that the brand does not control and may not have updated.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a phone number, an email address and a postal address as selectable text.",
+        "priority": "high",
+        "how": [
+          "Put the details in HTML text, using `tel:` and `mailto:` links.",
+          "Add them to Organization or LocalBusiness structured data (telephone, email, address, contactPoint).",
+          "Keep a contact form if preferred - but alongside the details, not instead of them."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-005",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "1 of 30 sampled pages load 9 render-blocking scripts from up to 3 third-party hosts, e.g. https://community.calendly.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://community.calendly.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-006",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 30 of 30 sampled pages, and 2 of those pages carry under 120 words of body text, e.g. https://community.calendly.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://community.calendly.com/",
+        "https://calendly.com/partners/contact"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-007",
+      "check_id": "ANS-003",
+      "title": "Different pages share the same title",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "2 of 30 sampled pages share 1 repeated title(s), e.g. \"About Us | Calendly\".",
+      "evidence_detail": {
+        "duplicates": [
+          "About Us | Calendly"
+        ]
+      },
+      "affected_urls": [
+        "https://calendly.com/about",
+        "https://calendly.com/leadership"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "The title is how a page is named in a citation and is one of the strongest topic signals a retrieval system has. Identical titles make pages indistinguishable to it, so they compete with one another and the most relevant one is not reliably chosen.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page a unique title describing that page's specific subject.",
+        "priority": "medium",
+        "how": [
+          "Template titles as `<specific page subject> - <brand>`.",
+          "Derive the first part from the page's own H1 or product/article name, never from the site name alone."
+        ],
+        "platform_specific": [
+          "Set the values in the shared layout with a per-page override, so a new page cannot ship without them."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-003 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-008",
+      "check_id": "SDA-007",
+      "title": "Article structured data is missing required fields",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "12 Article nodes omit datePublished (12x), e.g. on https://calendly.com/customers.",
+      "evidence_detail": {
+        "type": "Article",
+        "missing_counts": {
+          "datePublished": 12
+        }
+      },
+      "affected_urls": [
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers"
+      ],
+      "affected_count": 12,
+      "sampled_count": 153,
+      "mechanism": "The block is present and parses, so it appears to be working - but without datePublished it cannot answer what does this say, when was it said, and who said it. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Populate the required Article fields: datePublished.",
+        "priority": "medium",
+        "how": [
+          "Add datePublished to the Article block, sourced from the same data the page renders.",
+          "Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.",
+          "Validate the output against the type's requirements as part of the build."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-007 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-009",
+      "check_id": "ENT-004",
+      "title": "Some brand profiles linked on the site are missing from sameAs",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 external profile(s) linked from the homepage are not declared in sameAs: https://facebook.com/calendly, https://instagram.com/calendly, https://linkedin.com/company/calendly.",
+      "evidence_detail": {
+        "undeclared": [
+          "https://facebook.com/calendly",
+          "https://instagram.com/calendly",
+          "https://linkedin.com/company/calendly"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 3,
+      "sampled_count": 1,
+      "mechanism": "A link in the footer is a hint; a sameAs entry is an assertion. Profiles left out of the declaration are not connected to the entity, so whatever they corroborate is not counted.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add the remaining profiles to the sameAs array.",
+        "priority": "medium",
+        "how": [
+          "Add https://facebook.com/calendly, https://instagram.com/calendly, https://linkedin.com/company/calendly to the Organization sameAs list.",
+          "Keep the two in sync whenever a profile is added or retired."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-010",
+      "check_id": "ENT-006",
+      "title": "The site publishes few verifiable facts about the organisation itself",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "Across 2 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text.",
+      "evidence_detail": {
+        "has_about_page": true,
+        "has_founding_fact": false,
+        "has_citable_stat": true
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.",
+        "priority": "low",
+        "how": [
+          "Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.",
+          "Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.",
+          "Add a press or newsroom page carrying the same facts in a form journalists can lift.",
+          "Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-011",
+      "check_id": "ENG-003",
+      "title": "Navigation relies on repeated, undescriptive link text",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The link text \"learn more\" appears 4 times across the sampled pages, alongside 1 such repeated labels in total.",
+      "evidence_detail": {
+        "labels": {
+          "learn more": 4
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 4,
+      "sampled_count": 10,
+      "mechanism": "Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Replace repeated generic labels with text naming the destination.",
+        "priority": "medium",
+        "how": [
+          "Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.",
+          "Where the visual design requires a short label, add an aria-label carrying the full description."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ENG-003 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-012",
+      "check_id": "ACC-004",
+      "title": "AI training crawlers are blocked (recorded, not flagged as a defect)",
+      "severity": "info",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 training-corpus agents are disallowed: ccbot.",
+      "evidence_detail": {
+        "blocked": [
+          {
+            "agent": "ccbot",
+            "vendor": "Common Crawl",
+            "rule": "Disallow: /",
+            "line": 17
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "Training crawlers build the corpus a model learns from. Blocking them reduces the chance the brand is known from model memory, but does not affect live retrieval or citation. This is a policy choice with a known cost, not a misconfiguration.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "No action required unless the brand wants to be recalled from model memory as well as cited.",
+        "priority": "low",
+        "how": [
+          "Keep this block if opting out of training is deliberate.",
+          "If it was not deliberate, allow GPTBot, ClaudeBot, Google-Extended and CCBot to be learned from."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "No verification needed; this is an observation."
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Publish answers to the questions customers actually ask, in their words",
+      "rationale": "Retrieval matches a user's question against candidate passages. Content already written as a question with a self-contained answer matches directly, while the same information as narrative prose has to be located inside a longer passage first. The wording matters as much as the format: customers ask in their own vocabulary, not the brand's product names.",
+      "priority": "medium",
+      "how": [
+        "Collect the real questions from sales calls, support tickets and site search logs.",
+        "Publish each with an answer that stands alone when quoted out of context.",
+        "Use the customer's phrasing in the question; introduce internal product vocabulary in the answer.",
+        "Mark the block up as FAQPage."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-002",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-003",
+      "title": "Strengthen the brand's identity graph across authoritative sources",
+      "rationale": "Entity confusion is one of the main causes of an assistant describing a brand inaccurately. The defence is a consistent, mutually linked set of identity records: the same canonical description, the same legal name, the same location, asserted in several places that reference one another.",
+      "priority": "medium",
+      "how": [
+        "Create or claim a Wikidata item; it is openly editable and widely consumed as an identity reference.",
+        "Align the description on LinkedIn, Crunchbase, GitHub and industry directories with the site's canonical sentence, word for word.",
+        "Declare each of them in the site's Organization `sameAs`, and link back where the platform allows.",
+        "Use the qualified brand name consistently - `<Brand>, the <category> for <audience>` - so the distinguishing phrase is what gets repeated."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-004",
+      "title": "Design interior pages for visitors who arrive without context",
+      "rationale": "Assistant referrals land deep in a site rather than on the homepage, and they arrive with no idea whose site they are on. Pages built on the assumption that the visitor came through the front door lose them immediately - so the more successful the discoverability work, the more traffic this wastes.",
+      "priority": "medium",
+      "how": [
+        "Ensure every page states the organisation's name and what it does, in text.",
+        "Add breadcrumbs so a visitor can see where they have landed.",
+        "End each page with a next step chosen for that page's subject.",
+        "Review the pages assistants most often cite and treat each as a potential first impression."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    },
+    {
+      "id": "P-005",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

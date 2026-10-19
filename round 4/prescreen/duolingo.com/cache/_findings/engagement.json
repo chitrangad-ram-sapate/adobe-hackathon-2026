@@ -1,0 +1,272 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENG-001",
+      "title": "Interior pages give a visitor arriving from outside no context",
+      "severity": "high",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "13 of 13 sampled interior pages fail to name the organisation in their content or offer a clear route onward, e.g. https://www.duolingo.com/team (names brand: True, links home: False, internal links: 0).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.duolingo.com/team",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/contact",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://schools.duolingo.com/help",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/help",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/careers",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/business",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/dashboard",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/edu",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help",
+        "https://www.duolingo.com/help",
+        "https://www.duolingo.com/careers",
+        "https://englishtest.duolingo.com/business",
+        "https://englishtest.duolingo.com/dashboard",
+        "https://englishtest.duolingo.com/edu",
+        "https://englishtest.duolingo.com/ids",
+        "https://englishtest.duolingo.com/scores"
+      ],
+      "affected_count": 13,
+      "sampled_count": 13,
+      "mechanism": "Visitors referred by an assistant land on the page that answered their question, not on the homepage, and they arrive with no idea who the site belongs to. A page that assumes the visitor has already seen the homepage gives them nothing to orient against and no next step, so the session ends there. Every improvement to discoverability sends more traffic into this failure.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Make every interior page self-contained: say who this is, and offer an obvious next step.",
+        "priority": "high",
+        "how": [
+          "Ensure the organisation's name and a one-line description of what it does appear on every page, in content or a persistent header - not only in the logo image.",
+          "Add a visible breadcrumb trail so the visitor can see where they have landed.",
+          "End each page with a relevant next step: related pages, the product it belongs to, or a way to get in touch - chosen for that page's subject, not a generic footer.",
+          "Test by opening an interior page in a fresh window: is it obvious whose site this is and what to do next?"
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "design",
+        "verify": "Re-run check ENG-001; each interior page should name the brand and offer onward routes."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-002",
+      "title": "Key pages offer no clear action to take",
+      "severity": "high",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "7 of 9 sampled conversion-relevant pages contain no link or button whose text describes an action, e.g. https://www.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team"
+      ],
+      "affected_count": 7,
+      "sampled_count": 9,
+      "mechanism": "A visitor who has just read the answer to their question is at the point of highest intent. If the page offers nothing to do next, that intent expires - and because assistant-referred visitors arrive mid-journey rather than at the start, they are unusually likely to leave rather than go looking for the next step themselves.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give each key page one obvious primary action, described by what it does.",
+        "priority": "high",
+        "how": [
+          "Add a single visually primary action per page: 'Book a site survey', 'See pricing', 'Start a trial'.",
+          "Label it with the outcome, not the mechanism - 'Get a quote' rather than 'Submit'.",
+          "Place one instance within the first screen and repeat it at the end of longer pages."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-002 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "2 of 28 sampled pages load 31 render-blocking scripts from up to 6 third-party hosts, e.g. https://blog.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://blog.duolingo.com/",
+        "https://status.duolingo.com/"
+      ],
+      "affected_count": 2,
+      "sampled_count": 28,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-008",
+      "title": "Images have no dimensions and are not lazy-loaded",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "25 of 28 sampled images declare no width/height and 28 do not use loading=\"lazy\".",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 25,
+      "sampled_count": 28,
+      "mechanism": "Without declared dimensions the browser cannot reserve space, so content jumps as images arrive and visitors tap the wrong thing. Without lazy loading, images far below the fold compete for bandwidth with content the visitor is waiting to read.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare intrinsic width and height on images and lazy-load those below the fold.",
+        "priority": "medium",
+        "how": [
+          "Set width and height attributes matching the image's intrinsic aspect ratio.",
+          "Add `loading=\"lazy\"` to images below the fold, and leave it off the main hero image.",
+          "Serve modern formats with responsive `srcset` sizes."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-008 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-011",
+      "title": "Pages are dead ends with almost no onward links",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "18 of 21 sampled pages contain 2 or fewer links to other pages on the site, e.g. https://www.duolingo.com/ has 0.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help",
+        "https://www.duolingo.com/help",
+        "https://www.duolingo.com/careers"
+      ],
+      "affected_count": 18,
+      "sampled_count": 21,
+      "mechanism": "A visitor who finishes a page with nowhere to go leaves. Internal links are also how discovery propagates: pages that nothing links onward from are crawled less and understood as less connected to the rest of the site, so the deeper content stays invisible.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add contextual internal links and a relevant next step to every page.",
+        "priority": "medium",
+        "how": [
+          "Link from body text to the related products, articles or documentation the page mentions.",
+          "Add a 'related' block chosen by subject rather than by recency.",
+          "Ensure the primary navigation is present in the HTML of every page, not injected by script."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ENG-011 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-015",
+      "title": "No skip-to-content link is provided",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "None of the 28 sampled pages offers a skip-to-content link.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 28,
+      "sampled_count": 28,
+      "mechanism": "Keyboard and screen-reader users must otherwise traverse the entire navigation on every page before reaching the content. It is a small omission with a disproportionate cost for the visitors it affects.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add a skip link as the first focusable element on every page.",
+        "priority": "medium",
+        "how": [
+          "Add `<a class=\"skip-link\" href=\"#main\">Skip to main content</a>` as the first element in <body>.",
+          "Give the main content container the matching id and make the link visible on focus."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-015 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ENG-012",
+      "reason": "homepage exposes too few links to assess navigation reach"
+    }
+  ],
+  "notes": [
+    "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed"
+  ]
+}

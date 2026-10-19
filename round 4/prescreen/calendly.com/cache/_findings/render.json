@@ -1,0 +1,166 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "93 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. /_astro/timeline-background.UWFBJqGi.svg on https://calendly.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/timeline-background.UWFBJqGi.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22847%22%20height%3D%22656%22%20viewBox%3D%220%200%20847%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/cta-marquee-discovery-scheduled.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22847%22%20height%3D%22656%22%20viewBox%3D%220%200%20847%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/cta-marquee-discovery-scheduled.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "data:image/svg+xml,%3Csvg%20width%3D%22848%22%20height%3D%22656%22%20viewBox%3D%220%200%20848%20656%22%20fill%3D%22none%"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://calendly.com/",
+        "https://calendly.com/about",
+        "https://calendly.com/contact-us",
+        "https://calendly.com/customers",
+        "https://calendly.com/leadership",
+        "https://calendly.com/pricing"
+      ],
+      "affected_count": 93,
+      "sampled_count": 685,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-007",
+      "title": "Most images have no alt text",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "580 of 685 images across 30 sampled pages (85%) have a missing or empty alt attribute.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/hero-animation-background.AxdOoA_y.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/fallback-hero-gradient.ylUwiRpO.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "/_astro/timeline-background.UWFBJqGi.svg"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/book-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/book-active-foreground-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/prep-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/prep-inactive.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/capture-active-bg-gradient-1.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/capture-inactive.png"
+          },
+          {
+            "url": "https://calendly.com/",
+            "src": "https://cdn.calendlycms.com/follow-active-bg-gradient-1.png"
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 580,
+      "sampled_count": 685,
+      "mechanism": "Alt text is the only description of an image available to a text reader, and it is one of the few places where an image's meaning enters the page's extractable content. Its absence also makes the page unusable with a screen reader, which is an engagement failure as much as a discoverability one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add descriptive alt text to meaningful images and empty alt to decorative ones.",
+        "priority": "high",
+        "how": [
+          "Describe what the image conveys in context, in a sentence fragment.",
+          "Use alt=\"\" for decoration so readers skip it rather than announcing a filename.",
+          "Add an alt field to the CMS image component so authors cannot omit it silently."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-007 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

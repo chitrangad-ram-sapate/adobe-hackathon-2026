@@ -1,0 +1,184 @@
+{
+  "origin": "https://bombas.com/",
+  "crawl_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "user_agent_blocked": true,
+  "host_variants": {
+    "https://bombas.com/": {
+      "default_ua": {
+        "status": 429,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 0,
+        "elapsed": 0.764
+      },
+      "status": 429,
+      "final_url": "https://bombas.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 0,
+      "elapsed": 0.764,
+      "browser_ua": {
+        "status": 200,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 0,
+        "elapsed": 1.608
+      }
+    },
+    "https://www.bombas.com/": {
+      "default_ua": {
+        "status": 429,
+        "final_url": "https://www.bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 0,
+        "elapsed": 0.719
+      },
+      "status": 429,
+      "final_url": "https://www.bombas.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 0,
+      "elapsed": 0.719,
+      "browser_ua": {
+        "status": 200,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 1.646
+      }
+    },
+    "http://bombas.com/": {
+      "default_ua": {
+        "status": 429,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 0.242
+      },
+      "status": 429,
+      "final_url": "https://bombas.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 0.242,
+      "browser_ua": {
+        "status": 200,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 1.565
+      }
+    },
+    "http://www.bombas.com/": {
+      "default_ua": {
+        "status": 429,
+        "final_url": "https://www.bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 0.275
+      },
+      "status": 429,
+      "final_url": "https://www.bombas.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 0.275,
+      "browser_ua": {
+        "status": 200,
+        "final_url": "https://bombas.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 2,
+        "elapsed": 1.844
+      }
+    }
+  },
+  "robots": {
+    "url": "https://bombas.com/robots.txt",
+    "status": 200,
+    "error": null,
+    "bytes": 3403,
+    "content_type": "text/plain"
+  },
+  "sitemaps": [
+    {
+      "url": "https://bombas.com/sitemap.xml",
+      "status": 429,
+      "declared_in_robots": true,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    },
+    {
+      "url": "https://bombas.com/sitemap_index.xml",
+      "status": 429,
+      "declared_in_robots": false,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    },
+    {
+      "url": "https://bombas.com/sitemap-index.xml",
+      "status": 429,
+      "declared_in_robots": false,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    }
+  ],
+  "sitemap_url_count": 0,
+  "sitemap_sample": [],
+  "sitemap_lastmods": [],
+  "probes": {
+    "user_agent_differential": {
+      "default_ua": {
+        "status": 429,
+        "words": 18,
+        "bytes": 33942,
+        "error": null,
+        "server": "Vercel"
+      },
+      "browser_ua": {
+        "status": 200,
+        "words": 1131,
+        "bytes": 1234970,
+        "error": null,
+        "server": "Vercel"
+      }
+    },
+    "not_found": {
+      "url": "https://bombas.com/audit-probe-404-do-not-create-b7f2c1",
+      "status": 429,
+      "words": 18,
+      "final_url": "https://bombas.com/audit-probe-404-do-not-create-b7f2c1",
+      "redirected": false
+    },
+    "llms_txt": {
+      "status": 429,
+      "bytes": 33953
+    },
+    "llms_full_txt": {
+      "status": 429,
+      "bytes": 33948
+    }
+  },
+  "offsite": {
+    "attempted": true,
+    "reason": "the site declares no sameAs profiles to verify",
+    "profiles": [],
+    "declared_sameas": 0,
+    "candidates_found": 0
+  },
+  "robots_blocked_urls": [],
+  "notes": [],
+  "limitations": [
+    "The site returned no usable response to this auditor's own user agent but did to a browser user agent, so the crawl was performed with a browser user agent in order to audit the content at all. See finding ACC-008: every non-browser client, including AI retrieval fetchers, receives the same block. Run with --no-ua-fallback to disable this substitution."
+  ]
+}

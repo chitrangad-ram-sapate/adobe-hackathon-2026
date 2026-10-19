@@ -1,0 +1,125 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-004",
+      "title": "The site tells non-JavaScript clients that it will not work",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "2 of 30 sampled pages contain a <noscript> block stating JavaScript is required, e.g. \"You need to enable JavaScript to run Typeform.\".",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "This message is the fallback a non-JavaScript client actually receives. Where it appears, it confirms the page's real content is unavailable without script execution - and for a text extractor, this sentence may be the most prominent text on the page.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Provide real content in <noscript>, or server-render the page so the fallback is unnecessary.",
+        "priority": "medium",
+        "how": [
+          "Server-render the primary content (see RND-001/RND-002).",
+          "Until then, put the page's core text - headline, description, key facts, links - inside <noscript> so something meaningful is readable."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check RND-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "9 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d25dca9f26a7de418_Chart-Line.svg on https://www.typeform.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.typeform.com/",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d25dca9f26a7de418_Chart-Line.svg"
+          },
+          {
+            "url": "https://www.typeform.com/",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d52930ad151d0b763_Chart-Bar-Vertical.svg"
+          },
+          {
+            "url": "https://www.typeform.com/blog-category/product",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a2706b26dc9027f5ed98a4c_Usability%20testing%20tools%20compa"
+          },
+          {
+            "url": "https://www.typeform.com/contact-us",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/6a7c3e5cc7249a8a017c1f93_LeadCapture_MostImplementable_Total"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/contact",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/677f9ee6d52d56e17e001a59_673b6ca995891fea8d7ba339_real-estat"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/contact",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/677f9ec8f877409408767b19_673b6caa40a23b4c1d8f11cc_Photograph"
+          },
+          {
+            "url": "https://www.typeform.com/blog",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a2706b26dc9027f5ed98a4c_Usability%20testing%20tools%20compa"
+          },
+          {
+            "url": "https://www.typeform.com/blog-category/news",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/674882ba170ebb6f7c07b654_Banner-Typeform-Linktree-01.webp"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/customers-subcategory",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a42651e69261fc24d05436b_Real%20Estate%20Counter%20Offer%20F"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://www.typeform.com/blog",
+        "https://www.typeform.com/blog-category/news",
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/contact-us",
+        "https://www.typeform.com/templates-sub-category/contact",
+        "https://www.typeform.com/templates-sub-category/customers-subcategory"
+      ],
+      "affected_count": 9,
+      "sampled_count": 2008,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

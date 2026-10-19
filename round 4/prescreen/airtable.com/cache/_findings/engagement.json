@@ -1,0 +1,186 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENG-003",
+      "title": "Navigation relies on repeated, undescriptive link text",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The link text \"learn more\" appears 12 times across the sampled pages, alongside 1 such repeated labels in total.",
+      "evidence_detail": {
+        "labels": {
+          "learn more": 12,
+          "explore": 3
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 15,
+      "sampled_count": 15,
+      "mechanism": "Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Replace repeated generic labels with text naming the destination.",
+        "priority": "medium",
+        "how": [
+          "Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.",
+          "Where the visual design requires a short label, add an aria-label carrying the full description."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ENG-003 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-004",
+      "title": "Some pages ship a very large HTML document",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "1 of 29 sampled pages return more than 1.2 MB of HTML alone, e.g. https://airtable.com/templates at 1331 KB (before images, scripts and stylesheets).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://airtable.com/templates",
+            "kb": 1331
+          }
+        ],
+        "method_note": "Measured from the HTML response only; sub-resources were not fetched."
+      },
+      "affected_urls": [
+        "https://airtable.com/templates"
+      ],
+      "affected_count": 1,
+      "sampled_count": 29,
+      "mechanism": "The HTML document blocks everything else: nothing renders until it has arrived and been parsed. On a mobile connection a document this size costs seconds before the first pixel, and abandonment climbs steeply with every second of delay.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Reduce document size by paginating, deferring and trimming inlined data.",
+        "priority": "medium",
+        "how": [
+          "Move large inlined JSON, base64 images and repeated markup out of the document.",
+          "Paginate or lazy-load long lists rather than emitting every item.",
+          "Serve compressed responses (gzip or brotli) and confirm the header is present."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-004 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "2 of 29 sampled pages load 10 render-blocking scripts from up to 4 third-party hosts, e.g. https://community.airtable.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://community.airtable.com/",
+        "https://status.airtable.com/"
+      ],
+      "affected_count": 2,
+      "sampled_count": 29,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-009",
+      "title": "Media is set to play automatically",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "3 of 29 sampled pages contain a video or audio element with the autoplay attribute, e.g. https://www.airtable.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.airtable.com/",
+        "https://www.airtable.com/solutions/product",
+        "https://www.airtable.com/ai"
+      ],
+      "affected_count": 3,
+      "sampled_count": 29,
+      "mechanism": "Autoplaying media consumes bandwidth before the visitor has decided to watch anything, delays the content they came for, and - where sound is involved - is a common reason for closing a tab immediately.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Require an explicit play action, or at minimum keep autoplay muted and deferred.",
+        "priority": "high",
+        "how": [
+          "Remove autoplay and show a poster image with a visible play control.",
+          "If a background video is essential to the design, keep it muted, short, and loaded after the primary content.",
+          "Respect prefers-reduced-motion."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 28 of 29 sampled pages, and 10 of those pages carry under 120 words of body text, e.g. https://community.airtable.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://community.airtable.com/",
+        "https://support.airtable.com/",
+        "https://www.airtable.com/company/accessibility",
+        "https://www.airtable.com/lp/product/feature-prioritization",
+        "https://www.airtable.com/videos/categories",
+        "https://airtable.com/marketplace/category/all-apps",
+        "https://airtable.com/marketplace/category/by-airtable",
+        "https://airtable.com/careers",
+        "https://www.airtable.com/universe/expVVRw3oKWYCJs2t/jobs",
+        "https://airtable.com/marketplace"
+      ],
+      "affected_count": 10,
+      "sampled_count": 29,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": [
+    "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed"
+  ]
+}

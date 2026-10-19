@@ -1,0 +1,1083 @@
+{
+  "site": "duolingo.com",
+  "site_url": "https://www.duolingo.com/",
+  "audited_at": "2026-09-24T19:04:02Z",
+  "summary": {
+    "total_findings": 23,
+    "critical": 1,
+    "high": 4,
+    "medium": 10,
+    "low": 8,
+    "info": 0,
+    "by_category": {
+      "discoverability": 17,
+      "engagement": 6
+    },
+    "headline": "23 findings on duolingo.com: the most severe is critical and sits at the access gate - machines may not reach or discover all of the site. Start with \"Canonical tags point to a different domain\"."
+  },
+  "scores": {
+    "overall": 54.2,
+    "gates": {
+      "access": 54,
+      "render": 58,
+      "extract": 53,
+      "trust": 73,
+      "engagement": 38
+    }
+  },
+  "audit": {
+    "marketplace_version": "1.0.0",
+    "duration_seconds": 22.3,
+    "pages_crawled": 29,
+    "pages_requested": 30,
+    "site_profile": {
+      "site_type": "unknown",
+      "site_type_confidence": "low",
+      "platform": "unknown",
+      "platform_confidence": "low",
+      "hosting_stack": [],
+      "analytics": [
+        "Google Tag Manager"
+      ],
+      "primary_language": "en",
+      "page_types_seen": [
+        "about",
+        "careers",
+        "contact",
+        "docs",
+        "faq",
+        "home",
+        "legal",
+        "other",
+        "section_home"
+      ]
+    },
+    "checks_run": [
+      "access",
+      "answer",
+      "engagement",
+      "entity",
+      "render",
+      "schema"
+    ],
+    "detector_finding_counts": {
+      "access": 3,
+      "answer": 3,
+      "engagement": 6,
+      "entity": 4,
+      "render": 5,
+      "schema": 3
+    },
+    "checks_skipped": [
+      {
+        "check_id": "ANS-002",
+        "reason": "no H1 on the homepage; covered by RND-012"
+      },
+      {
+        "check_id": "ANS-006",
+        "reason": "site type is unknown; a published price is not expected"
+      },
+      {
+        "check_id": "ANS-009",
+        "reason": "site type is unknown; comparison and use-case pages are not expected"
+      },
+      {
+        "check_id": "ENG-012",
+        "reason": "homepage exposes too few links to assess navigation reach"
+      },
+      {
+        "check_id": "ENT-010",
+        "reason": "site is not a local business; NAP consistency is not applicable"
+      },
+      {
+        "check_id": "ENT-011",
+        "reason": "the site declares no external profiles to verify"
+      },
+      {
+        "check_id": "ENT-012",
+        "reason": "only 0 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+      },
+      {
+        "check_id": "ENT-013",
+        "reason": "no fetched profile carried enough text to compare against the site's own description"
+      },
+      {
+        "check_id": "RND-001",
+        "reason": "no JavaScript engine available; render gap estimated statically by RND-002"
+      },
+      {
+        "check_id": "RND-005",
+        "reason": "thin text is already explained by the render-gap finding"
+      },
+      {
+        "check_id": "RND-008",
+        "reason": "no PDF documents were linked from the sampled pages"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 about page(s) lacked expected markup - too few to conclude a pattern"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 careers page(s) lacked expected markup - too few to conclude a pattern"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 contact page(s) lacked expected markup - too few to conclude a pattern"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 faq page(s) lacked expected markup - too few to conclude a pattern"
+      },
+      {
+        "check_id": "SDA-008",
+        "reason": "no product or pricing pages were sampled"
+      }
+    ],
+    "capabilities": {
+      "javascript_rendering": false,
+      "web_search": false,
+      "pdf_text_extraction": false,
+      "offsite_verification": true
+    },
+    "limitations": [
+      "JavaScript rendering was unavailable (rendering skipped by flag), so the render gap was estimated from static signals (framework shells, hydration payloads, text volume) rather than measured against an executed DOM. Render-gap findings carry method=heuristic and reduced confidence."
+    ],
+    "notes": [
+      "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed",
+      "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it",
+      "suppressed ANS-003: already explained by ANS-004",
+      "sitemap index listing 5 child sitemaps",
+      "unexpected sitemap root element <rss>"
+    ]
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "check_id": "ACC-018",
+      "title": "Canonical tags point to a different domain",
+      "severity": "critical",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 22 sampled pages declare a canonical URL on another host, e.g. https://englishtest.duolingo.com/faq -> https://testcenter.zendesk.com/hc/en-us.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "page": "https://englishtest.duolingo.com/faq",
+            "canonical": "https://testcenter.zendesk.com/hc/en-us"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://englishtest.duolingo.com/faq"
+      ],
+      "affected_count": 1,
+      "sampled_count": 22,
+      "mechanism": "A cross-domain canonical instructs indexing systems to attribute the content to the other domain entirely. The brand's own pages are then treated as duplicates, and any citation goes to the other site.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Point canonical tags at the page's own URL on this domain.",
+        "priority": "critical",
+        "how": [
+          "Set a self-referencing canonical on every indexable page.",
+          "If the content is genuinely syndicated from elsewhere, keep the cross-domain canonical only on the syndicated copies, never on original pages."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-018 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-002",
+      "check_id": "RND-002",
+      "title": "Pages are served as an empty JavaScript application shell",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "1 of 12 sampled content pages return a 16 KB response containing only 3 words of text alongside client-framework markers, e.g. https://englishtest.duolingo.com/.",
+      "evidence_detail": {
+        "shells": [
+          {
+            "url": "https://englishtest.duolingo.com/",
+            "raw_words": 3,
+            "bytes": 16672,
+            "shell_element": true,
+            "payload_bytes": 0
+          }
+        ],
+        "note": "No browser engine was available, so this is inferred from response size, text volume and framework markers rather than measured against an executed DOM."
+      },
+      "affected_urls": [
+        "https://englishtest.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 12,
+      "mechanism": "The server sends an application shell and the content is fetched and assembled in the browser. A fetcher that does not execute JavaScript receives the shell - a page that is technically 200 OK and effectively blank - so nothing on it can be indexed, retrieved or quoted.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Server-render the content routes, or pre-render them to static HTML.",
+        "priority": "medium",
+        "how": [
+          "Switch these routes to server-side rendering or static generation in the framework already in use.",
+          "Confirm the fix at the transport layer, not in the browser: `curl -s <url>` must contain the page text.",
+          "If the application cannot be server-rendered, publish a pre-rendered static copy of the highest-value pages and serve it to non-browser clients from the edge."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "high",
+        "owner": "engineering",
+        "verify": "Install a browser engine and re-run; RND-001 will measure the gap exactly.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-003",
+      "check_id": "SDA-006",
+      "title": "Home pages have no Organization/WebSite structured data",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "1 of 1 sampled home pages carry no Organization or WebSite markup, e.g. https://www.duolingo.com/.",
+      "evidence_detail": {
+        "page_type": "home",
+        "expected": [
+          "Organization",
+          "WebSite"
+        ],
+        "site_type": "unknown"
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "The Organization type is how a machine learns who is this company, and is it the same entity as the one on Wikipedia/LinkedIn. Without it the page competes on prose alone against sources that state the same facts in a form that needs no interpretation.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add Organization JSON-LD to the home page template.",
+        "priority": "high",
+        "how": [
+          "Add a `Organization` JSON-LD block to the home template, populated from the same data the page already renders.",
+          "Include the fields that make it answerable: name, url, logo, description, sameAs.",
+          "Emit it once per page from the template so new pages inherit it automatically."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-006 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-004",
+      "check_id": "ENG-001",
+      "title": "Interior pages give a visitor arriving from outside no context",
+      "severity": "high",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "13 of 14 sampled interior pages fail to name the organisation in their content or offer a clear route onward, e.g. https://www.duolingo.com/team (names brand: True, links home: False, internal links: 0).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.duolingo.com/team",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/contact",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://schools.duolingo.com/help",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/help",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://www.duolingo.com/careers",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/business",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/dashboard",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          },
+          {
+            "url": "https://englishtest.duolingo.com/edu",
+            "names_brand": true,
+            "links_home": false,
+            "onward_links": 0
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help",
+        "https://www.duolingo.com/help",
+        "https://www.duolingo.com/careers",
+        "https://englishtest.duolingo.com/business",
+        "https://englishtest.duolingo.com/dashboard",
+        "https://englishtest.duolingo.com/edu",
+        "https://englishtest.duolingo.com/ids",
+        "https://englishtest.duolingo.com/scores"
+      ],
+      "affected_count": 13,
+      "sampled_count": 14,
+      "mechanism": "Visitors referred by an assistant land on the page that answered their question, not on the homepage, and they arrive with no idea who the site belongs to. A page that assumes the visitor has already seen the homepage gives them nothing to orient against and no next step, so the session ends there. Every improvement to discoverability sends more traffic into this failure.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Make every interior page self-contained: say who this is, and offer an obvious next step.",
+        "priority": "high",
+        "how": [
+          "Ensure the organisation's name and a one-line description of what it does appear on every page, in content or a persistent header - not only in the logo image.",
+          "Add a visible breadcrumb trail so the visitor can see where they have landed.",
+          "End each page with a relevant next step: related pages, the product it belongs to, or a way to get in touch - chosen for that page's subject, not a generic footer.",
+          "Test by opening an interior page in a fresh window: is it obvious whose site this is and what to do next?"
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "design",
+        "verify": "Re-run check ENG-001; each interior page should name the brand and offer onward routes."
+      }
+    },
+    {
+      "id": "F-005",
+      "check_id": "ENG-002",
+      "title": "Key pages offer no clear action to take",
+      "severity": "high",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "7 of 9 sampled conversion-relevant pages contain no link or button whose text describes an action, e.g. https://www.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team"
+      ],
+      "affected_count": 7,
+      "sampled_count": 9,
+      "mechanism": "A visitor who has just read the answer to their question is at the point of highest intent. If the page offers nothing to do next, that intent expires - and because assistant-referred visitors arrive mid-journey rather than at the start, they are unusually likely to leave rather than go looking for the next step themselves.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give each key page one obvious primary action, described by what it does.",
+        "priority": "high",
+        "how": [
+          "Add a single visually primary action per page: 'Book a site survey', 'See pricing', 'Start a trial'.",
+          "Label it with the outcome, not the mechanism - 'Get a quote' rather than 'Submit'.",
+          "Place one instance within the first screen and repeat it at the end of longer pages."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-002 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-006",
+      "check_id": "RND-004",
+      "title": "The site tells non-JavaScript clients that it will not work",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "2 of 29 sampled pages contain a <noscript> block stating JavaScript is required, e.g. \"You need to enable JavaScript to view our careers page.\".",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/careers",
+        "https://incubator.duolingo.com/apply"
+      ],
+      "affected_count": 2,
+      "sampled_count": 29,
+      "mechanism": "This message is the fallback a non-JavaScript client actually receives. Where it appears, it confirms the page's real content is unavailable without script execution - and for a text extractor, this sentence may be the most prominent text on the page.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Provide real content in <noscript>, or server-render the page so the fallback is unnecessary.",
+        "priority": "medium",
+        "how": [
+          "Server-render the primary content (see RND-001/RND-002).",
+          "Until then, put the page's core text - headline, description, key facts, links - inside <noscript> so something meaningful is readable."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check RND-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-007",
+      "check_id": "RND-012",
+      "title": "Pages have no H1 heading",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "27 of 29 sampled pages contain no <h1> element, e.g. https://www.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://englishtest.duolingo.com/faq",
+        "https://schools.duolingo.com/help"
+      ],
+      "affected_count": 27,
+      "sampled_count": 29,
+      "mechanism": "The H1 is the most reliable statement of what a page is about, and extractive systems lean on it heavily when deciding whether a page answers a question and what to call it in a citation. Without one, the page's topic has to be inferred from body text, which is less reliable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page exactly one H1 that states the page's subject in plain words.",
+        "priority": "high",
+        "how": [
+          "Add a single <h1> per page containing the page's real subject, not a slogan or the site name.",
+          "Style it freely - the level is a structural statement, not a visual one."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check RND-012 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-008",
+      "check_id": "ANS-004",
+      "title": "Pages have missing or placeholder titles",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "9 of 29 sampled pages have no title or a generic one, e.g. https://www.duolingo.com/ is titled \"Duolingo\".",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://www.duolingo.com/help",
+        "https://www.duolingo.com/business",
+        "https://www.duolingo.com/privacy",
+        "https://www.duolingo.com/terms"
+      ],
+      "affected_count": 9,
+      "sampled_count": 29,
+      "mechanism": "A page titled \"Home\" tells a retrieval system nothing about the brand or the subject, and produces a citation nobody clicks. It is also the label the page carries in every system that ever references it.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Write a descriptive, unique title for every page.",
+        "priority": "high",
+        "how": [
+          "Name the subject and the brand: `Warehouse robots for distributors - Northwind Robotics`.",
+          "Keep it under about 60 characters so it is not truncated in results."
+        ],
+        "platform_specific": [
+          "Set the values in the shared layout with a per-page override, so a new page cannot ship without them."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-009",
+      "check_id": "ANS-007",
+      "title": "No contact details appear as text",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "Neither an email address nor a phone number appears in the text of 1 sampled contact/home page(s) (https://www.duolingo.com/contact).",
+      "evidence_detail": {
+        "has_email": false,
+        "has_phone": false,
+        "site_type": "unknown"
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/contact"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "\"How do I contact them\" is one of the most common questions asked about any organisation. Details that exist only inside a contact form, an image, or a script-rendered widget cannot be extracted, so the answer is either absent or taken from a third-party directory listing that the brand does not control and may not have updated.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a phone number, an email address and a postal address as selectable text.",
+        "priority": "high",
+        "how": [
+          "Put the details in HTML text, using `tel:` and `mailto:` links.",
+          "Add them to Organization or LocalBusiness structured data (telephone, email, address, contactPoint).",
+          "Keep a contact form if preferred - but alongside the details, not instead of them."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-010",
+      "check_id": "SDA-009",
+      "title": "Question-and-answer content is not marked up as an FAQ",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "1 pages contain 6+ question-shaped headings with no FAQPage markup, e.g. https://blog.duolingo.com/ asks \"Why is English spelling so tricky?\".",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://blog.duolingo.com/",
+            "questions": [
+              "Why is English spelling so tricky?",
+              "What is stalemate in chess?",
+              "How much do you know about Italian?",
+              "Why is English spelling so tricky?"
+            ],
+            "count": 6
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://blog.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 29,
+      "mechanism": "Question-and-answer pairs are the most directly quotable content a site can publish, because the question already matches the shape of what users ask. Marking them up hands a retrieval system a pre-matched pair instead of asking it to locate the answer inside a page of prose.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add FAQPage structured data wrapping the existing questions and answers.",
+        "priority": "high",
+        "how": [
+          "Emit `FAQPage` with a `mainEntity` array of `Question`/`acceptedAnswer` pairs built from the headings and body already on the page.",
+          "Keep the answers self-contained: each should make sense quoted on its own, without the question above it or the paragraph before it.",
+          "Only mark up genuine questions the page answers - inventing pairs for markup's sake is treated as spam by consumers."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check SDA-009 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-011",
+      "check_id": "ENT-001",
+      "title": "The brand describes itself differently in different places on the same page",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "2 pair(s) of self-descriptions on the homepage share little vocabulary; the meta description and the og:description overlap by only 11% (\"Duolingo is the world's most popular way to learn a language. It's 100\" vs \"Learn languages by playing a game. It's 100% free, fun, and scientific\").",
+      "evidence_detail": {
+        "descriptions": {
+          "meta description": "Duolingo is the world's most popular way to learn a language. It's 100% free, fun and science-based. Practice online on duolingo.com or on the apps!",
+          "og:description": "Learn languages by playing a game. It's 100% free, fun, and scientifically proven to work.",
+          "twitter:description": "Learn languages by playing a game. It's 100% free, fun, and scientifically proven to work."
+        },
+        "divergent_pairs": [
+          {
+            "a": "meta description",
+            "b": "og:description",
+            "similarity": 0.11
+          },
+          {
+            "a": "meta description",
+            "b": "twitter:description",
+            "similarity": 0.11
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "These fields are read by different consumers, and together they form the brand's self-description. When they disagree, a system has no single authoritative account of what the brand is; it either hedges, blends them into something the brand never said, or prefers a third-party description that at least appears consistently.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Write one canonical description of the organisation and use it in every one of these fields.",
+        "priority": "high",
+        "how": [
+          "Agree a single sentence describing what the organisation is, who it serves and where.",
+          "Use it verbatim in the meta description, og:description, twitter:description and the Organization schema `description`.",
+          "Use the same sentence in off-site profiles - LinkedIn, Crunchbase, directories - so the description the wider web repeats matches the site."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-001 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-012",
+      "check_id": "ENT-005",
+      "title": "Nothing on the site distinguishes this brand from others with the same name",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "The homepage title is \"Duolingo\" - 1 word(s) with no category qualifier - and no identity-authority sameAs link is declared for the name \"duolingo\".",
+      "evidence_detail": {
+        "title": "Duolingo",
+        "brand_token": "duolingo",
+        "has_authority_link": false
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "Several organisations, products and places routinely share a name. With no category in the title and no link to an identity authority, a system has nothing to tell them apart, so facts about a similarly named entity get attributed to this brand and vice versa. This is the mechanism behind most cases of an assistant describing a company as something it is not.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Qualify the brand everywhere it is named, and link to an identity authority.",
+        "priority": "high",
+        "how": [
+          "Change the homepage title to `Duolingo - <what it is> for <who>` so the name never appears unqualified.",
+          "Add Organization schema with `description`, `address` and `sameAs` links to Wikidata, LinkedIn and a company register.",
+          "Use the qualified form consistently in off-site profiles and press mentions, so the distinguishing phrase is what the wider web repeats."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-013",
+      "check_id": "ENT-006",
+      "title": "The site publishes few verifiable facts about the organisation itself",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "Across 1 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text; no named, quantified fact (customers, employees, locations) appears in the text.",
+      "evidence_detail": {
+        "has_about_page": true,
+        "has_founding_fact": false,
+        "has_citable_stat": false
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 29,
+      "mechanism": "A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.",
+        "priority": "medium",
+        "how": [
+          "Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.",
+          "Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.",
+          "Add a press or newsroom page carrying the same facts in a form journalists can lift.",
+          "Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-014",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "2 of 29 sampled pages load 31 render-blocking scripts from up to 6 third-party hosts, e.g. https://blog.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://blog.duolingo.com/",
+        "https://status.duolingo.com/"
+      ],
+      "affected_count": 2,
+      "sampled_count": 29,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-015",
+      "check_id": "ENG-011",
+      "title": "Pages are dead ends with almost no onward links",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "18 of 22 sampled pages contain 2 or fewer links to other pages on the site, e.g. https://www.duolingo.com/ has 0.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help",
+        "https://www.duolingo.com/help",
+        "https://www.duolingo.com/careers"
+      ],
+      "affected_count": 18,
+      "sampled_count": 22,
+      "mechanism": "A visitor who finishes a page with nowhere to go leaves. Internal links are also how discovery propagates: pages that nothing links onward from are crawled less and understood as less connected to the rest of the site, so the deeper content stays invisible.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add contextual internal links and a relevant next step to every page.",
+        "priority": "medium",
+        "how": [
+          "Link from body text to the related products, articles or documentation the page mentions.",
+          "Add a 'related' block chosen by subject rather than by recency.",
+          "Ensure the primary navigation is present in the HTML of every page, not injected by script."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ENG-011 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-016",
+      "check_id": "ACC-014",
+      "title": "Sitemap entries mostly lack <lastmod> dates",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "0 of 104 sitemap URLs carry a <lastmod> value.",
+      "evidence_detail": {
+        "url_count": 104,
+        "with_lastmod": 0
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "Crawlers use <lastmod> to decide what to re-fetch. Without it they re-crawl on their own schedule, so updated pages can be represented in answers by a stale copy for far longer than necessary.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Emit an accurate <lastmod> for every sitemap URL.",
+        "priority": "medium",
+        "how": [
+          "Populate <lastmod> from the content's real last-modified time, not the build time.",
+          "Do not set every URL to the same timestamp on each deploy - crawlers learn to distrust it."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-014 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-017",
+      "check_id": "ACC-024",
+      "title": "Internal links and sitemap entries point at pages that fail to load",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 30 crawled URLs returned an error, e.g. http://static.duolingo.com/s3/DuolingoReport_Final.pdf (fetch_error: EOFError: Compressed file ended before the end-of-stream marker was reached).",
+      "evidence_detail": {},
+      "affected_urls": [
+        "http://static.duolingo.com/s3/DuolingoReport_Final.pdf"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "Every dead link is a discovery path that terminates, and a visitor who reaches one usually leaves rather than navigating back. Dead entries in a sitemap additionally teach crawlers to trust the sitemap less.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Fix or remove the broken URLs from links and from the sitemap.",
+        "priority": "low",
+        "how": [
+          "Repair the links, or redirect the old URLs to their current equivalents with a 301.",
+          "Remove URLs that no longer exist from the sitemap.",
+          "Add a build-time link check so this does not regress."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-024 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-018",
+      "check_id": "RND-013",
+      "title": "Pages have no <main> or <article> landmark",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "27 of 29 sampled pages wrap their content in generic containers with no <main> or <article> element.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "http://pillow.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help"
+      ],
+      "affected_count": 27,
+      "sampled_count": 29,
+      "mechanism": "Content extractors use landmarks to separate the article from the navigation, header and footer that repeat on every page. Without them the boundary is guessed, and boilerplate is regularly quoted as though it were page content.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Wrap the unique content of each page in <main>, and each self-contained item in <article>.",
+        "priority": "medium",
+        "how": [
+          "Add one <main> per page around the content that is unique to it.",
+          "Use <article> for individually meaningful items - posts, products, listings.",
+          "Keep navigation in <nav>, site header in <header>, site footer in <footer>."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check RND-013 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-019",
+      "check_id": "RND-014",
+      "title": "The document language is not declared",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "18 of 29 sampled pages have no lang attribute on <html>.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 18,
+      "sampled_count": 29,
+      "mechanism": "The language declaration tells retrieval systems which language queries this page can answer, and tells screen readers which voice to use. Undeclared pages are sometimes assigned the wrong language and dropped from results in their real one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare the page language on the <html> element.",
+        "priority": "medium",
+        "how": [
+          "Add `lang=\"<language code>\"` to <html> in the base template.",
+          "For multilingual sites, emit the correct code per locale and add rel=alternate hreflang links."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check RND-014 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-020",
+      "check_id": "SDA-010",
+      "title": "Nested pages carry no breadcrumb structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "5 of 5 sampled nested pages have no BreadcrumbList markup.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 5,
+      "sampled_count": 5,
+      "mechanism": "Breadcrumbs tell a machine where a page sits in the site, which is how an isolated page - the kind an assistant links someone straight into - acquires context about what it is part of. They also give the brand a labelled path in results rather than a bare URL.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add BreadcrumbList markup, and a visible breadcrumb trail, to nested page templates.",
+        "priority": "medium",
+        "how": [
+          "Emit `BreadcrumbList` with an ordered `itemListElement` from the site root to the current page.",
+          "Render a matching visible trail; it serves the same orientation purpose for the reader.",
+          "Keep the markup and the visible trail identical."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-010 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-021",
+      "check_id": "ENT-002",
+      "title": "The site never declares which external profiles belong to this brand",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "0 sameAs links are declared across 0 Organization-family node(s) on the homepage, and 0 external brand profile links appear on the page.",
+      "evidence_detail": {
+        "social_links_on_page": []
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "sameAs is the machine-readable claim that this site, this company registry entry, this LinkedIn page and this Wikipedia article are one entity. Without it, corroborating facts scattered across those sources are not recognised as being about the same organisation, so each one stands alone and is weaker - and a similarly named organisation can be confused with this one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare sameAs links from Organization schema to every profile the brand controls.",
+        "priority": "medium",
+        "how": [
+          "Add a `sameAs` array to the Organization block listing the brand's authoritative profiles.",
+          "Prioritise identity authorities over social reach: Wikidata, Wikipedia, LinkedIn, Crunchbase, a company register entry, GitHub - these disambiguate; a follower count does not.",
+          "Make the links reciprocal where possible: the profile should link back to the site."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-002 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-022",
+      "check_id": "ENG-008",
+      "title": "Images have no dimensions and are not lazy-loaded",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "26 of 29 sampled images declare no width/height and 29 do not use loading=\"lazy\".",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 26,
+      "sampled_count": 29,
+      "mechanism": "Without declared dimensions the browser cannot reserve space, so content jumps as images arrive and visitors tap the wrong thing. Without lazy loading, images far below the fold compete for bandwidth with content the visitor is waiting to read.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare intrinsic width and height on images and lazy-load those below the fold.",
+        "priority": "medium",
+        "how": [
+          "Set width and height attributes matching the image's intrinsic aspect ratio.",
+          "Add `loading=\"lazy\"` to images below the fold, and leave it off the main hero image.",
+          "Serve modern formats with responsive `srcset` sizes."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-008 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-023",
+      "check_id": "ENG-015",
+      "title": "No skip-to-content link is provided",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "None of the 29 sampled pages offers a skip-to-content link.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 29,
+      "sampled_count": 29,
+      "mechanism": "Keyboard and screen-reader users must otherwise traverse the entire navigation on every page before reaching the content. It is a small omission with a disproportionate cost for the visitors it affects.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add a skip link as the first focusable element on every page.",
+        "priority": "medium",
+        "how": [
+          "Add `<a class=\"skip-link\" href=\"#main\">Skip to main content</a>` as the first element in <body>.",
+          "Give the main content container the matching id and make the link visible on focus."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-015 and confirm it no longer fires."
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-002",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

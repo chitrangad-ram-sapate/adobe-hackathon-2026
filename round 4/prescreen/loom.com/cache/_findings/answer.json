@@ -1,0 +1,147 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ANS-006",
+      "title": "Pricing pages contain no readable price",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "7 of 8 sampled pricing/product pages contain no numeric price in their text, e.g. https://www.loom.com/products/1080p-screen-recorder.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.loom.com/products/1080p-screen-recorder",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.loom.com/products/4k-screen-recorder",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.loom.com/products/acer-screen-recorder",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.loom.com/products/advanced-screen-recorder",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.loom.com/products/ai-screen-recorder",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.loom.com/products/android-screen-recorder",
+            "quote_language": true
+          },
+          {
+            "url": "https://www.loom.com/products/browser-screen-recorder",
+            "quote_language": false
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.loom.com/products/1080p-screen-recorder",
+        "https://www.loom.com/products/4k-screen-recorder",
+        "https://www.loom.com/products/acer-screen-recorder",
+        "https://www.loom.com/products/advanced-screen-recorder",
+        "https://www.loom.com/products/ai-screen-recorder",
+        "https://www.loom.com/products/android-screen-recorder",
+        "https://www.loom.com/products/browser-screen-recorder"
+      ],
+      "affected_count": 7,
+      "sampled_count": 8,
+      "mechanism": "Cost is among the most common things asked about any commercial brand. With no number on the page, an assistant cannot answer from the brand's own site and turns to resellers, review sites and forums - sources that are often out of date and never in the brand's control. Publishing a figure is what makes the brand's own page the citable one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a real figure or an indicative range, even where final pricing is negotiated.",
+        "priority": "high",
+        "how": [
+          "State a starting price, a typical range, or a worked example: \"from 4,500 GBP per unit per year\".",
+          "Put it in body text, not in an image or a downloadable PDF.",
+          "Mirror it in Offer/AggregateOffer structured data with price and priceCurrency.",
+          "If pricing genuinely cannot be published, state what it depends on in plain text - that is still an extractable, quotable answer, where silence is not."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-007",
+      "title": "No contact details appear as text",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "Neither an email address nor a phone number appears in the text of 1 sampled contact/home page(s) (https://www.loom.com/use-case/support).",
+      "evidence_detail": {
+        "has_email": false,
+        "has_phone": false,
+        "site_type": "saas"
+      },
+      "affected_urls": [
+        "https://www.loom.com/use-case/support"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "\"How do I contact them\" is one of the most common questions asked about any organisation. Details that exist only inside a contact form, an image, or a script-rendered widget cannot be extracted, so the answer is either absent or taken from a third-party directory listing that the brand does not control and may not have updated.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a phone number, an email address and a postal address as selectable text.",
+        "priority": "high",
+        "how": [
+          "Put the details in HTML text, using `tel:` and `mailto:` links.",
+          "Add them to Organization or LocalBusiness structured data (telephone, email, address, contactPoint).",
+          "Keep a contact form if preferred - but alongside the details, not instead of them."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-008",
+      "title": "The site publishes nothing in a question-and-answer shape",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "Across 30 sampled pages there are 2 question-shaped headings, no FAQ page and no FAQPage markup.",
+      "evidence_detail": {
+        "question_headings": 2
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 30,
+      "mechanism": "Retrieval works by matching a user's question against candidate passages. Content already written as a question with a self-contained answer matches directly; the same information written as narrative prose has to be located inside a longer passage first, which is less reliable and often loses to a competitor who wrote it the other way.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the questions customers actually ask, each with a self-contained answer.",
+        "priority": "medium",
+        "how": [
+          "Collect the real questions from sales calls, support tickets and site search logs.",
+          "Write each answer to stand alone - it should make sense quoted without the question or the page around it.",
+          "Use the customer's wording for the question, not internal product vocabulary.",
+          "Mark the block up as FAQPage so the pairing is explicit."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ANS-008 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ANS-002",
+      "reason": "homepage H1 is unrecognised vocabulary rather than identifiable marketing abstraction; not flagged to avoid a false positive"
+    }
+  ],
+  "notes": []
+}

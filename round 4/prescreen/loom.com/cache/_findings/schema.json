@@ -1,0 +1,95 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "SDA-005",
+      "title": "Product pages have no Product structured data",
+      "severity": "critical",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "7 of 7 sampled product pages carry no Product markup, e.g. https://www.loom.com/products/1080p-screen-recorder.",
+      "evidence_detail": {
+        "page_type": "product",
+        "expected": [
+          "Product"
+        ],
+        "site_type": "saas"
+      },
+      "affected_urls": [
+        "https://www.loom.com/products/1080p-screen-recorder",
+        "https://www.loom.com/products/4k-screen-recorder",
+        "https://www.loom.com/products/acer-screen-recorder",
+        "https://www.loom.com/products/advanced-screen-recorder",
+        "https://www.loom.com/products/ai-screen-recorder",
+        "https://www.loom.com/products/android-screen-recorder",
+        "https://www.loom.com/products/browser-screen-recorder"
+      ],
+      "affected_count": 7,
+      "sampled_count": 7,
+      "mechanism": "The Product type is how a machine learns what is this product and what does it cost. Without it the page competes on prose alone against sources that state the same facts in a form that needs no interpretation.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add Product JSON-LD to the product page template.",
+        "priority": "critical",
+        "how": [
+          "Add a `Product` JSON-LD block to the product template, populated from the same data the page already renders.",
+          "Include the fields that make it answerable: name, offers, image, description, brand.",
+          "Emit it once per page from the template so new pages inherit it automatically."
+        ],
+        "platform_specific": [
+          "Emit the JSON-LD from the route's server component (or `generateMetadata` for metadata fields), so it is present in the server-rendered HTML rather than added on the client.",
+          "Build the object from the same data the page fetches, so the markup cannot drift from what is displayed."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-005 and confirm it no longer fires.",
+        "platform": "Next.js"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "SDA-010",
+      "title": "Nested pages carry no breadcrumb structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "21 of 21 sampled nested pages have no BreadcrumbList markup.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 21,
+      "sampled_count": 21,
+      "mechanism": "Breadcrumbs tell a machine where a page sits in the site, which is how an isolated page - the kind an assistant links someone straight into - acquires context about what it is part of. They also give the brand a labelled path in results rather than a bare URL.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add BreadcrumbList markup, and a visible breadcrumb trail, to nested page templates.",
+        "priority": "medium",
+        "how": [
+          "Emit `BreadcrumbList` with an ordered `itemListElement` from the site root to the current page.",
+          "Render a matching visible trail; it serves the same orientation purpose for the reader.",
+          "Keep the markup and the visible trail identical."
+        ],
+        "platform_specific": [
+          "Emit the JSON-LD from the route's server component (or `generateMetadata` for metadata fields), so it is present in the server-rendered HTML rather than added on the client.",
+          "Build the object from the same data the page fetches, so the markup cannot drift from what is displayed."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-010 and confirm it no longer fires.",
+        "platform": "Next.js"
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "SDA-005",
+      "reason": "only 1 contact page(s) lacked expected markup - too few to conclude a pattern"
+    },
+    {
+      "check_id": "SDA-005",
+      "reason": "only 1 pricing page(s) lacked expected markup - too few to conclude a pattern"
+    }
+  ],
+  "notes": []
+}

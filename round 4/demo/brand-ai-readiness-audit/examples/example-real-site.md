@@ -1,0 +1,311 @@
+# AI-readiness audit: python.org
+
+*2026-09-09T13:27:14Z - 14 pages analysed*
+
+**12 findings on python.org: the most severe is high and sits at the access gate - machines may not reach or discover all of the site. Start with "No XML sitemap was found".**
+
+## Readiness score: 81.2/100
+
+| Gate | Score | What it means |
+| --- | --- | --- |
+| Access | 77 | Can a machine reach the content |
+| Render | 100 | Can a machine read what visitors see |
+| Extract | 66 | Can a machine quote a specific fact |
+| Trust | 81 | Will the fact be believed and repeated |
+| Engagement | 86 | Do arriving visitors orient and act |
+
+## Findings (12)
+
+critical 0 - high 2 - medium 4 - low 6 - info 0
+
+### F-001 - No XML sitemap was found
+
+**HIGH** - discoverability / access gate - confidence high (static) - check `ACC-012`
+
+**Evidence.** No sitemap was declared in robots.txt and 3 conventional location(s) (/sitemap.xml, /sitemap_index.xml, /sitemap-index.xml) returned 0 parseable sitemap URLs across 14 crawled pages.
+
+**Why it matters.** Without a sitemap, a crawler can only find pages by following links from pages it has already fetched. Pages that are linked only from JavaScript menus, paginated archives, or nowhere at all are never discovered, and cannot be cited.
+
+**Fix (high priority, low effort, engineering).** Publish an XML sitemap and declare it in robots.txt.
+
+- Generate a sitemap listing every canonical, indexable URL, with an accurate <lastmod> per URL.
+- Add `Sitemap: https://<site>/sitemap.xml` to robots.txt.
+- Split into a sitemap index if the site exceeds 50,000 URLs or 50 MB uncompressed.
+- Regenerate it automatically on publish, so <lastmod> stays truthful.
+
+**Verify.** Re-run check ACC-012 and confirm it no longer fires.
+
+### F-002 - WebSite structured data is missing required fields
+
+**HIGH** - discoverability / extract gate - confidence high (static) - check `SDA-007`
+
+**Evidence.** 10 WebSite nodes omit name (10x), e.g. on https://www.python.org/.
+
+**Why it matters.** The block is present and parses, so it appears to be working - but without name it cannot answer what this site is called as a whole. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.
+
+**Fix (high priority, low effort, engineering).** Populate the required WebSite fields: name.
+
+- Add name to the WebSite block, sourced from the same data the page renders.
+- Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.
+- Validate the output against the type's requirements as part of the build.
+
+*On unknown:*
+- Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders.
+
+**Verify.** Re-run check SDA-007 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://www.python.org/
+- https://www.python.org/about/
+- https://www.python.org/about/apps
+- https://www.python.org/about/help/
+- https://www.python.org/success-stories/category/arts/
+
+### F-003 - The homepage headline is abstract and names no category
+
+**MEDIUM** - discoverability / extract gate - confidence medium (heuristic) - check `ANS-002`
+
+**Evidence.** The homepage H1 is "Intuitive Interpretation", which contains no concrete category noun.
+
+**Why it matters.** The H1 is one of the strongest signals a retrieval system has for what a page is about. A headline that describes an ambition rather than a business gives it nothing to match a question against, so the page is not retrieved for the queries the brand most wants to appear in.
+
+**Fix (high priority, low effort, content).** Rewrite the headline so it names what the organisation actually does, and keep the slogan as a subhead.
+
+- Put the concrete statement in the H1: what it is, for whom.
+- Move the aspirational line to a subheading, where it still sets tone but is not doing the identifying.
+- Test the headline in isolation: if someone who has never heard of the brand cannot say what it sells from the H1 alone, neither can a machine.
+
+**Verify.** Re-run check ANS-002 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://www.python.org/
+
+### F-004 - Nothing on the site distinguishes this brand from others with the same name
+
+**MEDIUM** - discoverability / trust gate - confidence medium (heuristic) - check `ENT-005`
+
+**Evidence.** The homepage title is "Welcome to Python.org" - 3 word(s) with no category qualifier - and no identity-authority sameAs link is declared for the name "python".
+
+**Why it matters.** Several organisations, products and places routinely share a name. With no category in the title and no link to an identity authority, a system has nothing to tell them apart, so facts about a similarly named entity get attributed to this brand and vice versa. This is the mechanism behind most cases of an assistant describing a company as something it is not.
+
+**Fix (high priority, low effort, marketing).** Qualify the brand everywhere it is named, and link to an identity authority.
+
+- Change the homepage title to `Python - <what it is> for <who>` so the name never appears unqualified.
+- Add Organization schema with `description`, `address` and `sameAs` links to Wikidata, LinkedIn and a company register.
+- Use the qualified form consistently in off-site profiles and press mentions, so the distinguishing phrase is what the wider web repeats.
+
+**Verify.** Re-run check ENT-005 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://www.python.org/
+
+### F-005 - The site publishes few verifiable facts about the organisation itself
+
+**MEDIUM** - discoverability / trust gate - confidence medium (static) - check `ENT-006`
+
+**Evidence.** Across 2 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text; no named, quantified fact (customers, employees, locations) appears in the text.
+
+**Why it matters.** A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.
+
+**Fix (medium priority, medium effort, marketing).** Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.
+
+- Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.
+- Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.
+- Add a press or newsroom page carrying the same facts in a form journalists can lift.
+- Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable.
+
+**Verify.** Re-run check ENT-006 and confirm it no longer fires.
+
+### F-006 - Pages load many render-blocking or third-party scripts
+
+**MEDIUM** - engagement / engagement gate - confidence medium (static) - check `ENG-005`
+
+**Evidence.** 2 of 14 sampled pages load 10 render-blocking scripts from up to 1 third-party hosts, e.g. https://docs.python.org/3/faq/.
+
+**Why it matters.** A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.
+
+**Fix (medium priority, medium effort, engineering).** Defer non-essential scripts and cut the number of third-party origins.
+
+- Add `defer` or `async` to every script that is not required for first paint.
+- Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.
+- Load remaining third-party scripts through a single tag manager, after first paint.
+- Self-host small critical dependencies to remove a connection setup from the critical path.
+
+**Verify.** Re-run check ENG-005 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://devguide.python.org/
+- https://docs.python.org/3/faq/
+
+### F-007 - Most pages have no canonical URL declared
+
+**LOW** - discoverability / access gate - confidence high (static) - check `ACC-020`
+
+**Evidence.** 11 of 12 sampled pages have no rel=canonical link.
+
+**Why it matters.** Without a canonical, the same content reachable through tracking parameters, trailing-slash variants or both host names is treated as several competing pages. Authority is split across the duplicates and none of them is a clear best answer.
+
+**Fix (medium priority, low effort, engineering).** Add a self-referencing canonical to every indexable page.
+
+- Add `<link rel="canonical">` to the base template, populated with the page's own absolute URL.
+- Normalise it: one host, one scheme, consistent trailing slash, no tracking parameters.
+
+**Verify.** Re-run check ACC-020 and confirm it no longer fires.
+
+### F-008 - About pages have no Organization structured data
+
+**LOW** - discoverability / extract gate - confidence high (static) - check `SDA-005`
+
+**Evidence.** 2 of 2 sampled about pages carry no Organization markup, e.g. https://www.python.org/about/.
+
+**Why it matters.** The Organization type is how a machine learns who is this company, and is it the same entity as the one on Wikipedia/LinkedIn. Without it the page competes on prose alone against sources that state the same facts in a form that needs no interpretation.
+
+**Fix (low priority, medium effort, engineering).** Add Organization JSON-LD to the about page template.
+
+- Add a `Organization` JSON-LD block to the about template, populated from the same data the page already renders.
+- Include the fields that make it answerable: name, url, logo, description, sameAs.
+- Emit it once per page from the template so new pages inherit it automatically.
+
+*On unknown:*
+- Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders.
+
+**Verify.** Re-run check SDA-005 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://www.python.org/about/
+- https://www.python.org/about/apps
+
+### F-009 - Nested pages carry no breadcrumb structured data
+
+**LOW** - discoverability / extract gate - confidence high (static) - check `SDA-010`
+
+**Evidence.** 6 of 6 sampled nested pages have no BreadcrumbList markup.
+
+**Why it matters.** Breadcrumbs tell a machine where a page sits in the site, which is how an isolated page - the kind an assistant links someone straight into - acquires context about what it is part of. They also give the brand a labelled path in results rather than a bare URL.
+
+**Fix (medium priority, low effort, engineering).** Add BreadcrumbList markup, and a visible breadcrumb trail, to nested page templates.
+
+- Emit `BreadcrumbList` with an ordered `itemListElement` from the site root to the current page.
+- Render a matching visible trail; it serves the same orientation purpose for the reader.
+- Keep the markup and the visible trail identical.
+
+*On unknown:*
+- Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders.
+
+**Verify.** Re-run check SDA-010 and confirm it no longer fires.
+
+### F-010 - The site never declares which external profiles belong to this brand
+
+**LOW** - discoverability / trust gate - confidence high (static) - check `ENT-002`
+
+**Evidence.** 0 sameAs links are declared across 0 Organization-family node(s) on the homepage, although 5 external profile link(s) appear on the page (https://en.wikipedia.org/wiki/Tkinter, https://github.com/python/cpython/issues, https://github.com/python/pythondotorg/issues).
+
+**Why it matters.** sameAs is the machine-readable claim that this site, this company registry entry, this LinkedIn page and this Wikipedia article are one entity. Without it, corroborating facts scattered across those sources are not recognised as being about the same organisation, so each one stands alone and is weaker - and a similarly named organisation can be confused with this one.
+
+**Fix (medium priority, low effort, marketing).** Declare sameAs links from Organization schema to every profile the brand controls.
+
+- Add a `sameAs` array to the Organization block listing the brand's authoritative profiles.
+- Prioritise identity authorities over social reach: Wikidata, Wikipedia, LinkedIn, Crunchbase, a company register entry, GitHub - these disambiguate; a follower count does not.
+- Make the links reciprocal where possible: the profile should link back to the site.
+
+*On unknown:*
+- Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders.
+
+**Verify.** Re-run check ENT-002 and confirm it no longer fires.
+
+**Affected URLs (sample).**
+- https://www.python.org/
+
+### F-011 - Navigation relies on repeated, undescriptive link text
+
+**LOW** - engagement / engagement gate - confidence high (static) - check `ENG-003`
+
+**Evidence.** The link text "more" appears 6 times across the sampled pages, alongside 2 such repeated labels in total.
+
+**Why it matters.** Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.
+
+**Fix (medium priority, low effort, content).** Replace repeated generic labels with text naming the destination.
+
+- Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.
+- Where the visual design requires a short label, add an aria-label carrying the full description.
+
+**Verify.** Re-run check ENG-003 and confirm it no longer fires.
+
+### F-012 - Images have no dimensions and are not lazy-loaded
+
+**LOW** - engagement / engagement gate - confidence high (static) - check `ENG-008`
+
+**Evidence.** 34 of 35 sampled images declare no width/height and 35 do not use loading="lazy".
+
+**Why it matters.** Without declared dimensions the browser cannot reserve space, so content jumps as images arrive and visitors tap the wrong thing. Without lazy loading, images far below the fold compete for bandwidth with content the visitor is waiting to read.
+
+**Fix (medium priority, low effort, engineering).** Declare intrinsic width and height on images and lazy-load those below the fold.
+
+- Set width and height attributes matching the image's intrinsic aspect ratio.
+- Add `loading="lazy"` to images below the fold, and leave it off the main hero image.
+- Serve modern formats with responsive `srcset` sizes.
+
+**Verify.** Re-run check ENG-008 and confirm it no longer fires.
+
+## Proactive recommendations
+
+*Improvements where no defect was detected - these strengthen discoverability and engagement rather than repairing something broken.*
+
+### P-001 - Publish an /llms.txt index of the site's most quotable pages
+
+**MEDIUM priority, low effort.** Assistants that fetch pages live have to guess which URLs carry the facts they need. An llms.txt file is an emerging convention for stating that explicitly - a short, plain-text map of the pages a machine should read first. It costs almost nothing, and where it is honoured it puts the brand in control of which pages represent it.
+
+- Create `/llms.txt`: an H1 with the organisation's name, a blockquote with the one-line description, then linked sections for the pages that answer real questions - what the company does, products, pricing, contact, documentation.
+- Keep it to the pages a machine should read first, not a mirror of the sitemap.
+- Optionally publish clean Markdown mirrors of those pages and link them from it.
+- Keep it current: a stale index is worse than none, because it directs readers to the wrong pages.
+
+### P-002 - Publish answers to the questions customers actually ask, in their words
+
+**MEDIUM priority, medium effort.** Retrieval matches a user's question against candidate passages. Content already written as a question with a self-contained answer matches directly, while the same information as narrative prose has to be located inside a longer passage first. The wording matters as much as the format: customers ask in their own vocabulary, not the brand's product names.
+
+- Collect the real questions from sales calls, support tickets and site search logs.
+- Publish each with an answer that stands alone when quoted out of context.
+- Use the customer's phrasing in the question; introduce internal product vocabulary in the answer.
+- Mark the block up as FAQPage.
+
+### P-003 - Make every fact that appears in an image, video or PDF also available as text
+
+**MEDIUM priority, medium effort.** Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.
+
+- Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.
+- Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.
+- Publish transcripts and summaries for video and audio.
+- Where a PDF is the canonical document, publish an HTML summary of its key facts as well.
+
+### P-004 - Design interior pages for visitors who arrive without context
+
+**MEDIUM priority, low effort.** Assistant referrals land deep in a site rather than on the homepage, and they arrive with no idea whose site they are on. Pages built on the assumption that the visitor came through the front door lose them immediately - so the more successful the discoverability work, the more traffic this wastes.
+
+- Ensure every page states the organisation's name and what it does, in text.
+- Add breadcrumbs so a visitor can see where they have landed.
+- End each page with a next step chosen for that page's subject.
+- Review the pages assistants most often cite and treat each as a potential first impression.
+
+### P-005 - Segment assistant-referred traffic so this work can be evaluated
+
+**LOW priority, low effort.** AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.
+
+- Create an analytics segment for known assistant referrers and review it separately.
+- Report on landing page, onward navigation and conversion for that segment specifically.
+- Watch server logs for the AI crawler user agents to confirm the site is actually being fetched.
+
+## What this audit could not determine
+
+- JavaScript rendering was unavailable (rendering skipped by flag), so the render gap was estimated from static signals (framework shells, hydration payloads, text volume) rather than measured against an executed DOM. Render-gap findings carry method=heuristic and reduced confidence.
+
+## Checks skipped (and why)
+
+- `ANS-006` - site type is unknown; a published price is not expected
+- `ANS-009` - site type is unknown; comparison and use-case pages are not expected
+- `ENT-010` - site is not a local business; NAP consistency is not applicable
+- `RND-001` - no JavaScript engine available; render gap estimated statically by RND-002
+- `RND-008` - no PDF documents were linked from the sampled pages
+- `SDA-005` - only 1 careers page(s) lacked expected markup - too few to conclude a pattern
+- `SDA-005` - only 1 faq page(s) lacked expected markup - too few to conclude a pattern
+- `SDA-008` - no product or pricing pages were sampled

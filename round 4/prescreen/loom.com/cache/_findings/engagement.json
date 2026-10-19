@@ -1,0 +1,164 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "1 of 30 sampled pages load 16 render-blocking scripts from up to 0 third-party hosts, e.g. https://www.loom.com/desktop.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.loom.com/desktop"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-009",
+      "title": "Media is set to play automatically",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "1 of 30 sampled pages contain a video or audio element with the autoplay attribute, e.g. https://www.loom.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.loom.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "Autoplaying media consumes bandwidth before the visitor has decided to watch anything, delays the content they came for, and - where sound is involved - is a common reason for closing a tab immediately.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Require an explicit play action, or at minimum keep autoplay muted and deferred.",
+        "priority": "high",
+        "how": [
+          "Remove autoplay and show a poster image with a visible play control.",
+          "If a background video is essential to the design, keep it muted, short, and loaded after the primary content.",
+          "Respect prefers-reduced-motion."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 29 of 30 sampled pages, and 3 of those pages carry under 120 words of body text, e.g. https://www.loom.com/community.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.loom.com/community",
+        "https://www.loom.com/cookie-policy",
+        "https://www.loom.com/desktop"
+      ],
+      "affected_count": 3,
+      "sampled_count": 30,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-013",
+      "title": "Key pages exist but are not linked from the homepage",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The site has about page(s) that the homepage does not link to, among 15 homepage links.",
+      "evidence_detail": {
+        "missing_from_nav": [
+          "about"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "A page that exists but is not reachable from the front door is effectively hidden from visitors browsing the site, and receives little of the internal linking that signals its importance. The pages this most often affects - contact, pricing - are the ones visitors go looking for first.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Link the key destinations from the primary navigation or footer.",
+        "priority": "high",
+        "how": [
+          "Add links to the about page(s) in the header navigation or footer.",
+          "Make sure the navigation is present in the served HTML, not added by script after load."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-013 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-015",
+      "title": "No skip-to-content link is provided",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "None of the 30 sampled pages offers a skip-to-content link.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 30,
+      "sampled_count": 30,
+      "mechanism": "Keyboard and screen-reader users must otherwise traverse the entire navigation on every page before reaching the content. It is a small omission with a disproportionate cost for the visitors it affects.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add a skip link as the first focusable element on every page.",
+        "priority": "medium",
+        "how": [
+          "Add `<a class=\"skip-link\" href=\"#main\">Skip to main content</a>` as the first element in <body>.",
+          "Give the main content container the matching id and make the link visible on focus."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-015 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": [
+    "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed"
+  ]
+}

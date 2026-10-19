@@ -1,0 +1,179 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENT-001",
+      "title": "The brand describes itself differently in different places on the same page",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "2 pair(s) of self-descriptions on the homepage share little vocabulary; the meta description and the og:description overlap by only 11% (\"Duolingo is the world's most popular way to learn a language. It's 100\" vs \"Learn languages by playing a game. It's 100% free, fun, and scientific\").",
+      "evidence_detail": {
+        "descriptions": {
+          "meta description": "Duolingo is the world's most popular way to learn a language. It's 100% free, fun and science-based. Practice online on duolingo.com or on the apps!",
+          "og:description": "Learn languages by playing a game. It's 100% free, fun, and scientifically proven to work.",
+          "twitter:description": "Learn languages by playing a game. It's 100% free, fun, and scientifically proven to work."
+        },
+        "divergent_pairs": [
+          {
+            "a": "meta description",
+            "b": "og:description",
+            "similarity": 0.11
+          },
+          {
+            "a": "meta description",
+            "b": "twitter:description",
+            "similarity": 0.11
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "These fields are read by different consumers, and together they form the brand's self-description. When they disagree, a system has no single authoritative account of what the brand is; it either hedges, blends them into something the brand never said, or prefers a third-party description that at least appears consistently.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Write one canonical description of the organisation and use it in every one of these fields.",
+        "priority": "high",
+        "how": [
+          "Agree a single sentence describing what the organisation is, who it serves and where.",
+          "Use it verbatim in the meta description, og:description, twitter:description and the Organization schema `description`.",
+          "Use the same sentence in off-site profiles - LinkedIn, Crunchbase, directories - so the description the wider web repeats matches the site."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-001 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-002",
+      "title": "The site never declares which external profiles belong to this brand",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "0 sameAs links are declared across 0 Organization-family node(s) on the homepage, and 0 external brand profile links appear on the page.",
+      "evidence_detail": {
+        "social_links_on_page": []
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "sameAs is the machine-readable claim that this site, this company registry entry, this LinkedIn page and this Wikipedia article are one entity. Without it, corroborating facts scattered across those sources are not recognised as being about the same organisation, so each one stands alone and is weaker - and a similarly named organisation can be confused with this one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare sameAs links from Organization schema to every profile the brand controls.",
+        "priority": "medium",
+        "how": [
+          "Add a `sameAs` array to the Organization block listing the brand's authoritative profiles.",
+          "Prioritise identity authorities over social reach: Wikidata, Wikipedia, LinkedIn, Crunchbase, a company register entry, GitHub - these disambiguate; a follower count does not.",
+          "Make the links reciprocal where possible: the profile should link back to the site."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-002 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-005",
+      "title": "Nothing on the site distinguishes this brand from others with the same name",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "The homepage title is \"Duolingo\" - 1 word(s) with no category qualifier - and no identity-authority sameAs link is declared for the name \"duolingo\".",
+      "evidence_detail": {
+        "title": "Duolingo",
+        "brand_token": "duolingo",
+        "has_authority_link": false
+      },
+      "affected_urls": [
+        "https://www.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "Several organisations, products and places routinely share a name. With no category in the title and no link to an identity authority, a system has nothing to tell them apart, so facts about a similarly named entity get attributed to this brand and vice versa. This is the mechanism behind most cases of an assistant describing a company as something it is not.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Qualify the brand everywhere it is named, and link to an identity authority.",
+        "priority": "high",
+        "how": [
+          "Change the homepage title to `Duolingo - <what it is> for <who>` so the name never appears unqualified.",
+          "Add Organization schema with `description`, `address` and `sameAs` links to Wikidata, LinkedIn and a company register.",
+          "Use the qualified form consistently in off-site profiles and press mentions, so the distinguishing phrase is what the wider web repeats."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-006",
+      "title": "The site publishes few verifiable facts about the organisation itself",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "Across 1 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text; no named, quantified fact (customers, employees, locations) appears in the text.",
+      "evidence_detail": {
+        "has_about_page": true,
+        "has_founding_fact": false,
+        "has_citable_stat": false
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 29,
+      "mechanism": "A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.",
+        "priority": "medium",
+        "how": [
+          "Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.",
+          "Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.",
+          "Add a press or newsroom page carrying the same facts in a form journalists can lift.",
+          "Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-006 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ENT-010",
+      "reason": "site is not a local business; NAP consistency is not applicable"
+    },
+    {
+      "check_id": "ENT-011",
+      "reason": "the site declares no external profiles to verify"
+    },
+    {
+      "check_id": "ENT-012",
+      "reason": "only 0 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+    },
+    {
+      "check_id": "ENT-013",
+      "reason": "no fetched profile carried enough text to compare against the site's own description"
+    }
+  ],
+  "notes": [
+    "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+  ]
+}

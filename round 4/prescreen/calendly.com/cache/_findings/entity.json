@@ -1,0 +1,92 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENT-004",
+      "title": "Some brand profiles linked on the site are missing from sameAs",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 external profile(s) linked from the homepage are not declared in sameAs: https://facebook.com/calendly, https://instagram.com/calendly, https://linkedin.com/company/calendly.",
+      "evidence_detail": {
+        "undeclared": [
+          "https://facebook.com/calendly",
+          "https://instagram.com/calendly",
+          "https://linkedin.com/company/calendly"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 3,
+      "sampled_count": 1,
+      "mechanism": "A link in the footer is a hint; a sameAs entry is an assertion. Profiles left out of the declaration are not connected to the entity, so whatever they corroborate is not counted.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add the remaining profiles to the sameAs array.",
+        "priority": "medium",
+        "how": [
+          "Add https://facebook.com/calendly, https://instagram.com/calendly, https://linkedin.com/company/calendly to the Organization sameAs list.",
+          "Keep the two in sync whenever a profile is added or retired."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-006",
+      "title": "The site publishes few verifiable facts about the organisation itself",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "Across 2 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text.",
+      "evidence_detail": {
+        "has_about_page": true,
+        "has_founding_fact": false,
+        "has_citable_stat": true
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.",
+        "priority": "low",
+        "how": [
+          "Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.",
+          "Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.",
+          "Add a press or newsroom page carrying the same facts in a form journalists can lift.",
+          "Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-006 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ENT-010",
+      "reason": "site is not a local business; NAP consistency is not applicable"
+    },
+    {
+      "check_id": "ENT-012",
+      "reason": "only 1 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+    },
+    {
+      "check_id": "ENT-013",
+      "reason": "no fetched profile carried enough text to compare against the site's own description"
+    }
+  ],
+  "notes": [
+    "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-014",
+      "title": "Sitemap entries mostly lack <lastmod> dates",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "0 of 104 sitemap URLs carry a <lastmod> value.",
+      "evidence_detail": {
+        "url_count": 104,
+        "with_lastmod": 0
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "Crawlers use <lastmod> to decide what to re-fetch. Without it they re-crawl on their own schedule, so updated pages can be represented in answers by a stale copy for far longer than necessary.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Emit an accurate <lastmod> for every sitemap URL.",
+        "priority": "medium",
+        "how": [
+          "Populate <lastmod> from the content's real last-modified time, not the build time.",
+          "Do not set every URL to the same timestamp on each deploy - crawlers learn to distrust it."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-014 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ACC-018",
+      "title": "Canonical tags point to a different domain",
+      "severity": "critical",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 22 sampled pages declare a canonical URL on another host, e.g. https://englishtest.duolingo.com/faq -> https://testcenter.zendesk.com/hc/en-us.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "page": "https://englishtest.duolingo.com/faq",
+            "canonical": "https://testcenter.zendesk.com/hc/en-us"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://englishtest.duolingo.com/faq"
+      ],
+      "affected_count": 1,
+      "sampled_count": 22,
+      "mechanism": "A cross-domain canonical instructs indexing systems to attribute the content to the other domain entirely. The brand's own pages are then treated as duplicates, and any citation goes to the other site.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Point canonical tags at the page's own URL on this domain.",
+        "priority": "critical",
+        "how": [
+          "Set a self-referencing canonical on every indexable page.",
+          "If the content is genuinely syndicated from elsewhere, keep the cross-domain canonical only on the syndicated copies, never on original pages."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-018 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ACC-024",
+      "title": "Internal links and sitemap entries point at pages that fail to load",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 30 crawled URLs returned an error, e.g. http://static.duolingo.com/s3/DuolingoReport_Final.pdf (fetch_error: EOFError: Compressed file ended before the end-of-stream marker was reached).",
+      "evidence_detail": {},
+      "affected_urls": [
+        "http://static.duolingo.com/s3/DuolingoReport_Final.pdf"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "Every dead link is a discovery path that terminates, and a visitor who reaches one usually leaves rather than navigating back. Dead entries in a sitemap additionally teach crawlers to trust the sitemap less.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Fix or remove the broken URLs from links and from the sitemap.",
+        "priority": "low",
+        "how": [
+          "Repair the links, or redirect the old URLs to their current equivalents with a 301.",
+          "Remove URLs that no longer exist from the sitemap.",
+          "Add a build-time link check so this does not regress."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-024 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": []
+}

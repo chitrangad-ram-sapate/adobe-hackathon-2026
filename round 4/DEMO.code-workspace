@@ -1,0 +1,29 @@
+{
+  "folders": [
+    { "name": "brand-ai-readiness-audit (submitted Round 3 engine)", "path": "demo/brand-ai-readiness-audit" }
+  ],
+  "settings": {
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.env.windows": { "DISABLE_AUTOUPDATER": "1" },
+    "terminal.integrated.enablePersistentSessions": false,
+    "editor.fontSize": 18,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": false,
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+    "files.exclude": { "**/__pycache__": true },
+    "files.readonlyInclude": { "**/*": true },
+    "files.readonlyExclude": { "**/audit-report.*": true },
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": { "reportAttributeAccessIssue": "none", "reportOptionalMemberAccess": "none" },
+    "editor.codeActionsOnSave": {},
+    "editor.formatOnSave": false,
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false,
+    "window.title": "Delulu Devs - Round 4 demo"
+  }
+}

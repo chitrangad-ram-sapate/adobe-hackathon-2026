@@ -1,0 +1,83 @@
+{
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Publish an /llms.txt index of the site's most quotable pages",
+      "rationale": "Assistants that fetch pages live have to guess which URLs carry the facts they need. An llms.txt file is an emerging convention for stating that explicitly - a short, plain-text map of the pages a machine should read first. It costs almost nothing, and where it is honoured it puts the brand in control of which pages represent it.",
+      "priority": "medium",
+      "how": [
+        "Create `/llms.txt`: an H1 with the organisation's name, a blockquote with the one-line description, then linked sections for the pages that answer real questions - what the company does, products, pricing, contact, documentation.",
+        "Keep it to the pages a machine should read first, not a mirror of the sitemap.",
+        "Optionally publish clean Markdown mirrors of those pages and link them from it.",
+        "Keep it current: a stale index is worse than none, because it directs readers to the wrong pages."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    },
+    {
+      "id": "P-002",
+      "title": "Publish answers to the questions customers actually ask, in their words",
+      "rationale": "Retrieval matches a user's question against candidate passages. Content already written as a question with a self-contained answer matches directly, while the same information as narrative prose has to be located inside a longer passage first. The wording matters as much as the format: customers ask in their own vocabulary, not the brand's product names.",
+      "priority": "medium",
+      "how": [
+        "Collect the real questions from sales calls, support tickets and site search logs.",
+        "Publish each with an answer that stands alone when quoted out of context.",
+        "Use the customer's phrasing in the question; introduce internal product vocabulary in the answer.",
+        "Mark the block up as FAQPage."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-003",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-004",
+      "title": "Design interior pages for visitors who arrive without context",
+      "rationale": "Assistant referrals land deep in a site rather than on the homepage, and they arrive with no idea whose site they are on. Pages built on the assumption that the visitor came through the front door lose them immediately - so the more successful the discoverability work, the more traffic this wastes.",
+      "priority": "medium",
+      "how": [
+        "Ensure every page states the organisation's name and what it does, in text.",
+        "Add breadcrumbs so a visitor can see where they have landed.",
+        "End each page with a next step chosen for that page's subject.",
+        "Review the pages assistants most often cite and treat each as a potential first impression."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    },
+    {
+      "id": "P-005",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

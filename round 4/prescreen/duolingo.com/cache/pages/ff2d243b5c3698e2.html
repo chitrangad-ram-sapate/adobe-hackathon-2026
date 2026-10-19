@@ -1,0 +1,126 @@
+<!doctype html><!--[if lt IE 7 ]> <html lang="en" class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7 ]>    <html lang="en" class="lt-ie10 lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8 ]>    <html lang="en" class="lt-ie10 lt-ie9"> <![endif]--><!--[if IE 9 ]>    <html lang="en" class="lt-ie10"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]--><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="description" content="The Duolingo English Test is a fast, affordable online English exam accepted by institutions worldwide. Take it anytime and get results in 2 days"><meta name="viewport" content="viewport-fit=cover,width=device-width,maximum-scale=1,initial-scale=1,minimum-scale=1,user-scalable=yes"><meta name="google" value="notranslate"><meta content="https://dy8n3onijof8f.cloudfront.net/static/images/testcenter/favicon-juicy.png" itemprop="image"> <meta name="baidu-site-verification" content="codeva-ehhRhv6to8"><meta name="google-site-verification" content="8M4yiKHeEa_Lt2dZFdMu0WxDCelnV2OkozXi3PUS1sk"><meta name="ahrefs-site-verification" content="25a3b0226b2078b3e2fc7cafb4af51fdb016a98aa95f3fb05f015db8f4906e0e"><meta property="fb:app_id" content="234536436609303"><meta name="facebook-domain-verification" content="3nxcgx99hvbagv2dwwncapohp6yiqb"><meta property="og:title" content="Duolingo English Test"><meta property="og:description" content="The Duolingo English Test is a fast, affordable online English exam accepted by institutions worldwide. Take it anytime and get results in 2 days"><meta property="og:type" content="website"><meta property="og:url" content="https://englishtest.duolingo.com/ids"><meta property="og:image" content="https://dy8n3onijof8f.cloudfront.net/media/resources/metadata.png"><link rel="shortcut icon" href="https://dy8n3onijof8f.cloudfront.net/static/images/testcenter/favicon-juicy.ico"><title>Duolingo English Test</title><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/js/969_prod_4ad1f2ee372334374943.js" as="script" crossorigin="anonymous"><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/js/111_prod_fc0489aafcf46805f3c8.js" as="script" crossorigin="anonymous"><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/css/436_prod_2119152508aad9c7d98a.css" as="style" crossorigin="anonymous"><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/js/436_prod_4bfd24eff210809f514b.js" as="script" crossorigin="anonymous"><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/css/110_prod_7789d27ec9fd33080ef1.css" as="style" crossorigin="anonymous"><link rel="preload" href="https://dy8n3onijof8f.cloudfront.net/static/js/110_prod_0f5af7c84add048eccd8.js" as="script" crossorigin="anonymous"><link rel="stylesheet" href="https://dy8n3onijof8f.cloudfront.net/static/css/main_prod_1d912580a3afd92342c0.css" crossorigin="anonymous"><script>(function(){if("undefined"==typeof Symbol||"undefined"==typeof Proxy)return!1;try{return new Function("(a = 0) => a")(),new Function("class MyEvent extends Event{}")(),!1===new Function("return new Boolean(Symbol.match)")()?!1:(new Function("new.target")(),new Function('class ಠ_ಠ extends Array {constructor(j = "a", ...c) {const q = (({u: e}) => {return { [`s${c}`]: Symbol(j) };})({});super(j, q, ...c);}}new Promise((f) => {const a = function* (){return "𠮷".match(/./u)[0].length === 2 || true;};for (let vre of a()) {const [uw, as, he, re] = [new Set(), new WeakSet(), new Map(), new WeakMap()];break;}f(new Proxy({}, {get: (han, h) => h in han ? han[h] : "42".repeat(0o10)}));}).then(bi => new ಠ_ಠ(bi.rd));')(),!0)}catch(n){return!1}})()||(window.location.href="/errors/not-supported.html")</script> <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var o=e.location,r=new URLSearchParams(o.search).get("landing_url");e[n].push({originalLocation:r?decodeURIComponent(r):o.protocol+"//"+o.host+o.pathname+o.search});var s=t.getElementsByTagName(a)[0],c=t.createElement(a);c.async=!0,c.src="https://www.googletagmanager.com/gtm.js?id=GTM-5DGPVNT",s.parentNode.insertBefore(c,s)}(window,document,"script","dataLayer")</script></head> <body> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DGPVNT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="app" onclick=""></div>  <script>// Define the duo namespace if it doesn't already exist.
+        var duo = duo || {};
+        duo.onboardingInfo = duo.onboardingInfo || {};
+
+        // Get constants from the backend, fetched in app.py
+        // The backend data is populated here: https://github.com/duolingo/duolingo-englishtest/blob/master/certs/views/entry_urls/index.py
+        duo.in_china = false;
+        duo.ui_language = 'en';
+        duo.supported_ui_languages = ['de', 'en', 'es', 'fr', 'hi', 'hu', 'id', 'it', 'ja', 'ko', 'pt', 'ru', 'th', 'tr', 'uk', 'vi', 'zs', 'zt'];
+        duo.zendesk_language = 'en-us';
+        duo.languages = JSON.parse('\u007b"zs":\u007b"label":"中文","locale":"zh-CN"\u007d,"zt":\u007b"label":"中文 (繁體)","locale":"zh-CN"\u007d,"en":\u007b"label":"English","locale":"en-US"\u007d,"fr":\u007b"label":"Français","locale":"fr-FR"\u007d,"de":\u007b"label":"Deutsch","locale":"de-DE"\u007d,"hi":\u007b"label":"हिंदी","locale":"hi-IN"\u007d,"hu":\u007b"label":"Magyar","locale":"hu-HU"\u007d,"id":\u007b"label":"Bahasa Indonesia","locale":"id-ID"\u007d,"it":\u007b"label":"Italiano","locale":"it-IT"\u007d,"ja":\u007b"label":"日本語","locale":"ja-JP"\u007d,"ko":\u007b"label":"한국어","locale":"ko-KR"\u007d,"pt":\u007b"label":"Português","locale":"pt-BR"\u007d,"ru":\u007b"label":"Русский","locale":"ru-RU"\u007d,"es":\u007b"label":"Español","locale":"es-ES"\u007d,"th":\u007b"label":"ภาษาไทย","locale":"th-TH"\u007d,"tr":\u007b"label":"Türkçe","locale":"tr-TR"\u007d,"uk":\u007b"label":"Українською","locale":"uk-UA"\u007d,"vi":\u007b"label":"Tiếng Việt","locale":"vi-VN"\u007d\u007d');
+        duo.detectedCountry = 'IN';
+        duo.ip = '152.58.30.252';
+        duo.isBlockedCountry = false;
+        duo.block_purchase = false;
+        duo.states = JSON.parse('\u007b"AK":"Alaska","AL":"Alabama","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado","CT":"Connecticut","DC":"District of Columbia","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","IA":"Iowa","ID":"Idaho","IL":"Illinois","IN":"Indiana","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","MA":"Massachusetts","MD":"Maryland","ME":"Maine","MI":"Michigan","MN":"Minnesota","MO":"Missouri","MS":"Mississippi","MT":"Montana","NC":"North Carolina","ND":"North Dakota","NE":"Nebraska","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NV":"Nevada","NY":"New York","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VA":"Virginia","VT":"Vermont","WA":"Washington","WI":"Wisconsin","WV":"West Virginia","WY":"Wyoming"\u007d');
+        duo.ca_provinces = JSON.parse('\u007b"AB":"Alberta","BC":"British Columbia","MB":"Manitoba","NB":"New Brunswick","NL":"Newfoundland and Labrador","NT":"Northwest Territories","NS":"Nova Scotia","NU":"Nunavut","ON":"Ontario","PE":"Prince Edward Island","QC":"Quebec","SK":"Saskatchewan","YT":"Yukon"\u007d');
+        duo.scoreConcordances = [['Duolingo English Test', 'TOEFL iBT', 'IELTS', 'CEFR'], [100, null, null, 'C2'], [99, 120, 9, 'C2'], [98, 119, 9, 'C2'], [97, 118, 8.5, 'C2'], [96, 117, 8.5, 'C2'], [95, 116, 8.5, 'C2'], [94, 115, 8.5, 'C2'], [93, 115, 8, 'C2'], [92, 114, 8, 'C2'], [91, 113, 8, 'C2'], [90, 112, 8, 'C1'], [89, 112, 8, 'C1'], [88, 111, 8, 'C1'], [87, 110, 8, 'C1'], [86, 109, 7.5, 'C1'], [85, 109, 7.5, 'C1'], [84, 108, 7.5, 'C1'], [83, 108, 7.5, 'C1'], [82, 107, 7.5, 'C1'], [81, 106, 7.5, 'C1'], [80, 105, 7.5, 'C1'], [79, 105, 7.5, 'C1'], [78, 104, 7, 'C1'], [77, 103, 7, 'C1'], [76, 103, 7, 'C1'], [75, 102, 7, 'C1'], [74, 101, 7, 'C1'], [73, 101, 7, 'C1'], [72, 100, 7, 'C1'], [71, 99, 7, 'C1'], [70, 98, 7, 'B2'], [69, 98, 7, 'B2'], [68, 97, 6.5, 'B2'], [67, 96, 6.5, 'B2'], [66, 95, 6.5, 'B2'], [65, 95, 6.5, 'B2'], [64, 94, 6.5, 'B2'], [63, 93, 6.5, 'B2'], [62, 92, 6.5, 'B2'], [61, 92, 6.5, 'B2'], [60, 91, 6, 'B2'], [59, 90, 6, 'B2'], [58, 89, 6, 'B2'], [57, 88, 6, 'B2'], [56, 87, 6, 'B2'], [55, 86, 6, 'B2'], [54, 85, 6, 'B2'], [53, 84, 6, 'B2'], [52, 84, 6, 'B2'], [51, 83, 6, 'B2'], [50, 82, 6, 'B1'], [49, 81, 5.5, 'B1'], [48, 80, 5.5, 'B1'], [47, 79, 5.5, 'B1'], [46, 78, 5.5, 'B1'], [45, 77, 5.5, 'B1'], [44, 76, 5.5, 'B1'], [43, 75, 5.5, 'B1'], [42, 74, 5.5, 'B1'], [41, 73, 5.5, 'B1'], [40, 72, 5.5, 'B1'], [39, 71, 5.5, 'B1'], [38, 70, 5, 'B1'], [37, 69, 5, 'B1'], [36, 68, 5, 'B1'], [35, 67, 5, 'B1'], [34, 67, 5, 'B1'], [33, 66, 5, 'B1'], [32, 65, 5, 'B1'], [31, 64, 5, 'B1'], [30, 63, 5, 'A2'], [29, 62, 4.5, 'A2'], [28, 61, 4.5, 'A2'], [27, 60, 4.5, 'A2'], [26, 60, 4.5, 'A2'], [25, null, null, 'A2'], [24, null, null, 'A2'], [23, null, null, 'A2'], [22, null, null, 'A2'], [21, null, null, 'A2'], [20, null, null, 'A2'], [19, null, null, 'A2'], [18, null, null, 'A2'], [17, null, null, 'A2'], [16, null, null, 'A2'], [15, null, null, 'A2'], [14, null, null, 'A2'], [13, null, null, 'A2'], [12, null, null, 'A2'], [11, null, null, 'A2'], [10, null, null, 'A1'], [9, null, null, 'A1'], [8, null, null, 'A1'], [7, null, null, 'A1'], [6, null, null, 'A1'], [5, null, null, 'A1'], [4, null, null, 'A1'], [3, null, null, 'A1'], [2, null, null, 'A1'], [1, null, null, 'A1'], [0, null, null, 'A1']];
+        duo.test_name = 'Duolingo English Test';
+        duo.literacy_subscore_name = 'Literacy';
+        duo.conversation_subscore_name = 'Conversation';
+        duo.comprehension_subscore_name = 'Comprehension';
+        duo.production_subscore_name = 'Production';
+        duo.speaking_subscore_name = 'Speaking';
+        duo.writing_subscore_name = 'Writing';
+        duo.reading_subscore_name = 'Reading';
+        duo.listening_subscore_name = 'Listening';
+        duo.subscoreNames = {
+            literacy: 'Literacy',
+            conversation: 'Conversation',
+            comprehension: 'Comprehension',
+            production: 'Production',
+            speaking: 'Speaking',
+            writing: 'Writing',
+            reading: 'Reading',
+            listening: 'Listening',
+        }
+        duo.static_root = 'https://dy8n3onijof8f.cloudfront.net/static';
+        duo.prod_cdn = 'https://dy8n3onijof8f.cloudfront.net';
+        duo.test_price_cents = 7000;
+        duo.is_expedited_proctoring_enabled = true;
+        duo.expedited_review_period = 12;
+        duo.agent_review_period = 24;
+        duo.normal_review_period = 48;
+        duo.review_period = 48;
+        duo.resubmitDays = 14;
+        duo.purchase_window = 30;
+        duo.purchase_max_tests = 3;
+        duo.credit_days = 21
+        duo.track_mixpanel = true;
+        duo.show_price_in_test_taker_home = false;
+        duo.show_price_in_score_estimate = false;
+        duo.environment = 'master';
+        duo.sentry_environment = 'prod';
+        duo.server_name = 'us';
+        duo.template_name = 'prod';
+        duo.code_version = 'b9e13f1c22f936ba55d563915c2d6916d5638e64';
+        duo.disable_practice_warning = false;
+        duo.disable_hdyhau = false;
+        duo.dashboard_maintenance = false;
+        duo.maintenance_page = false;
+        duo.disable_buy = true;
+        duo.threshold_for_keyboard_detection = 50
+        duo.should_show_new_desktop_version=false;
+        duo.should_send_user_to_third_party_id_verification=true;
+        duo.should_send_chinese_user_to_third_party_id_verification=true;
+        duo.fingerprintjs_pk = 'udpwcl7kbwyZYhUVBT4t'
+        duo.debug_widget = false;
+        duo.exam_admin_admin = false;
+        duo.show_bug_report_button = false;
+        duo._det_api_gateway_host = 'https://det-api.duolingo.com';
+        duo.en_duostrings_url = 'https://localization-duostrings.duolingo.com/duostrings/det-webbf812c3d11bace4ce72d51f371e4703e/latest/en.duostrings';
+        duo.enable_wechat_login_on_desktop = false;
+        duo.wechat_open_app_id = 'wx09757508835c6441';
+        duo.recaptcha_site_key = '6Le3YpAkAAAAAG20zlwTeZv2Qk6pVU5i7AACApRt';
+        duo.recaptcha_enabled = false;
+        duo.stripe_payment_element_configuration_id = 'pmc_1N6VRKJUu4MsRlhR3Ld699As'
+        duo.stripe_payment_element_configuration_id_cn = 'pmc_1N6VQyJUu4MsRlhRzzNuSoBk'
+        duo.stripe_payment_element_configuration_id_ng = 'pmc_1PptzXJUu4MsRlhRLyvrFMKI'
+        duo.stripe_payment_element_configuration_id_id = 'pmc_1QJUuOJUu4MsRlhRCq2AIFor'
+        duo.stripe_payment_element_configuration_id_br = 'pmc_1RMOfZJUu4MsRlhRyBIYz3TW'
+        duo.stripe_payment_element_configuration_id_in = 'pmc_1RMOg4JUu4MsRlhRC19nrb4m'
+        duo.stripe_payment_element_configuration_id_digital_wallets = 'pmc_1NfP7EJUu4MsRlhRB1dgecTe'
+        duo.stripe_payment_element_configuration_id_cn_with_wechat_pay = 'pmc_1NfP8GJUu4MsRlhRzr3mmzRd'
+        duo.stripe_payment_element_configuration_id_kr = 'pmc_1Nk0g3JUu4MsRlhRR7OBBisb'
+        duo.stripe_payment_element_configuration_id_electron = 'pmc_1PGQaaJUu4MsRlhRiQl0VKbu'
+        duo.stripe_payment_element_configuration_id_electron_cn = 'pmc_1PGQbBJUu4MsRlhRVf3oxgsh'
+        duo.stripe_payment_element_configuration_id_electron_ng = 'pmc_1Ppu0SJUu4MsRlhRIHmD2snS'
+        duo.stripe_payment_element_configuration_id_electron_id = 'pmc_1QJUvQJUu4MsRlhRXtmoIrhh'
+        duo.stripe_payment_element_configuration_id_electron_br = 'pmc_1RMOepJUu4MsRlhRzMR1o4K8'
+        duo.stripe_payment_element_configuration_id_electron_in = 'pmc_1RMOfrJUu4MsRlhRV5tTCgul'
+        duo.client_side_experiment_rollouts = JSON.parse('\u007b\u007d');
+        duo.use_redesign_styles_on_certified_test = true;
+        duo.enable_prepilot = true;
+        duo.enable_attitude_survey = false;
+        duo.sample_session_errors_rate = 0.05;
+        duo.upload_old_video_recording_files_rate = 0.0;
+        duo.ielts_pdf_upload_rate = 0.5;
+        duo.toefl_pdf_upload_rate = 0.5;
+        duo.mount_sdk_on_id_check_step = false;
+        duo.upload_speed_check_file_size = 500000;
+        duo.upload_speed_in_mbps = null;
+        duo.num_accepting_institutions = 6500;
+        duo.enable_pt_opt_in_screen = false;
+        duo.enable_ct_opt_in_screen = false;
+        duo.should_show_site_maintenance_banner = false;
+        duo.should_show_v9_new_items_banner = false;
+        duo.enable_decagon_integration = true;
+        duo.full_story_pt_enable_rate = 0.0;
+        duo.process_desktop_pt = false;
+        duo.process_mobile_pt = false;
+
+        duo.enable_id_sdk = true;
+        duo.enable_id_country_blocking = true;
+        duo.enable_refugee_option = true;
+        duo.disable_id_sdk_china = false;
+        duo.use_google_sheet_for_applicant_id_types = true;
+        duo.ear_scan_flag = 2;
+        duo.enable_eye_gaze = false;
+        duo.mobile_app_flag = 2;
+        // Other constants
+        duo.minutes = duo.minutes || {};
+        duo.minutes.onboarding = 5;
+        duo.minutes.test = 45;
+        duo.minutes.interview = 10;
+        duo.minutes.practice = 45;</script><script>duo.sourcesPromise=fetch("https://localization-duostrings.duolingo.com/duostrings/det-webbf812c3d11bace4ce72d51f371e4703e/latest/en.duostrings").then(function(s){return s.json()}).then(function(s){duo.sources=s.sources})</script><script></script><script>var global=global||window</script><script src="https://dy8n3onijof8f.cloudfront.net/static/js/main_prod_7faebfe7f6c9c35b55b7.js" crossorigin></script><script>!function(e,a,n,t,o){var c,r,d;e[o]=e[o]||[],c=function(){var a={ti:"343094589",enableAutoSpaTracking:!0};a.q=e[o],e[o]=new UET(a),e[o].push("pageLoad")},(r=a.createElement(n)).src="//bat.bing.com/bat.js",r.async=1,r.onload=r.onreadystatechange=function(){var e=this.readyState;e&&"loaded"!==e&&"complete"!==e||(c(),r.onload=r.onreadystatechange=null)},(d=a.getElementsByTagName(n)[0]).parentNode.insertBefore(r,d)}(window,document,"script",0,"uetq")</script><script>piAId="209162",piCId="1262",function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.src=("https:"==document.location.protocol?"https://pi":"http://cdn")+".pardot.com/pd.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}window.attachEvent?window.attachEvent("onload",t):window.addEventListener("load",t,!1)}()</script> <script src="https://accounts.google.com/gsi/client" async defer="defer"></script></body></body></html>

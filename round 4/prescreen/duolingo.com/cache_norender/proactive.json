@@ -1,0 +1,35 @@
+{
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-002",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

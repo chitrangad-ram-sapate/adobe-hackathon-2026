@@ -1,0 +1,134 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENT-002",
+      "title": "The site never declares which external profiles belong to this brand",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "0 sameAs links are declared across 0 Organization-family node(s) on the homepage, although 4 external profile link(s) appear on the page (https://www.facebook.com/grammarly, https://www.instagram.com/grammarly/, https://www.linkedin.com/company/grammarly).",
+      "evidence_detail": {
+        "social_links_on_page": [
+          "https://www.facebook.com/grammarly",
+          "https://www.instagram.com/grammarly/",
+          "https://www.linkedin.com/company/grammarly",
+          "https://x.com/Superhuman"
+        ]
+      },
+      "affected_urls": [
+        "https://www.grammarly.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "sameAs is the machine-readable claim that this site, this company registry entry, this LinkedIn page and this Wikipedia article are one entity. Without it, corroborating facts scattered across those sources are not recognised as being about the same organisation, so each one stands alone and is weaker - and a similarly named organisation can be confused with this one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare sameAs links from Organization schema to every profile the brand controls.",
+        "priority": "medium",
+        "how": [
+          "Add a `sameAs` array to the Organization block listing the brand's authoritative profiles.",
+          "Prioritise identity authorities over social reach: Wikidata, Wikipedia, LinkedIn, Crunchbase, a company register entry, GitHub - these disambiguate; a follower count does not.",
+          "Make the links reciprocal where possible: the profile should link back to the site."
+        ],
+        "platform_specific": [
+          "Emit the JSON-LD from the route's server component (or `generateMetadata` for metadata fields), so it is present in the server-rendered HTML rather than added on the client.",
+          "Build the object from the same data the page fetches, so the markup cannot drift from what is displayed."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-002 and confirm it no longer fires.",
+        "platform": "Next.js"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-006",
+      "title": "The site publishes few verifiable facts about the organisation itself",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "Across 1 sampled page(s): no founding date, headquarters or 'based in' statement appears in the text.",
+      "evidence_detail": {
+        "has_about_page": true,
+        "has_founding_fact": false,
+        "has_citable_stat": true
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "A claim repeated consistently across many independent sources is treated as reliable; a claim that exists in one place is fragile. Before the wider web can repeat anything about an organisation, the organisation has to state it somewhere quotable. With no founding date, location, scale or named figures published, there is nothing for journalists, directories or assistants to corroborate - so the brand has no verifiable substance to attach to its name.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a facts page: what the organisation is, when and where it was founded, its scale, and who leads it.",
+        "priority": "low",
+        "how": [
+          "Create or expand an About page stating founding year, headquarters location, legal entity name, leadership and size, in plain sentences.",
+          "Publish named, dated figures the press and analysts can cite - customers served, locations, headcount - and keep them current.",
+          "Add a press or newsroom page carrying the same facts in a form journalists can lift.",
+          "Mirror the same facts in Organization schema (foundingDate, address, numberOfEmployees, founder) so they are machine-readable as well as readable."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-009",
+      "title": "Articles have no named author in structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 of 4 sampled articles declare no author.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.grammarly.com/blog/",
+        "https://www.grammarly.com/blog/engineering/",
+        "https://www.grammarly.com/blog/institutions/"
+      ],
+      "affected_count": 3,
+      "sampled_count": 4,
+      "mechanism": "Attribution is part of how a claim's weight is assessed. Named, described authors connect content to a person whose expertise can be established elsewhere; anonymous content has only the domain behind it.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Attribute articles to named authors with linked profiles.",
+        "priority": "low",
+        "how": [
+          "Add `author` as a Person object with `name`, `url` and `sameAs` to the article's structured data.",
+          "Publish author profile pages describing relevant expertise.",
+          "Show the byline visibly as well as in markup."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ENT-009 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ENT-010",
+      "reason": "site is not a local business; NAP consistency is not applicable"
+    },
+    {
+      "check_id": "ENT-011",
+      "reason": "the site declares no external profiles to verify"
+    },
+    {
+      "check_id": "ENT-012",
+      "reason": "only 0 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+    },
+    {
+      "check_id": "ENT-013",
+      "reason": "no fetched profile carried enough text to compare against the site's own description"
+    }
+  ],
+  "notes": [
+    "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+  ]
+}

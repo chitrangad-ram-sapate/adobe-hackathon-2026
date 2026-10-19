@@ -1,0 +1,80 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-004",
+      "title": "AI training crawlers are blocked (recorded, not flagged as a defect)",
+      "severity": "info",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 training-corpus agents are disallowed: ccbot.",
+      "evidence_detail": {
+        "blocked": [
+          {
+            "agent": "ccbot",
+            "vendor": "Common Crawl",
+            "rule": "Disallow: /",
+            "line": 17
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "Training crawlers build the corpus a model learns from. Blocking them reduces the chance the brand is known from model memory, but does not affect live retrieval or citation. This is a policy choice with a known cost, not a misconfiguration.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "No action required unless the brand wants to be recalled from model memory as well as cited.",
+        "priority": "low",
+        "how": [
+          "Keep this block if opting out of training is deliberate.",
+          "If it was not deliberate, allow GPTBot, ClaudeBot, Google-Extended and CCBot to be learned from."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "No verification needed; this is an observation."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ACC-016",
+      "title": "Pages that should be findable are marked noindex",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 30 sampled pages carry a noindex directive, e.g. https://calendly.com/contact.",
+      "evidence_detail": {
+        "meta_noindex": [
+          "https://calendly.com/contact",
+          "https://calendly.com/ai-assistant"
+        ],
+        "header_noindex": []
+      },
+      "affected_urls": [
+        "https://calendly.com/contact"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "noindex tells indexing systems to discard the page after fetching it. Content behind it can never be surfaced or cited, and because the page still renders normally for visitors, the exclusion is invisible from inside the organisation.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Remove noindex from pages that are meant to be found.",
+        "priority": "high",
+        "how": [
+          "Remove `<meta name=\"robots\" content=\"noindex\">` and any `X-Robots-Tag: noindex` header from these pages.",
+          "Check whether the directive is applied by a template or an edge rule rather than by the page itself.",
+          "A staging-environment configuration reaching production is the usual cause - verify the deploy pipeline."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Fetch each URL and confirm no noindex appears in the meta robots tag or the X-Robots-Tag header."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": []
+}

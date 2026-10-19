@@ -1,0 +1,213 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ANS-001",
+      "title": "The homepage never states in plain words what the organisation is",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "None of the first 6 sentences on the homepage, the meta description, or any Organization description combines the brand name with a descriptive verb and a category noun. Opening line: \"limited time Free fragrance, anyone?\".",
+      "evidence_detail": {
+        "opening_sentences": [
+          "limited time Free fragrance, anyone?",
+          "Get four mini Glossier You fragrances on us with any qualifying order.",
+          "Sample, layer, repeat."
+        ],
+        "headline_text": "Glossier Search our site Free fragrance, anyone? SHOP BESTSELLERS",
+        "meta_description": "Glossier"
+      },
+      "affected_urls": [
+        "https://www.glossier.com/en-in"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "When an assistant is asked what a company does, it looks for a sentence that says so. If the page communicates identity through imagery, layout and implication instead, there is nothing to lift - so the assistant either declines to describe the brand or reconstructs a description from third parties, which is where misrepresentation begins.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Add one plain declarative sentence near the top of the homepage stating what the organisation is, who it serves, and where.",
+        "priority": "high",
+        "how": [
+          "Write a sentence of the form: \"glossier is a <category> that <does what> for <who>, based in <where>.\"",
+          "Place it in the first screen of the homepage as body text - not inside an image, a video, or a carousel.",
+          "Mirror the same sentence in the meta description and in the Organization schema `description` field so all three agree.",
+          "Keep it literal. A slogan can sit above it; the literal sentence is what gets quoted."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-001; a sentence naming the brand, a verb and a category noun should appear in the homepage's opening text."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-003",
+      "title": "Different pages share the same title",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "14 of 30 sampled pages share 5 repeated title(s), e.g. \"Glossier\".",
+      "evidence_detail": {
+        "duplicates": [
+          "Glossier",
+          "Glossier. Help Center",
+          "Balm Dotcom – Glossier",
+          "Balm Dotcom Trio – Glossier",
+          "Balms – Glossier"
+        ]
+      },
+      "affected_urls": [
+        "https://www.glossier.com/en-in",
+        "https://glossier.com/",
+        "https://help.glossier.com/",
+        "https://www.glossier.com/en-in/products/balm-dotcom",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom-trio",
+        "https://www.glossier.com/en-in/products/balm-dotcom-trio?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom?variant=48390723731701"
+      ],
+      "affected_count": 14,
+      "sampled_count": 30,
+      "mechanism": "The title is how a page is named in a citation and is one of the strongest topic signals a retrieval system has. Identical titles make pages indistinguishable to it, so they compete with one another and the most relevant one is not reliably chosen.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page a unique title describing that page's specific subject.",
+        "priority": "high",
+        "how": [
+          "Template titles as `<specific page subject> - <brand>`.",
+          "Derive the first part from the page's own H1 or product/article name, never from the site name alone."
+        ],
+        "platform_specific": [
+          "Edit the title and description templates in `theme.liquid` and set per-product values in the admin's search-listing preview."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-003 and confirm it no longer fires.",
+        "platform": "Shopify"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-006",
+      "title": "Pricing pages contain no readable price",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "8 of 8 sampled pricing/product pages contain no numeric price in their text, e.g. https://www.glossier.com/en-in/products/balm-dotcom.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom-quintet",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom-quintet?parent_collection=balms",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom-trio",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom-trio?parent_collection=balms",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom?parent_collection=balms",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom?variant=48390723731701",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/body-hero-daily-oil-wash",
+            "quote_language": false
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.glossier.com/en-in/products/balm-dotcom",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom-trio",
+        "https://www.glossier.com/en-in/products/balm-dotcom-trio?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom?variant=48390723731701",
+        "https://www.glossier.com/en-in/products/body-hero-daily-oil-wash"
+      ],
+      "affected_count": 8,
+      "sampled_count": 8,
+      "mechanism": "Cost is among the most common things asked about any commercial brand. With no number on the page, an assistant cannot answer from the brand's own site and turns to resellers, review sites and forums - sources that are often out of date and never in the brand's control. Publishing a figure is what makes the brand's own page the citable one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a real figure or an indicative range, even where final pricing is negotiated.",
+        "priority": "high",
+        "how": [
+          "State a starting price, a typical range, or a worked example: \"from 4,500 GBP per unit per year\".",
+          "Put it in body text, not in an image or a downloadable PDF.",
+          "Mirror it in Offer/AggregateOffer structured data with price and priceCurrency.",
+          "If pricing genuinely cannot be published, state what it depends on in plain text - that is still an extractable, quotable answer, where silence is not."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-009",
+      "title": "The site does not answer comparison, use-case or how-to questions",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "Across 30 known URLs there are no pages matching comparison, faq, how_to, use_case patterns; only none present.",
+      "evidence_detail": {
+        "missing_surfaces": [
+          "comparison",
+          "faq",
+          "how_to",
+          "use_case"
+        ],
+        "present_surfaces": []
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 30,
+      "mechanism": "A large share of the questions put to assistants are comparative or qualifying - which tool for this job, how does this compare to that, is this suitable for my situation. A site that only describes its own products in its own vocabulary has no passage that matches those questions, so the answer is assembled from review sites and competitors' comparison pages instead.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish comparison, use-case and how-to pages in the customer's own words.",
+        "priority": "low",
+        "how": [
+          "Write honest comparison pages against the alternatives buyers genuinely evaluate, including where the alternative is the better fit - even-handed pages are cited more often than promotional ones.",
+          "Publish `for <audience>` or `for <industry>` pages describing the specific situation each serves.",
+          "Add how-to and getting-started content answering the questions that precede a purchase decision.",
+          "Title and phrase each page as the question it answers."
+        ],
+        "platform_specific": null,
+        "effort": "high",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-009 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ANS-002",
+      "reason": "no H1 on the homepage; covered by RND-012"
+    }
+  ],
+  "notes": []
+}

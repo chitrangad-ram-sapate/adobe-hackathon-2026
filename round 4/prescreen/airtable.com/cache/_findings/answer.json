@@ -1,0 +1,101 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ANS-003",
+      "title": "Different pages share the same title",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "4 of 29 sampled pages share 2 repeated title(s), e.g. \"Airtable Pricing | Compare Plans, Features & Costs\".",
+      "evidence_detail": {
+        "duplicates": [
+          "Airtable Pricing | Compare Plans, Features & Costs",
+          "Overview - Airtable Developers"
+        ]
+      },
+      "affected_urls": [
+        "https://airtable.com/pricing",
+        "https://www.airtable.com/pricing",
+        "https://airtable.com/developers",
+        "https://airtable.com/developers/agents"
+      ],
+      "affected_count": 4,
+      "sampled_count": 29,
+      "mechanism": "The title is how a page is named in a citation and is one of the strongest topic signals a retrieval system has. Identical titles make pages indistinguishable to it, so they compete with one another and the most relevant one is not reliably chosen.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page a unique title describing that page's specific subject.",
+        "priority": "medium",
+        "how": [
+          "Template titles as `<specific page subject> - <brand>`.",
+          "Derive the first part from the page's own H1 or product/article name, never from the site name alone."
+        ],
+        "platform_specific": [
+          "Export `metadata` or `generateMetadata` per route so each page has its own title and description."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-003 and confirm it no longer fires.",
+        "platform": "Next.js"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-006",
+      "title": "Pricing pages contain no readable price",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "3 of 5 sampled pricing/product pages contain no numeric price in their text, e.g. https://www.airtable.com/articles/product.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.airtable.com/articles/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.airtable.com/solutions/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.airtable.com/lp/product/feature-prioritization",
+            "quote_language": false
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.airtable.com/articles/product",
+        "https://www.airtable.com/solutions/product",
+        "https://www.airtable.com/lp/product/feature-prioritization"
+      ],
+      "affected_count": 3,
+      "sampled_count": 5,
+      "mechanism": "Cost is among the most common things asked about any commercial brand. With no number on the page, an assistant cannot answer from the brand's own site and turns to resellers, review sites and forums - sources that are often out of date and never in the brand's control. Publishing a figure is what makes the brand's own page the citable one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a real figure or an indicative range, even where final pricing is negotiated.",
+        "priority": "high",
+        "how": [
+          "State a starting price, a typical range, or a worked example: \"from 4,500 GBP per unit per year\".",
+          "Put it in body text, not in an image or a downloadable PDF.",
+          "Mirror it in Offer/AggregateOffer structured data with price and priceCurrency.",
+          "If pricing genuinely cannot be published, state what it depends on in plain text - that is still an extractable, quotable answer, where silence is not."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-006 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ANS-002",
+      "reason": "homepage H1 is unrecognised vocabulary rather than identifiable marketing abstraction; not flagged to avoid a false positive"
+    }
+  ],
+  "notes": []
+}

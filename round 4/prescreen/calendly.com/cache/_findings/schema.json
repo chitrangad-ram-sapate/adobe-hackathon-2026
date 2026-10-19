@@ -1,0 +1,144 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "SDA-007",
+      "title": "Article structured data is missing required fields",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "12 Article nodes omit datePublished (12x), e.g. on https://calendly.com/customers.",
+      "evidence_detail": {
+        "type": "Article",
+        "missing_counts": {
+          "datePublished": 12
+        }
+      },
+      "affected_urls": [
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers",
+        "https://calendly.com/customers"
+      ],
+      "affected_count": 12,
+      "sampled_count": 153,
+      "mechanism": "The block is present and parses, so it appears to be working - but without datePublished it cannot answer what does this say, when was it said, and who said it. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Populate the required Article fields: datePublished.",
+        "priority": "medium",
+        "how": [
+          "Add datePublished to the Article block, sourced from the same data the page renders.",
+          "Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.",
+          "Validate the output against the type's requirements as part of the build."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-007 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "SDA-007",
+      "title": "Offer structured data is missing required fields",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "2 Offer nodes omit price (2x), e.g. on https://calendly.com/pricing.",
+      "evidence_detail": {
+        "type": "Offer",
+        "missing_counts": {
+          "price": 2
+        }
+      },
+      "affected_urls": [
+        "https://calendly.com/pricing",
+        "https://calendly.com/pricing"
+      ],
+      "affected_count": 2,
+      "sampled_count": 153,
+      "mechanism": "The block is present and parses, so it appears to be working - but without price it cannot answer what does it cost and can I buy it right now. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Populate the required Offer fields: price.",
+        "priority": "high",
+        "how": [
+          "Add price to the Offer block, sourced from the same data the page renders.",
+          "Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.",
+          "Validate the output against the type's requirements as part of the build."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-007 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "SDA-007",
+      "title": "Organization structured data is missing required fields",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "3 Organization nodes omit url (3x), e.g. on https://calendly.com/customers/1up-ai.",
+      "evidence_detail": {
+        "type": "Organization",
+        "missing_counts": {
+          "url": 3
+        }
+      },
+      "affected_urls": [
+        "https://calendly.com/customers/1up-ai",
+        "https://calendly.com/customers/achievement-first",
+        "https://calendly.com/customers/agile-search"
+      ],
+      "affected_count": 3,
+      "sampled_count": 153,
+      "mechanism": "The block is present and parses, so it appears to be working - but without url it cannot answer who is this company, and is it the same entity as the one on Wikipedia/LinkedIn. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Populate the required Organization fields: url.",
+        "priority": "medium",
+        "how": [
+          "Add url to the Organization block, sourced from the same data the page renders.",
+          "Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.",
+          "Validate the output against the type's requirements as part of the build."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-007 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "SDA-005",
+      "reason": "only 1 careers page(s) lacked expected markup - too few to conclude a pattern"
+    },
+    {
+      "check_id": "SDA-008",
+      "reason": "site type is media_publisher; offer markup is not expected"
+    }
+  ],
+  "notes": []
+}

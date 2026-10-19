@@ -1,0 +1,205 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-002",
+      "title": "Pages are served as an empty JavaScript application shell",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "1 of 12 sampled content pages return a 16 KB response containing only 3 words of text alongside client-framework markers, e.g. https://englishtest.duolingo.com/.",
+      "evidence_detail": {
+        "shells": [
+          {
+            "url": "https://englishtest.duolingo.com/",
+            "raw_words": 3,
+            "bytes": 16672,
+            "shell_element": true,
+            "payload_bytes": 0
+          }
+        ],
+        "note": "No browser engine was available, so this is inferred from response size, text volume and framework markers rather than measured against an executed DOM."
+      },
+      "affected_urls": [
+        "https://englishtest.duolingo.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 12,
+      "mechanism": "The server sends an application shell and the content is fetched and assembled in the browser. A fetcher that does not execute JavaScript receives the shell - a page that is technically 200 OK and effectively blank - so nothing on it can be indexed, retrieved or quoted.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Server-render the content routes, or pre-render them to static HTML.",
+        "priority": "medium",
+        "how": [
+          "Switch these routes to server-side rendering or static generation in the framework already in use.",
+          "Confirm the fix at the transport layer, not in the browser: `curl -s <url>` must contain the page text.",
+          "If the application cannot be server-rendered, publish a pre-rendered static copy of the highest-value pages and serve it to non-browser clients from the edge."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "high",
+        "owner": "engineering",
+        "verify": "Install a browser engine and re-run; RND-001 will measure the gap exactly.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-004",
+      "title": "The site tells non-JavaScript clients that it will not work",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "2 of 29 sampled pages contain a <noscript> block stating JavaScript is required, e.g. \"You need to enable JavaScript to view our careers page.\".",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/careers",
+        "https://incubator.duolingo.com/apply"
+      ],
+      "affected_count": 2,
+      "sampled_count": 29,
+      "mechanism": "This message is the fallback a non-JavaScript client actually receives. Where it appears, it confirms the page's real content is unavailable without script execution - and for a text extractor, this sentence may be the most prominent text on the page.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Provide real content in <noscript>, or server-render the page so the fallback is unnecessary.",
+        "priority": "medium",
+        "how": [
+          "Server-render the primary content (see RND-001/RND-002).",
+          "Until then, put the page's core text - headline, description, key facts, links - inside <noscript> so something meaningful is readable."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check RND-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-012",
+      "title": "Pages have no H1 heading",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "27 of 29 sampled pages contain no <h1> element, e.g. https://www.duolingo.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://englishtest.duolingo.com/faq",
+        "https://schools.duolingo.com/help"
+      ],
+      "affected_count": 27,
+      "sampled_count": 29,
+      "mechanism": "The H1 is the most reliable statement of what a page is about, and extractive systems lean on it heavily when deciding whether a page answers a question and what to call it in a citation. Without one, the page's topic has to be inferred from body text, which is less reliable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page exactly one H1 that states the page's subject in plain words.",
+        "priority": "high",
+        "how": [
+          "Add a single <h1> per page containing the page's real subject, not a slogan or the site name.",
+          "Style it freely - the level is a structural statement, not a visual one."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check RND-012 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-013",
+      "title": "Pages have no <main> or <article> landmark",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "27 of 29 sampled pages wrap their content in generic containers with no <main> or <article> element.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.duolingo.com/",
+        "http://contest.duolingo.com/",
+        "http://pillow.duolingo.com/",
+        "https://englishtest.duolingo.com/",
+        "https://incubator.duolingo.com/",
+        "https://schools.duolingo.com/",
+        "https://status.duolingo.com/",
+        "https://www.duolingo.com/team",
+        "https://www.duolingo.com/contact",
+        "https://schools.duolingo.com/help"
+      ],
+      "affected_count": 27,
+      "sampled_count": 29,
+      "mechanism": "Content extractors use landmarks to separate the article from the navigation, header and footer that repeat on every page. Without them the boundary is guessed, and boilerplate is regularly quoted as though it were page content.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Wrap the unique content of each page in <main>, and each self-contained item in <article>.",
+        "priority": "medium",
+        "how": [
+          "Add one <main> per page around the content that is unique to it.",
+          "Use <article> for individually meaningful items - posts, products, listings.",
+          "Keep navigation in <nav>, site header in <header>, site footer in <footer>."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check RND-013 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-014",
+      "title": "The document language is not declared",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "18 of 29 sampled pages have no lang attribute on <html>.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 18,
+      "sampled_count": 29,
+      "mechanism": "The language declaration tells retrieval systems which language queries this page can answer, and tells screen readers which voice to use. Undeclared pages are sometimes assigned the wrong language and dropped from results in their real one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare the page language on the <html> element.",
+        "priority": "medium",
+        "how": [
+          "Add `lang=\"<language code>\"` to <html> in the base template.",
+          "For multilingual sites, emit the correct code per locale and add rel=alternate hreflang links."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check RND-014 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-001",
+      "reason": "no JavaScript engine available; render gap estimated statically by RND-002"
+    },
+    {
+      "check_id": "RND-005",
+      "reason": "thin text is already explained by the render-gap finding"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

@@ -1,0 +1,185 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENG-003",
+      "title": "Navigation relies on repeated, undescriptive link text",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The link text \"here\" appears 6 times across the sampled pages, alongside 2 such repeated labels in total.",
+      "evidence_detail": {
+        "labels": {
+          "here": 6,
+          "more": 6
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 12,
+      "sampled_count": 13,
+      "mechanism": "Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Replace repeated generic labels with text naming the destination.",
+        "priority": "medium",
+        "how": [
+          "Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.",
+          "Where the visual design requires a short label, add an aria-label carrying the full description."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ENG-003 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-004",
+      "title": "Some pages ship a very large HTML document",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "3 of 30 sampled pages return more than 1.2 MB of HTML alone, e.g. https://www.glossier.com/en-in/products/balm-dotcom at 1268 KB (before images, scripts and stylesheets).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom",
+            "kb": 1268
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom?parent_collection=balms",
+            "kb": 1268
+          },
+          {
+            "url": "https://www.glossier.com/en-in/products/balm-dotcom?variant=48390723731701",
+            "kb": 1268
+          }
+        ],
+        "method_note": "Measured from the HTML response only; sub-resources were not fetched."
+      },
+      "affected_urls": [
+        "https://www.glossier.com/en-in/products/balm-dotcom",
+        "https://www.glossier.com/en-in/products/balm-dotcom?parent_collection=balms",
+        "https://www.glossier.com/en-in/products/balm-dotcom?variant=48390723731701"
+      ],
+      "affected_count": 3,
+      "sampled_count": 30,
+      "mechanism": "The HTML document blocks everything else: nothing renders until it has arrived and been parsed. On a mobile connection a document this size costs seconds before the first pixel, and abandonment climbs steeply with every second of delay.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Reduce document size by paginating, deferring and trimming inlined data.",
+        "priority": "medium",
+        "how": [
+          "Move large inlined JSON, base64 images and repeated markup out of the document.",
+          "Paginate or lazy-load long lists rather than emitting every item.",
+          "Serve compressed responses (gzip or brotli) and confirm the header is present."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-004 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-008",
+      "title": "Images have no dimensions and are not lazy-loaded",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "1941 of 1957 sampled images declare no width/height and 1948 do not use loading=\"lazy\".",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 1941,
+      "sampled_count": 1957,
+      "mechanism": "Without declared dimensions the browser cannot reserve space, so content jumps as images arrive and visitors tap the wrong thing. Without lazy loading, images far below the fold compete for bandwidth with content the visitor is waiting to read.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Declare intrinsic width and height on images and lazy-load those below the fold.",
+        "priority": "medium",
+        "how": [
+          "Set width and height attributes matching the image's intrinsic aspect ratio.",
+          "Add `loading=\"lazy\"` to images below the fold, and leave it off the main hero image.",
+          "Serve modern formats with responsive `srcset` sizes."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-008 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-009",
+      "title": "Media is set to play automatically",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "4 of 30 sampled pages contain a video or audio element with the autoplay attribute, e.g. https://www.glossier.com/en-in.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.glossier.com/en-in",
+        "https://glossier.com/",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet",
+        "https://www.glossier.com/en-in/products/balm-dotcom-quintet?parent_collection=balms"
+      ],
+      "affected_count": 4,
+      "sampled_count": 30,
+      "mechanism": "Autoplaying media consumes bandwidth before the visitor has decided to watch anything, delays the content they came for, and - where sound is involved - is a common reason for closing a tab immediately.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Require an explicit play action, or at minimum keep autoplay muted and deferred.",
+        "priority": "high",
+        "how": [
+          "Remove autoplay and show a poster image with a visible play control.",
+          "If a background video is essential to the design, keep it muted, short, and loaded after the primary content.",
+          "Respect prefers-reduced-motion."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 26 of 30 sampled pages, and 2 of those pages carry under 120 words of body text, e.g. https://life.glossier.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://life.glossier.com/",
+        "https://www.glossier.com/en-in/pages/contact-us"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": [
+    "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed"
+  ]
+}

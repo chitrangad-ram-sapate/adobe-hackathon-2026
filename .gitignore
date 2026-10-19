@@ -1,0 +1,21 @@
+# Media (videos, audio, photos) is kept out of this repo
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.mp3
+*.wav
+*.m4a
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.heic
+*.tif
+*.tiff
+
+__pycache__/
+*.pyc

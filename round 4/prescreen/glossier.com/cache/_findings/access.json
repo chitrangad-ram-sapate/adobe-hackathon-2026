@@ -1,0 +1,50 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-012",
+      "title": "No XML sitemap was found",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "No sitemap was declared in robots.txt and 3 conventional location(s) (/en-in/sitemap.xml, /en-in/sitemap_index.xml, /en-in/sitemap-index.xml) returned 0 parseable sitemap URLs across 30 crawled pages.",
+      "evidence_detail": {
+        "tried": [
+          "https://www.glossier.com/en-in/sitemap.xml",
+          "https://www.glossier.com/en-in/sitemap_index.xml",
+          "https://www.glossier.com/en-in/sitemap-index.xml"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "Without a sitemap, a crawler can only find pages by following links from pages it has already fetched. Pages that are linked only from JavaScript menus, paginated archives, or nowhere at all are never discovered, and cannot be cited.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish an XML sitemap and declare it in robots.txt.",
+        "priority": "high",
+        "how": [
+          "Generate a sitemap listing every canonical, indexable URL, with an accurate <lastmod> per URL.",
+          "Add `Sitemap: https://<site>/sitemap.xml` to robots.txt.",
+          "Split into a sitemap index if the site exceeds 50,000 URLs or 50 MB uncompressed.",
+          "Regenerate it automatically on publish, so <lastmod> stays truthful."
+        ],
+        "platform_specific": [
+          "Shopify generates /sitemap.xml automatically; if pages are missing, check they are published and not excluded from the sales channel."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-012 and confirm it no longer fires.",
+        "platform": "Shopify"
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ACC-002",
+      "reason": "no robots.txt served (404), which correctly means no crawl restrictions"
+    }
+  ],
+  "notes": []
+}

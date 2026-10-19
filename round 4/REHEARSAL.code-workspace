@@ -1,0 +1,18 @@
+{
+  "folders": [
+    { "name": "REHEARSAL copy (not the demo folder)", "path": "harness-test/brand-ai-readiness-audit" }
+  ],
+  "settings": {
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.env.windows": { "DISABLE_AUTOUPDATER": "1" },
+    "terminal.integrated.enablePersistentSessions": false,
+    "editor.fontSize": 18,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "workbench.startupEditor": "none",
+    "files.exclude": { "**/__pycache__": true },
+    "window.title": "REHEARSAL - Round 4"
+  }
+}

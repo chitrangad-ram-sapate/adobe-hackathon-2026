@@ -1,0 +1,150 @@
+{
+  "origin": "https://www.glossier.com/en-in",
+  "crawl_user_agent": "BrandAIReadinessAudit/1.0 (+read-only site audit; respects robots.txt)",
+  "user_agent_blocked": false,
+  "host_variants": {
+    "https://glossier.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.glossier.com/en-in",
+        "error": null,
+        "tls_error": null,
+        "redirects": 2,
+        "elapsed": 1.691
+      },
+      "status": 200,
+      "final_url": "https://www.glossier.com/en-in",
+      "error": null,
+      "tls_error": null,
+      "redirects": 2,
+      "elapsed": 1.691
+    },
+    "https://www.glossier.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.glossier.com/en-in",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 0.612
+      },
+      "status": 200,
+      "final_url": "https://www.glossier.com/en-in",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 0.612
+    },
+    "http://glossier.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.glossier.com/en-in",
+        "error": null,
+        "tls_error": null,
+        "redirects": 3,
+        "elapsed": 2.032
+      },
+      "status": 200,
+      "final_url": "https://www.glossier.com/en-in",
+      "error": null,
+      "tls_error": null,
+      "redirects": 3,
+      "elapsed": 2.032
+    },
+    "http://www.glossier.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.glossier.com/en-in",
+        "error": null,
+        "tls_error": null,
+        "redirects": 2,
+        "elapsed": 0.707
+      },
+      "status": 200,
+      "final_url": "https://www.glossier.com/en-in",
+      "error": null,
+      "tls_error": null,
+      "redirects": 2,
+      "elapsed": 0.707
+    }
+  },
+  "robots": {
+    "url": "https://www.glossier.com/en-in/robots.txt",
+    "status": 404,
+    "error": null,
+    "bytes": 0,
+    "content_type": "text/plain"
+  },
+  "sitemaps": [
+    {
+      "url": "https://www.glossier.com/en-in/sitemap.xml",
+      "status": 404,
+      "declared_in_robots": false,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    },
+    {
+      "url": "https://www.glossier.com/en-in/sitemap_index.xml",
+      "status": 404,
+      "declared_in_robots": false,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    },
+    {
+      "url": "https://www.glossier.com/en-in/sitemap-index.xml",
+      "status": 404,
+      "declared_in_robots": false,
+      "error": null,
+      "url_count": 0,
+      "with_lastmod": 0
+    }
+  ],
+  "sitemap_url_count": 0,
+  "sitemap_sample": [],
+  "sitemap_lastmods": [],
+  "probes": {
+    "user_agent_differential": {
+      "default_ua": {
+        "status": 200,
+        "words": 2201,
+        "bytes": 532700,
+        "error": null,
+        "server": "cloudflare"
+      },
+      "browser_ua": {
+        "status": 200,
+        "words": 2201,
+        "bytes": 532700,
+        "error": null,
+        "server": "cloudflare"
+      }
+    },
+    "not_found": {
+      "url": "https://www.glossier.com/en-in/audit-probe-404-do-not-create-b7f2c1",
+      "status": 404,
+      "words": 1898,
+      "final_url": "https://www.glossier.com/en-in/audit-probe-404-do-not-create-b7f2c1",
+      "redirected": false
+    },
+    "llms_txt": {
+      "status": 404,
+      "bytes": 0
+    },
+    "llms_full_txt": {
+      "status": 404,
+      "bytes": 0
+    }
+  },
+  "offsite": {
+    "attempted": true,
+    "reason": "the site declares no sameAs profiles to verify",
+    "profiles": [],
+    "declared_sameas": 0,
+    "candidates_found": 0
+  },
+  "robots_blocked_urls": [],
+  "notes": [],
+  "limitations": []
+}

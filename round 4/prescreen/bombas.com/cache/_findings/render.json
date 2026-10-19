@@ -1,0 +1,405 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-001",
+      "title": "Page content is assembled by JavaScript and is missing from the server response",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "On 1 of 3 rendered pages the raw HTML contains less text than the browser DOM; worst case https://bombas.com/ ships 801 words against 1589 after JavaScript (50% coverage).",
+      "evidence_detail": {
+        "gaps": [
+          {
+            "url": "https://bombas.com/",
+            "raw_words": 801,
+            "rendered_words": 1589,
+            "coverage": 0.504
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://bombas.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 3,
+      "mechanism": "Most AI retrieval fetchers and many crawlers read the HTTP response without running JavaScript. Whatever the client assembles afterwards does not exist for them, so the page is fetched successfully and found to contain almost nothing worth quoting - the site is reachable and still uncitable.",
+      "confidence": "high",
+      "method": "rendered",
+      "suggested_action": {
+        "summary": "Server-render or pre-render the content that currently only appears after JavaScript runs.",
+        "priority": "medium",
+        "how": [
+          "Move the primary content - headings, body copy, prices, specifications, contact details - into the server-rendered HTML so it is present in the first response.",
+          "Use the framework's server-side rendering or static generation mode for these routes rather than client-only rendering.",
+          "Where full SSR is impractical, pre-render the top templates to static HTML and hydrate afterwards.",
+          "Verify with `curl -s <url> | wc -w`: the raw response should contain the page's real text."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "high",
+        "owner": "engineering",
+        "verify": "Re-run check RND-001; raw-to-rendered word coverage should exceed 0.75 on every content page.",
+        "platform": "Shopify"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "90 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-1.20b4654a.webp&w=2048&q=75 on https://beebetter.bombas.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-1.20b4654a.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-2.ccab8fa7.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-3.2a0071a8.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-4.0db625b6.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-5.c3c77b2c.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-6.242a9025.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-7.de2c0c0a.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-8.7459fd46.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-9.ce722bfd.webp&w=2048&q=75"
+          },
+          {
+            "url": "https://beebetter.bombas.com/",
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsock-10.3fb4a628.webp&w=2048&q=75"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://beebetter.bombas.com/",
+        "https://beebetter.bombas.com/impact",
+        "https://beebetter.bombas.com/partners",
+        "https://bombas.com/collections/baby-socks",
+        "https://bombas.com/collections/bralette",
+        "https://bombas.com/collections/bralette-sets"
+      ],
+      "affected_count": 90,
+      "sampled_count": 552,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-007",
+      "title": "Most images have no alt text",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "424 of 552 images across 30 sampled pages (77%) have a missing or empty alt attribute.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          },
+          {
+            "url": "https://bombas.com/",
+            "src": "https://assets.bombas.com/image/fetch/c_crop,h_359,w_1012/b_rgb:ffffff,c_scale,w_1000/f_auto,q_auto/https://images.ctfas"
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 424,
+      "sampled_count": 552,
+      "mechanism": "Alt text is the only description of an image available to a text reader, and it is one of the few places where an image's meaning enters the page's extractable content. Its absence also makes the page unusable with a screen reader, which is an engagement failure as much as a discoverability one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add descriptive alt text to meaningful images and empty alt to decorative ones.",
+        "priority": "high",
+        "how": [
+          "Describe what the image conveys in context, in a sentence fragment.",
+          "Use alt=\"\" for decoration so readers skip it rather than announcing a filename.",
+          "Add an alt field to the CMS image component so authors cannot omit it silently."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-011",
+      "title": "Much of the page text is hidden behind tabs or accordions at load time",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "9 sampled pages hide more than 40% of their body text in collapsed regions, e.g. https://bombas.com/help?a=How-do-I-track-my-order---id--2CJttFHETPGTkQZcEzNOlQ keeps 169 of 289 words in {'hidden_block': 1}.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://bombas.com/help?a=How-do-I-track-my-order---id--2CJttFHETPGTkQZcEzNOlQ",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/help?a=What%27s-your-returnexchange-policy---id--99ZcZXU7SpepjRHgO0yu6w",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/help?g=Account+%26+Checkout",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/help?g=Gifting",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/help?g=Shipping",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/help?s=Mission",
+            "hidden_words": 169,
+            "total_words": 289,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/collections/accessories",
+            "hidden_words": 169,
+            "total_words": 338,
+            "regions": {
+              "hidden_block": 1
+            }
+          },
+          {
+            "url": "https://bombas.com/find-a-store",
+            "hidden_words": 169,
+            "total_words": 284,
+            "regions": {
+              "hidden_block": 1
+            }
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://bombas.com/help?a=How-do-I-track-my-order---id--2CJttFHETPGTkQZcEzNOlQ",
+        "https://bombas.com/help?a=What%27s-your-returnexchange-policy---id--99ZcZXU7SpepjRHgO0yu6w",
+        "https://bombas.com/help?g=Account+%26+Checkout",
+        "https://bombas.com/help?g=Gifting",
+        "https://bombas.com/help?g=Shipping",
+        "https://bombas.com/help?s=Mission",
+        "https://bombas.com/collections/accessories",
+        "https://bombas.com/find-a-store",
+        "https://bombas.com/pages/accessibility"
+      ],
+      "affected_count": 9,
+      "sampled_count": 30,
+      "mechanism": "The text is in the HTML, so this is milder than a render gap - but content hidden at load time is weighted down or dropped by some extractors, and a visitor who does not click never reads it. Specifications, FAQs and shipping terms are the usual casualties, and they are exactly the facts people ask assistants about.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Show the highest-value content expanded by default and keep collapsing for genuine overflow.",
+        "priority": "high",
+        "how": [
+          "Expand the first panel of each accordion or tab group by default.",
+          "Move facts people search for - price, dimensions, delivery, compatibility, hours - into always-visible text.",
+          "Where an FAQ is collapsed for layout, add FAQPage structured data so the pairs remain machine-readable."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check RND-011 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-012",
+      "title": "Pages have no H1 heading",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "20 of 30 sampled pages contain no <h1> element, e.g. https://bombas.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://bombas.com/",
+        "https://bombas.com/pages/about-us",
+        "https://bombas.com/help?a=How-do-I-track-my-order---id--2CJttFHETPGTkQZcEzNOlQ",
+        "https://bombas.com/help?a=What%27s-your-returnexchange-policy---id--99ZcZXU7SpepjRHgO0yu6w",
+        "https://bombas.com/help?g=Account+%26+Checkout",
+        "https://bombas.com/help?g=Gifting",
+        "https://bombas.com/help?g=Shipping",
+        "https://bombas.com/help?s=Mission",
+        "https://bombas.com/collections/accessories",
+        "https://bombas.com/collections/baby-socks"
+      ],
+      "affected_count": 20,
+      "sampled_count": 30,
+      "mechanism": "The H1 is the most reliable statement of what a page is about, and extractive systems lean on it heavily when deciding whether a page answers a question and what to call it in a citation. Without one, the page's topic has to be inferred from body text, which is less reliable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page exactly one H1 that states the page's subject in plain words.",
+        "priority": "high",
+        "how": [
+          "Add a single <h1> per page containing the page's real subject, not a slogan or the site name.",
+          "Style it freely - the level is a structural statement, not a visual one."
+        ],
+        "platform_specific": [
+          "Make the change in `theme.liquid` so it applies to every template."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check RND-012 and confirm it no longer fires.",
+        "platform": "Shopify"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-013",
+      "title": "Pages have no <main> or <article> landmark",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "22 of 30 sampled pages wrap their content in generic containers with no <main> or <article> element.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://bombas.com/",
+        "https://beebetter.bombas.com/",
+        "https://bombas.com/pages/about-us",
+        "https://bombas.com/help?a=How-do-I-track-my-order---id--2CJttFHETPGTkQZcEzNOlQ",
+        "https://bombas.com/help?a=What%27s-your-returnexchange-policy---id--99ZcZXU7SpepjRHgO0yu6w",
+        "https://bombas.com/help?g=Account+%26+Checkout",
+        "https://bombas.com/help?g=Gifting",
+        "https://bombas.com/help?g=Shipping",
+        "https://bombas.com/help?s=Mission",
+        "https://bombas.com/collections/accessories"
+      ],
+      "affected_count": 22,
+      "sampled_count": 30,
+      "mechanism": "Content extractors use landmarks to separate the article from the navigation, header and footer that repeat on every page. Without them the boundary is guessed, and boilerplate is regularly quoted as though it were page content.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Wrap the unique content of each page in <main>, and each self-contained item in <article>.",
+        "priority": "medium",
+        "how": [
+          "Add one <main> per page around the content that is unique to it.",
+          "Use <article> for individually meaningful items - posts, products, listings.",
+          "Keep navigation in <nav>, site header in <header>, site footer in <footer>."
+        ],
+        "platform_specific": [
+          "Make the change in `theme.liquid` so it applies to every template."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check RND-013 and confirm it no longer fires.",
+        "platform": "Shopify"
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-005",
+      "reason": "thin text is already explained by the render-gap finding"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

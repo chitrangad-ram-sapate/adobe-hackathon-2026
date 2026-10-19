@@ -1,0 +1,32 @@
+ADOBE UNIVERSITY HACKATHON 2026 — ROUND 3
+Submission deadline: 13 September 2026
+
+SUBMIT THIS FILE:
+    brand-ai-readiness-audit.zip   (51 files, 251 KB)
+
+Zip layout: contains a top-level brand-ai-readiness-audit/ folder holding
+marketplace.json — matching the brief's "marketplace root (this is what you
+zip)". Do not repack or rename without re-checking that.
+
+VERIFIED 2026-09-09, all green:
+  - 20/20 handout requirements ......... tests/check_consistency.py
+  - 36/36 offline fixture tests ........ tests/run_tests.py
+  - 8/8 skills valid ................... skills-ref validate
+  - 71/71 generalization corpus ........ complete, schema-valid, 0 crashes,
+                                         0 runs over the 5-minute ceiling
+  - Report schema floor ................ every finding carries
+                                         id/title/severity/evidence/suggested_action
+  - Clean-room ......................... unzip -> tests -> live audit -> valid report
+
+CONTENTS: 8 skills, 1 entrypoint (audit-orchestrator), 89 checks across 6 gates.
+Python standard library only, no dependencies. Playwright is OPTIONAL and only
+upgrades the render-gap check from estimated to measured.
+
+KNOWN LIMITATION (stated in the README, not hidden):
+No systematic precision ground truth. Findings are evidence-backed and firing
+rates are monitored, but a sample of findings has not been formally adjudicated
+correct/incorrect. Site type resolves on 48% of the corpus by design - "unknown"
+suppresses type-gated checks to protect precision.
+
+DO NOT edit anything in this folder. To re-verify, extract elsewhere and run
+the test commands above from inside the extracted folder.

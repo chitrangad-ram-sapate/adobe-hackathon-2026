@@ -1,0 +1,141 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ANS-001",
+      "title": "The homepage never states in plain words what the organisation is",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "None of the first 6 sentences on the homepage, the meta description, or any Organization description combines the brand name with a descriptive verb and a category noun. Opening line: \"AI forms & automation Your favorite forms.\".",
+      "evidence_detail": {
+        "opening_sentences": [
+          "AI forms & automation Your favorite forms.",
+          "Now with AI automation.",
+          "Combine AI forms and automated workflows to drive revenue growth."
+        ],
+        "headline_text": "Form Builder with AI Automation | Typeform Platform Tools TEMPLATES",
+        "meta_description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free."
+      },
+      "affected_urls": [
+        "https://www.typeform.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "When an assistant is asked what a company does, it looks for a sentence that says so. If the page communicates identity through imagery, layout and implication instead, there is nothing to lift - so the assistant either declines to describe the brand or reconstructs a description from third parties, which is where misrepresentation begins.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Add one plain declarative sentence near the top of the homepage stating what the organisation is, who it serves, and where.",
+        "priority": "high",
+        "how": [
+          "Write a sentence of the form: \"Typeform is a <category> that <does what> for <who>, based in <where>.\"",
+          "Place it in the first screen of the homepage as body text - not inside an image, a video, or a carousel.",
+          "Mirror the same sentence in the meta description and in the Organization schema `description` field so all three agree.",
+          "Keep it literal. A slogan can sit above it; the literal sentence is what gets quoted."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-001; a sentence naming the brand, a verb and a category noun should appear in the homepage's opening text."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-003",
+      "title": "Different pages share the same title",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "4 of 30 sampled pages share 2 repeated title(s), e.g. \"Typeform\".",
+      "evidence_detail": {
+        "duplicates": [
+          "Typeform",
+          "Plans & Pricing | Typeform"
+        ]
+      },
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true",
+        "https://www.typeform.com/pricing",
+        "https://www.typeform.com/pricing/talent"
+      ],
+      "affected_count": 4,
+      "sampled_count": 30,
+      "mechanism": "The title is how a page is named in a citation and is one of the strongest topic signals a retrieval system has. Identical titles make pages indistinguishable to it, so they compete with one another and the most relevant one is not reliably chosen.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page a unique title describing that page's specific subject.",
+        "priority": "medium",
+        "how": [
+          "Template titles as `<specific page subject> - <brand>`.",
+          "Derive the first part from the page's own H1 or product/article name, never from the site name alone."
+        ],
+        "platform_specific": [
+          "Set the values in the shared layout with a per-page override, so a new page cannot ship without them."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-003 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ANS-006",
+      "title": "Pricing pages contain no readable price",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "3 of 5 sampled pricing/product pages contain no numeric price in their text, e.g. https://www.typeform.com/blog-category/product.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.typeform.com/blog-category/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.typeform.com/blog-tag/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.typeform.com/careers/product",
+            "quote_language": false
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/blog-tag/product",
+        "https://www.typeform.com/careers/product"
+      ],
+      "affected_count": 3,
+      "sampled_count": 5,
+      "mechanism": "Cost is among the most common things asked about any commercial brand. With no number on the page, an assistant cannot answer from the brand's own site and turns to resellers, review sites and forums - sources that are often out of date and never in the brand's control. Publishing a figure is what makes the brand's own page the citable one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a real figure or an indicative range, even where final pricing is negotiated.",
+        "priority": "high",
+        "how": [
+          "State a starting price, a typical range, or a worked example: \"from 4,500 GBP per unit per year\".",
+          "Put it in body text, not in an image or a downloadable PDF.",
+          "Mirror it in Offer/AggregateOffer structured data with price and priceCurrency.",
+          "If pricing genuinely cannot be published, state what it depends on in plain text - that is still an extractable, quotable answer, where silence is not."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-006 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ANS-002",
+      "reason": "no H1 on the homepage; covered by RND-012"
+    }
+  ],
+  "notes": []
+}

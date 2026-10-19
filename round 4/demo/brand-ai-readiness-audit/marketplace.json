@@ -1,0 +1,62 @@
+{
+  "name": "brand-ai-readiness-audit",
+  "version": "1.0.0",
+  "description": "Audits any public website for the root causes of poor AI discoverability (not found, not cited, misrepresented by AI assistants) and poor on-site engagement, then emits one structured report of evidence-backed findings with prioritized, platform-specific fixes.",
+  "license": "MIT",
+  "entrypoint": "audit-orchestrator",
+  "skills": [
+    {
+      "id": "audit-orchestrator",
+      "path": "skills/audit-orchestrator",
+      "entrypoint": true,
+      "role": "Owns the audit run end to end: resolves the target, crawls once into a shared cache, profiles the site, invokes every detector against that cache, merges and de-duplicates findings, scores each gate, and emits the single audit report."
+    },
+    {
+      "id": "site-access-audit",
+      "path": "skills/site-access-audit",
+      "role": "Gate 1 - Access. Can a machine reach the content at all? robots.txt and AI-crawler directives, WAF/bot user-agent gating, noindex, status codes, redirects, canonicals, TLS, host duplication, sitemap health."
+    },
+    {
+      "id": "render-extractability-audit",
+      "path": "skills/render-extractability-audit",
+      "role": "Gate 2 - Render. Can a machine read what a human sees? JavaScript render gap, SPA shells, hydration-only content, facts locked in images and PDFs, interaction-gated content, semantic document structure."
+    },
+    {
+      "id": "structured-data-audit",
+      "path": "skills/structured-data-audit",
+      "role": "Gate 3a - Extract (machine-readable facts). JSON-LD/microdata parse validity, schema.org type coverage gated by page type, and per-type required-field completeness."
+    },
+    {
+      "id": "answer-readiness-audit",
+      "path": "skills/answer-readiness-audit",
+      "role": "Gate 3b - Extract (quotable prose). Whether a retrieval-augmented assistant can lift one clear, self-contained sentence that answers a real user question: identity statements, atomic facts, question-shaped headings, query-surface coverage."
+    },
+    {
+      "id": "entity-corroboration-audit",
+      "path": "skills/entity-corroboration-audit",
+      "role": "Gate 4 - Trust. Whether an extracted fact will be believed and repeated: self-consistent brand description, entity disambiguation, sameAs identity graph, corroboration surface, freshness signals, and off-site verification that the profiles the site declares as its own actually resolve and point back."
+    },
+    {
+      "id": "engagement-audit",
+      "path": "skills/engagement-audit",
+      "role": "On-site engagement. Why a visitor who does arrive - usually deep-linked from an assistant, with no prior context - fails to orient, act, or stay: orientation, standalone page context, CTA clarity, friction and interstitials, weight and mobile readiness, dead ends, accessibility blockers."
+    },
+    {
+      "id": "remediation-planner",
+      "path": "skills/remediation-planner",
+      "role": "Turns detector findings into fixes in the site's actual stack. Fingerprints the CMS/framework and rewrites each suggested action into platform-specific steps, then adds proactive recommendations that go beyond the detected defects."
+    }
+  ],
+  "safety": {
+    "read_only": true,
+    "modifies_target_site": false,
+    "respects_robots_txt": true,
+    "authenticated_actions": false,
+    "network": "outbound HTTP(S) GET/HEAD to the audited site, plus the external profiles that site declares as its own in sameAs (at most 8 per audit, each host's robots.txt honoured; disable with --no-offsite)"
+  },
+  "runtime": {
+    "required": ["python3 >= 3.9 (standard library only)"],
+    "optional": ["playwright (upgrades the JavaScript render-gap check from heuristic to measured)"],
+    "target_wall_clock_seconds": 300
+  }
+}

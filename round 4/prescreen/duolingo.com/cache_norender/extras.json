@@ -1,0 +1,245 @@
+{
+  "origin": "https://www.duolingo.com/",
+  "crawl_user_agent": "BrandAIReadinessAudit/1.0 (+read-only site audit; respects robots.txt)",
+  "user_agent_blocked": false,
+  "host_variants": {
+    "https://duolingo.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.duolingo.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 1.794
+      },
+      "status": 200,
+      "final_url": "https://www.duolingo.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 1.794
+    },
+    "https://www.duolingo.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.duolingo.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 0,
+        "elapsed": 0.327
+      },
+      "status": 200,
+      "final_url": "https://www.duolingo.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 0,
+      "elapsed": 0.327
+    },
+    "http://duolingo.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.duolingo.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 1.254
+      },
+      "status": 200,
+      "final_url": "https://www.duolingo.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 1.254
+    },
+    "http://www.duolingo.com/": {
+      "default_ua": {
+        "status": 200,
+        "final_url": "https://www.duolingo.com/",
+        "error": null,
+        "tls_error": null,
+        "redirects": 1,
+        "elapsed": 0.62
+      },
+      "status": 200,
+      "final_url": "https://www.duolingo.com/",
+      "error": null,
+      "tls_error": null,
+      "redirects": 1,
+      "elapsed": 0.62
+    }
+  },
+  "robots": {
+    "url": "https://www.duolingo.com/robots.txt",
+    "status": 200,
+    "error": null,
+    "bytes": 826,
+    "content_type": "text/plain"
+  },
+  "sitemaps": [
+    {
+      "url": "https://www.duolingo.com/sitemap_index.xml",
+      "status": 200,
+      "declared_in_robots": true,
+      "error": null,
+      "url_count": 104,
+      "with_lastmod": 0,
+      "lastmod_values": []
+    }
+  ],
+  "sitemap_url_count": 104,
+  "sitemap_sample": [
+    "https://www.duolingo.com/chess",
+    "https://www.duolingo.com/course/ar/en/Learn-Arabic",
+    "https://www.duolingo.com/course/cs/en/Learn-Czech",
+    "https://www.duolingo.com/course/cy/en/Learn-Welsh",
+    "https://www.duolingo.com/course/da/en/Learn-Danish",
+    "https://www.duolingo.com/course/de/en/Learn-German",
+    "https://www.duolingo.com/course/el/en/Learn-Greek",
+    "https://www.duolingo.com/course/en/en/Learn-English",
+    "https://www.duolingo.com/course/eo/en/Learn-Esperanto",
+    "https://www.duolingo.com/course/es/en/Learn-Spanish",
+    "https://www.duolingo.com/course/fi/en/Learn-Finnish",
+    "https://www.duolingo.com/course/fr/en/Learn-French",
+    "https://www.duolingo.com/course/ga/en/Learn-Irish",
+    "https://www.duolingo.com/course/gd/en/Learn-Scottish-Gaelic",
+    "https://www.duolingo.com/course/he/en/Learn-Hebrew",
+    "https://www.duolingo.com/course/hi/en/Learn-Hindi",
+    "https://www.duolingo.com/course/ht/en/Learn-Haitian-Creole",
+    "https://www.duolingo.com/course/hu/en/Learn-Hungarian",
+    "https://www.duolingo.com/course/hv/en/Learn-High-Valyrian",
+    "https://www.duolingo.com/course/hw/en/Learn-Hawaiian",
+    "https://www.duolingo.com/course/id/en/Learn-Indonesian",
+    "https://www.duolingo.com/course/it/en/Learn-Italian",
+    "https://www.duolingo.com/course/ja/en/Learn-Japanese",
+    "https://www.duolingo.com/course/ko/en/Learn-Korean",
+    "https://www.duolingo.com/course/la/en/Learn-Latin",
+    "https://www.duolingo.com/course/nl-NL/en/Learn-Dutch",
+    "https://www.duolingo.com/course/no-BO/en/Learn-Norwegian-Bokm%C3%A5l",
+    "https://www.duolingo.com/course/nv/en/Learn-Navajo",
+    "https://www.duolingo.com/course/pl/en/Learn-Polish",
+    "https://www.duolingo.com/course/pt/en/Learn-Portuguese",
+    "https://www.duolingo.com/course/ro/en/Learn-Romanian",
+    "https://www.duolingo.com/course/ru/en/Learn-Russian",
+    "https://www.duolingo.com/course/sv/en/Learn-Swedish",
+    "https://www.duolingo.com/course/sw/en/Learn-Swahili",
+    "https://www.duolingo.com/course/tlh/en/Learn-Klingon",
+    "https://www.duolingo.com/course/tr/en/Learn-Turkish",
+    "https://www.duolingo.com/course/uk/en/Learn-Ukrainian",
+    "https://www.duolingo.com/course/vi/en/Learn-Vietnamese",
+    "https://www.duolingo.com/course/yi/en/Learn-Yiddish",
+    "https://www.duolingo.com/course/zh-CN/en/Learn-Chinese-Simplified",
+    "https://www.duolingo.com/course/zu/en/Learn-Zulu",
+    "https://www.duolingo.com/courses",
+    "https://www.duolingo.com/courses/all",
+    "https://www.duolingo.com/math",
+    "https://www.duolingo.com/",
+    "https://www.duolingo.com/discussion",
+    "https://www.duolingo.com/info",
+    "https://www.duolingo.com/team",
+    "https://www.duolingo.com/research",
+    "https://www.duolingo.com/press",
+    "https://www.duolingo.com/contact",
+    "https://www.duolingo.com/help",
+    "https://www.duolingo.com/guidelines",
+    "https://www.duolingo.com/mobile",
+    "https://www.duolingo.com/plus",
+    "https://www.duolingo.com/super",
+    "https://www.duolingo.com/gift",
+    "https://www.duolingo.com/business",
+    "https://www.duolingo.com/redeem",
+    "https://www.duolingo.com/family",
+    "https://www.duolingo.com/careers",
+    "https://www.duolingo.com/terms",
+    "https://www.duolingo.com/privacy",
+    "https://www.duolingo.com/design/",
+    "http://static.duolingo.com/s3/DuolingoReport_Final.pdf",
+    "https://englishtest.duolingo.com/",
+    "https://englishtest.duolingo.com/ids",
+    "https://englishtest.duolingo.com/scores",
+    "https://englishtest.duolingo.com/edu",
+    "https://englishtest.duolingo.com/business",
+    "https://englishtest.duolingo.com/dashboard",
+    "https://englishtest.duolingo.com/faq",
+    "https://schools.duolingo.com/",
+    "https://schools.duolingo.com/help",
+    "https://incubator.duolingo.com/",
+    "https://incubator.duolingo.com/apply",
+    "https://blog.duolingo.com/",
+    "http://contest.duolingo.com/",
+    "http://pillow.duolingo.com/",
+    "https://status.duolingo.com/",
+    "https://www.duolingo.com/chess/terms/absolute-pin",
+    "https://www.duolingo.com/chess/terms/bishop-fork",
+    "https://www.duolingo.com/chess/terms/cross-pin",
+    "https://www.duolingo.com/chess/terms/how-does-chess-end",
+    "https://www.duolingo.com/chess/terms/how-does-the-bishop-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-does-the-king-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-does-the-knight-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-does-the-pawn-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-does-the-queen-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-does-the-rook-move-in-chess",
+    "https://www.duolingo.com/chess/terms/how-every-chess-piece-moves",
+    "https://www.duolingo.com/chess/terms/king-fork",
+    "https://www.duolingo.com/chess/terms/knight-fork",
+    "https://www.duolingo.com/chess/terms/pawn-fork",
+    "https://www.duolingo.com/chess/terms/queen-fork",
+    "https://www.duolingo.com/chess/terms/relative-pin",
+    "https://www.duolingo.com/chess/terms/rook-fork",
+    "https://www.duolingo.com/chess/terms/what-is-a-fork-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-a-hanging-piece-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-a-pin-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-check-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-checkmate-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-elo-in-chess",
+    "https://www.duolingo.com/chess/terms/what-is-stalemate-in-chess"
+  ],
+  "sitemap_lastmods": [],
+  "probes": {
+    "user_agent_differential": {
+      "default_ua": {
+        "status": 200,
+        "words": 1,
+        "bytes": 11291,
+        "error": null,
+        "server": "duo-api"
+      },
+      "browser_ua": {
+        "status": 200,
+        "words": 1,
+        "bytes": 11291,
+        "error": null,
+        "server": "duo-api"
+      }
+    },
+    "not_found": {
+      "url": "https://www.duolingo.com/audit-probe-404-do-not-create-b7f2c1",
+      "status": 404,
+      "words": 13,
+      "final_url": "https://www.duolingo.com/audit-probe-404-do-not-create-b7f2c1",
+      "redirected": false
+    },
+    "llms_txt": {
+      "status": 200,
+      "bytes": 0
+    },
+    "llms_full_txt": {
+      "status": 200,
+      "bytes": 0
+    }
+  },
+  "offsite": {
+    "attempted": true,
+    "reason": "the site declares no sameAs profiles to verify",
+    "profiles": [],
+    "declared_sameas": 0,
+    "candidates_found": 0
+  },
+  "robots_blocked_urls": [],
+  "notes": [
+    "sitemap index listing 5 child sitemaps",
+    "unexpected sitemap root element <rss>"
+  ],
+  "limitations": [
+    "JavaScript rendering was unavailable (rendering skipped by flag), so the render gap was estimated from static signals (framework shells, hydration payloads, text volume) rather than measured against an executed DOM. Render-gap findings carry method=heuristic and reduced confidence."
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-010",
+      "title": "Primary content appears to live inside an iframe",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "1 sampled pages have under 200 words of their own body text while embedding third-party frames, e.g. https://www.loom.com/code-review (153 words, embeds https://www.loom.com/embed/07e5fa891322484486e1380923f080c5?disable_analytics=true).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.loom.com/code-review",
+            "iframes": [
+              "https://www.loom.com/embed/07e5fa891322484486e1380923f080c5?disable_analytics=true"
+            ],
+            "words": 153
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.loom.com/code-review"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "An iframe's content belongs to the framed document, not to the page that embeds it. Indexing and retrieval attribute that content to the other URL, so the brand's page is treated as an empty container and the substance is credited elsewhere - or, when the frame is blocked from crawling, to nobody.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Move the primary content into the page itself and keep iframes for supporting media.",
+        "priority": "medium",
+        "how": [
+          "Render the content server-side in the host page instead of embedding it.",
+          "Where the source is a third-party system (booking, listings, documentation), use its API or feed to render the same data as HTML on this domain.",
+          "Keep at minimum a text summary of the framed content in the host page."
+        ],
+        "platform_specific": null,
+        "effort": "high",
+        "owner": "engineering",
+        "verify": "Re-run check RND-010 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-011",
+      "title": "Much of the page text is hidden behind tabs or accordions at load time",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "9 sampled pages hide more than 40% of their body text in collapsed regions, e.g. https://www.loom.com/pricing keeps 1540 of 2298 words in {'details': 14}.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.loom.com/pricing",
+            "hidden_words": 1540,
+            "total_words": 2298,
+            "regions": {
+              "details": 14
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/1080p-screen-recorder",
+            "hidden_words": 202,
+            "total_words": 391,
+            "regions": {
+              "details": 5
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/4k-screen-recorder",
+            "hidden_words": 205,
+            "total_words": 394,
+            "regions": {
+              "details": 5
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/acer-screen-recorder",
+            "hidden_words": 209,
+            "total_words": 400,
+            "regions": {
+              "details": 5
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/advanced-screen-recorder",
+            "hidden_words": 203,
+            "total_words": 395,
+            "regions": {
+              "details": 5
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/ai-screen-recorder",
+            "hidden_words": 162,
+            "total_words": 349,
+            "regions": {
+              "details": 5
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/android-screen-recorder",
+            "hidden_words": 179,
+            "total_words": 278,
+            "regions": {
+              "details": 3
+            }
+          },
+          {
+            "url": "https://www.loom.com/products/browser-screen-recorder",
+            "hidden_words": 189,
+            "total_words": 378,
+            "regions": {
+              "details": 5
+            }
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.loom.com/pricing",
+        "https://www.loom.com/products/1080p-screen-recorder",
+        "https://www.loom.com/products/4k-screen-recorder",
+        "https://www.loom.com/products/acer-screen-recorder",
+        "https://www.loom.com/products/advanced-screen-recorder",
+        "https://www.loom.com/products/ai-screen-recorder",
+        "https://www.loom.com/products/android-screen-recorder",
+        "https://www.loom.com/products/browser-screen-recorder",
+        "https://www.loom.com/ai"
+      ],
+      "affected_count": 9,
+      "sampled_count": 30,
+      "mechanism": "The text is in the HTML, so this is milder than a render gap - but content hidden at load time is weighted down or dropped by some extractors, and a visitor who does not click never reads it. Specifications, FAQs and shipping terms are the usual casualties, and they are exactly the facts people ask assistants about.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Show the highest-value content expanded by default and keep collapsing for genuine overflow.",
+        "priority": "high",
+        "how": [
+          "Expand the first panel of each accordion or tab group by default.",
+          "Move facts people search for - price, dimensions, delivery, compatibility, hours - into always-visible text.",
+          "Where an FAQ is collapsed for layout, add FAQPage structured data so the pairs remain machine-readable."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check RND-011 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

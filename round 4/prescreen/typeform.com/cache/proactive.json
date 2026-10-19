@@ -1,0 +1,99 @@
+{
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Publish a facts-and-figures page that other sources can cite",
+      "rationale": "A claim repeated across many independent sources is treated as reliable; one that exists in a single place is fragile. Journalists, directories, analysts and assistants can only repeat facts that are stated somewhere quotable, in a stable location, with a date attached. Most organisations never publish this, and then wonder why the web describes them inaccurately.",
+      "priority": "medium",
+      "how": [
+        "Create a page carrying the organisation's canonical facts: legal name, founding year, headquarters, leadership, size, key figures - each as a short declarative sentence.",
+        "Date every figure and update them on a fixed schedule.",
+        "Give it a stable URL and link it from the About page, the footer and any press materials.",
+        "Mirror the same values in Organization structured data so they are machine-readable too."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-002",
+      "title": "Publish honest comparison and 'is this right for me' pages",
+      "rationale": "A large share of the questions put to assistants are comparative or qualifying. If the brand does not answer them, review sites and competitors' comparison pages do - and those are the sources that get cited. Even-handed pages that say where an alternative is the better fit are cited more often than promotional ones, because they read as reliable.",
+      "priority": "medium",
+      "how": [
+        "Write comparisons against the alternatives buyers genuinely evaluate, including the cases where the alternative wins.",
+        "Publish `for <industry>` or `for <role>` pages describing the specific situation each serves.",
+        "Title each page as the question it answers.",
+        "Keep them current - a comparison against an outdated competitor version damages credibility."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "high"
+    },
+    {
+      "id": "P-003",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-004",
+      "title": "Strengthen the brand's identity graph across authoritative sources",
+      "rationale": "Entity confusion is one of the main causes of an assistant describing a brand inaccurately. The defence is a consistent, mutually linked set of identity records: the same canonical description, the same legal name, the same location, asserted in several places that reference one another.",
+      "priority": "medium",
+      "how": [
+        "Create or claim a Wikidata item; it is openly editable and widely consumed as an identity reference.",
+        "Align the description on LinkedIn, Crunchbase, GitHub and industry directories with the site's canonical sentence, word for word.",
+        "Declare each of them in the site's Organization `sameAs`, and link back where the platform allows.",
+        "Use the qualified brand name consistently - `<Brand>, the <category> for <audience>` - so the distinguishing phrase is what gets repeated."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-005",
+      "title": "Design interior pages for visitors who arrive without context",
+      "rationale": "Assistant referrals land deep in a site rather than on the homepage, and they arrive with no idea whose site they are on. Pages built on the assumption that the visitor came through the front door lose them immediately - so the more successful the discoverability work, the more traffic this wastes.",
+      "priority": "medium",
+      "how": [
+        "Ensure every page states the organisation's name and what it does, in text.",
+        "Add breadcrumbs so a visitor can see where they have landed.",
+        "End each page with a next step chosen for that page's subject.",
+        "Review the pages assistants most often cite and treat each as a potential first impression."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    },
+    {
+      "id": "P-006",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

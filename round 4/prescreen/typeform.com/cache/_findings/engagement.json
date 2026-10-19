@@ -1,0 +1,150 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENG-003",
+      "title": "Navigation relies on repeated, undescriptive link text",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The link text \"learn more →\" appears 10 times across the sampled pages, alongside 2 such repeated labels in total.",
+      "evidence_detail": {
+        "labels": {
+          "learn more →": 10,
+          "learn more": 4,
+          "see more →": 3
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 17,
+      "sampled_count": 13,
+      "mechanism": "Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Replace repeated generic labels with text naming the destination.",
+        "priority": "medium",
+        "how": [
+          "Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.",
+          "Where the visual design requires a short label, add an aria-label carrying the full description."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ENG-003 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "26 of 30 sampled pages load 17 render-blocking scripts from up to 7 third-party hosts, e.g. https://www.typeform.com/templates-sub-category/contact.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://community.typeform.com/",
+        "https://www.typeform.com/about-us",
+        "https://www.typeform.com/pricing",
+        "https://www.typeform.com/pricing/talent",
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/blog-tag/product",
+        "https://www.typeform.com/careers/product",
+        "https://www.typeform.com/contact-us",
+        "https://www.typeform.com/templates-sub-category/contact"
+      ],
+      "affected_count": 26,
+      "sampled_count": 30,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-009",
+      "title": "Media is set to play automatically",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "2 of 30 sampled pages contain a video or audio element with the autoplay attribute, e.g. https://www.typeform.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://www.typeform.com/ai"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "Autoplaying media consumes bandwidth before the visitor has decided to watch anything, delays the content they came for, and - where sound is involved - is a common reason for closing a tab immediately.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Require an explicit play action, or at minimum keep autoplay muted and deferred.",
+        "priority": "high",
+        "how": [
+          "Remove autoplay and show a poster image with a visible play control.",
+          "If a background video is essential to the design, keep it muted, short, and loaded after the primary content.",
+          "Respect prefers-reduced-motion."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 27 of 30 sampled pages, and 5 of those pages carry under 120 words of body text, e.g. https://admin.typeform.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true",
+        "https://community.typeform.com/",
+        "https://www.typeform.com/agencies",
+        "https://www.typeform.com/legal"
+      ],
+      "affected_count": 5,
+      "sampled_count": 30,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": [
+    "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed"
+  ]
+}

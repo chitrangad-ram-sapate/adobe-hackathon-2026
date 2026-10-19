@@ -1,0 +1,295 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "256 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. https://static.airtable.com/images/marketing-nav-platform-graphic.webp on https://www.airtable.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-platform-graphic.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-solution.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-resource.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-gemma.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sam.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://airtable.com/developers",
+        "https://airtable.com/developers/agents",
+        "https://airtable.com/pricing",
+        "https://airtable.com/templates",
+        "https://community.airtable.com/",
+        "https://www.airtable.com/",
+        "https://www.airtable.com/about",
+        "https://www.airtable.com/ai",
+        "https://www.airtable.com/articles",
+        "https://www.airtable.com/articles/agency-project-management"
+      ],
+      "affected_count": 256,
+      "sampled_count": 588,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-007",
+      "title": "Most images have no alt text",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "370 of 588 images across 29 sampled pages (63%) have a missing or empty alt attribute.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-platform-graphic.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-solution.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/marketing-nav-resource.webp"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://cdn.sanity.io/images/hlcyrtq5/production/33ce153144793d01cb512541b3a30d4f6cc5d799-64x64.gif"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-gemma.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sam.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          },
+          {
+            "url": "https://www.airtable.com/",
+            "src": "https://static.airtable.com/images/homepage-variant-b/avatar-sooyoung.png"
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 370,
+      "sampled_count": 588,
+      "mechanism": "Alt text is the only description of an image available to a text reader, and it is one of the few places where an image's meaning enters the page's extractable content. Its absence also makes the page unusable with a screen reader, which is an engagement failure as much as a discoverability one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add descriptive alt text to meaningful images and empty alt to decorative ones.",
+        "priority": "medium",
+        "how": [
+          "Describe what the image conveys in context, in a sentence fragment.",
+          "Use alt=\"\" for decoration so readers skip it rather than announcing a filename.",
+          "Add an alt field to the CMS image component so authors cannot omit it silently."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-010",
+      "title": "Primary content appears to live inside an iframe",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "5 sampled pages have under 200 words of their own body text while embedding third-party frames, e.g. https://airtable.com/marketplace/category/all-apps (22 words, embeds https://static.airtable.com/html/marketo_widget.html).",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://airtable.com/marketplace/category/all-apps",
+            "iframes": [
+              "https://static.airtable.com/html/marketo_widget.html"
+            ],
+            "words": 22
+          },
+          {
+            "url": "https://airtable.com/marketplace/category/by-airtable",
+            "iframes": [
+              "https://static.airtable.com/html/marketo_widget.html"
+            ],
+            "words": 22
+          },
+          {
+            "url": "https://airtable.com/careers",
+            "iframes": [
+              "https://static.airtable.com/html/marketo_widget.html"
+            ],
+            "words": 22
+          },
+          {
+            "url": "https://www.airtable.com/universe/expVVRw3oKWYCJs2t/jobs",
+            "iframes": [
+              "https://static.airtable.com/html/marketo_widget.html"
+            ],
+            "words": 22
+          },
+          {
+            "url": "https://airtable.com/marketplace",
+            "iframes": [
+              "https://static.airtable.com/html/marketo_widget.html"
+            ],
+            "words": 22
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://airtable.com/marketplace/category/all-apps",
+        "https://airtable.com/marketplace/category/by-airtable",
+        "https://airtable.com/careers",
+        "https://www.airtable.com/universe/expVVRw3oKWYCJs2t/jobs",
+        "https://airtable.com/marketplace"
+      ],
+      "affected_count": 5,
+      "sampled_count": 29,
+      "mechanism": "An iframe's content belongs to the framed document, not to the page that embeds it. Indexing and retrieval attribute that content to the other URL, so the brand's page is treated as an empty container and the substance is credited elsewhere - or, when the frame is blocked from crawling, to nobody.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Move the primary content into the page itself and keep iframes for supporting media.",
+        "priority": "medium",
+        "how": [
+          "Render the content server-side in the host page instead of embedding it.",
+          "Where the source is a third-party system (booking, listings, documentation), use its API or feed to render the same data as HTML on this domain.",
+          "Keep at minimum a text summary of the framed content in the host page."
+        ],
+        "platform_specific": null,
+        "effort": "high",
+        "owner": "engineering",
+        "verify": "Re-run check RND-010 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-011",
+      "title": "Much of the page text is hidden behind tabs or accordions at load time",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "2 sampled pages hide more than 40% of their body text in collapsed regions, e.g. https://www.airtable.com/ keeps 814 of 1129 words in {'tabpanel': 10}.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.airtable.com/",
+            "hidden_words": 814,
+            "total_words": 1129,
+            "regions": {
+              "tabpanel": 10
+            }
+          },
+          {
+            "url": "https://status.airtable.com/",
+            "hidden_words": 1197,
+            "total_words": 716,
+            "regions": {
+              "tabpanel": 5,
+              "hidden_block": 1
+            }
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.airtable.com/",
+        "https://status.airtable.com/"
+      ],
+      "affected_count": 2,
+      "sampled_count": 29,
+      "mechanism": "The text is in the HTML, so this is milder than a render gap - but content hidden at load time is weighted down or dropped by some extractors, and a visitor who does not click never reads it. Specifications, FAQs and shipping terms are the usual casualties, and they are exactly the facts people ask assistants about.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Show the highest-value content expanded by default and keep collapsing for genuine overflow.",
+        "priority": "high",
+        "how": [
+          "Expand the first panel of each accordion or tab group by default.",
+          "Move facts people search for - price, dimensions, delivery, compatibility, hours - into always-visible text.",
+          "Where an FAQ is collapsed for layout, add FAQPage structured data so the pairs remain machine-readable."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check RND-011 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

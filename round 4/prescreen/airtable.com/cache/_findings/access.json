@@ -1,0 +1,37 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-024",
+      "title": "Internal links and sitemap entries point at pages that fail to load",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "1 of 30 crawled URLs returned an error, e.g. https://academy.airtable.com/ (403).",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://academy.airtable.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 30,
+      "mechanism": "Every dead link is a discovery path that terminates, and a visitor who reaches one usually leaves rather than navigating back. Dead entries in a sitemap additionally teach crawlers to trust the sitemap less.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Fix or remove the broken URLs from links and from the sitemap.",
+        "priority": "low",
+        "how": [
+          "Repair the links, or redirect the old URLs to their current equivalents with a 301.",
+          "Remove URLs that no longer exist from the sitemap.",
+          "Add a build-time link check so this does not regress."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-024 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": []
+}

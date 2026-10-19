@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.invalid/brand-ai-readiness-audit/report-schema.json",
+  "title": "Brand AI-Readiness Audit Report",
+  "description": "Contract for the single report emitted by the entrypoint skill. The fields required by the contest brief (site, audited_at, severity counts, and per-finding id/title/severity/evidence/suggested_action) are all required here; everything else is an additive superset.",
+  "type": "object",
+  "required": ["site", "audited_at", "summary", "findings"],
+  "additionalProperties": true,
+  "properties": {
+    "site": {
+      "type": "string",
+      "description": "Registrable host of the audited site, e.g. example.com"
+    },
+    "site_url": {
+      "type": "string",
+      "description": "Fully-qualified URL the audit actually resolved to after redirects"
+    },
+    "audited_at": {
+      "type": "string",
+      "description": "UTC timestamp, RFC3339 / ISO-8601 with trailing Z"
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_findings", "critical", "high", "medium"],
+      "additionalProperties": true,
+      "properties": {
+        "total_findings": {"type": "integer", "minimum": 0},
+        "critical": {"type": "integer", "minimum": 0},
+        "high": {"type": "integer", "minimum": 0},
+        "medium": {"type": "integer", "minimum": 0},
+        "low": {"type": "integer", "minimum": 0},
+        "info": {"type": "integer", "minimum": 0},
+        "by_category": {
+          "type": "object",
+          "description": "Finding counts split across the two halves of the brief",
+          "properties": {
+            "discoverability": {"type": "integer", "minimum": 0},
+            "engagement": {"type": "integer", "minimum": 0}
+          }
+        },
+        "headline": {
+          "type": "string",
+          "description": "One plain-language sentence a non-expert can act on"
+        }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "description": "0-100 readiness scores derived deterministically from findings by the severity rubric. Advisory; never a substitute for the findings themselves.",
+      "properties": {
+        "overall": {"type": "number", "minimum": 0, "maximum": 100},
+        "gates": {
+          "type": "object",
+          "properties": {
+            "access": {"type": "number"},
+            "render": {"type": "number"},
+            "extract": {"type": "number"},
+            "trust": {"type": "number"},
+            "engagement": {"type": "number"}
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "description": "Provenance and honesty metadata: what was actually measured, what was skipped, and why.",
+      "properties": {
+        "marketplace_version": {"type": "string"},
+        "duration_seconds": {"type": "number"},
+        "pages_crawled": {"type": "integer"},
+        "pages_requested": {"type": "integer"},
+        "site_profile": {
+          "type": "object",
+          "properties": {
+            "site_type": {
+              "type": "string",
+              "enum": ["ecommerce", "saas", "local_business", "media_publisher", "documentation", "brochure", "marketplace", "institutional", "unknown"]
+            },
+            "platform": {"type": "string"},
+            "platform_confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+            "primary_language": {"type": "string"},
+            "page_types_seen": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "checks_run": {"type": "array", "items": {"type": "string"}},
+        "checks_skipped": {
+          "type": "array",
+          "description": "Every skipped check with a machine-readable reason. A check is skipped when the site profile makes it inapplicable, or when a required capability was unavailable.",
+          "items": {
+            "type": "object",
+            "required": ["check_id", "reason"],
+            "properties": {
+              "check_id": {"type": "string"},
+              "reason": {"type": "string"}
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "description": "Which optional capabilities were present at run time. Drives the confidence field on affected findings.",
+          "properties": {
+            "javascript_rendering": {"type": "boolean"},
+            "web_search": {"type": "boolean"},
+            "pdf_text_extraction": {"type": "boolean"}
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "description": "Plain-language statements of what this run could not determine. Never leave an unmeasured thing silently absent from the report.",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "severity", "evidence", "suggested_action"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^F-[0-9]{3,}$",
+            "description": "Report-local sequential id, assigned after deterministic sorting"
+          },
+          "check_id": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}-[0-9]{3}$",
+            "description": "Stable id of the check that produced this finding (ACC/RND/SDA/ANS/ENT/ENG). Stable across runs and across sites."
+          },
+          "title": {"type": "string"},
+          "severity": {"type": "string", "enum": ["critical", "high", "medium", "low", "info"]},
+          "category": {"type": "string", "enum": ["discoverability", "engagement"]},
+          "gate": {
+            "type": "string",
+            "enum": ["access", "render", "extract", "trust", "engagement"],
+            "description": "Which sequential gate of the retrieval pipeline this defect breaks"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "One human-readable sentence containing the measured numbers that justify the finding. Never a restatement of the title."
+          },
+          "evidence_detail": {
+            "type": "object",
+            "description": "Machine-readable measurements backing the evidence sentence",
+            "additionalProperties": true
+          },
+          "affected_urls": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Sampled URLs demonstrating the defect (capped for readability)"
+          },
+          "affected_count": {"type": "integer", "minimum": 0},
+          "sampled_count": {"type": "integer", "minimum": 0},
+          "mechanism": {
+            "type": "string",
+            "description": "Why this defect breaks AI discoverability or engagement, stated in terms of what the retrieval pipeline or the visitor actually does. This is what makes the finding auditable rather than folklore."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "description": "high = directly measured; medium = measured by proxy; low = inferred heuristically"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["static", "rendered", "probe", "heuristic", "external"],
+            "description": "How the measurement was obtained. Findings must never claim a method that did not run."
+          },
+          "suggested_action": {
+            "type": "object",
+            "required": ["summary", "priority"],
+            "additionalProperties": true,
+            "properties": {
+              "summary": {"type": "string"},
+              "priority": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+              "how": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Ordered, concrete implementation steps"
+              },
+              "platform_specific": {
+                "type": ["array", "null"],
+                "items": {"type": "string"},
+                "description": "Steps rewritten for the detected CMS/framework by remediation-planner"
+              },
+              "effort": {"type": "string", "enum": ["low", "medium", "high"]},
+              "owner": {"type": "string", "enum": ["engineering", "content", "marketing", "ops", "design"]},
+              "verify": {
+                "type": "string",
+                "description": "How to confirm the fix worked, ideally by re-running a named check"
+              }
+            }
+          }
+        }
+      }
+    },
+    "proactive_recommendations": {
+      "type": "array",
+      "description": "Improvements that strengthen discoverability or engagement where no defect was detected. Distinct from findings by construction: these carry no evidence of a problem.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "rationale", "priority"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^P-[0-9]{3,}$"},
+          "title": {"type": "string"},
+          "rationale": {"type": "string"},
+          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
+          "how": {"type": "array", "items": {"type": "string"}},
+          "applies_to_site_types": {"type": "array", "items": {"type": "string"}},
+          "effort": {"type": "string", "enum": ["low", "medium", "high"]}
+        }
+      }
+    }
+  }
+}

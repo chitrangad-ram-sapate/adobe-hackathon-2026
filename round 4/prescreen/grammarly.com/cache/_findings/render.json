@@ -1,0 +1,231 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "114 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. https://static-web.grammarly.com/1e6ajr2k4140/1hJYwlj3UP0e0LXF6zKQiU/cef26ad93e9017fd1c1dea494a2eea70/logo.svg on https://www.grammarly.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1hJYwlj3UP0e0LXF6zKQiU/cef26ad93e9017fd1c1dea494a2eea70/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/5xXpgTX8OK9gkTQEq933pv/f4b21ec6988f070e36d3f6e3212a403e/Mask_group.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/4TYQDmjDzU2BZ0P38N5C2R/0b442a1b2c5b5b99523e3ad84930bcd1/logo_cards_databri"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1Lv9zOqHoSso75u8f5BCHF/167999330afd1e3f4401e8bf6bcaffdb/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1cjk9unyOBwGck9B0eJIaZ/56930a73d0028f25d2b16f631ef9016c/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/2YCiJ5Q3SHLXSw9d5fGr6j/91dbecbba93cd785d9bed6f0040c1aec/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/3UfZ4nZKuieQFvMnIuQ7En/19ad431da521430c737cf849fce5d599/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/74AYxsZJqG33NG9GByAMbJ/b59f5333030f6cd0e3779b3f149dfc2a/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/69YZAsAGFz2cGMdaixNNfC/5df6d7afeba6881a7275fbab9be2bec6/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/5LFPjNeMJf06Ehl1LzqNcc/66b1ab2d80c1ff91b0226f537409ba99/Group_3466538.png"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.grammarly.com/",
+        "https://www.grammarly.com/2024-state-of-business-communication-germany-report",
+        "https://www.grammarly.com/2025-the-productivity-shift-multilingual",
+        "https://www.grammarly.com/blog/",
+        "https://www.grammarly.com/blog/company/introducing-new-superhuman/",
+        "https://www.grammarly.com/blog/engineering/",
+        "https://www.grammarly.com/blog/institutions/",
+        "https://www.grammarly.com/business/pricing",
+        "https://www.grammarly.com/careers",
+        "https://www.grammarly.com/careers/culture"
+      ],
+      "affected_count": 114,
+      "sampled_count": 419,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-007",
+      "title": "Most images have no alt text",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "152 of 419 images across 30 sampled pages (36%) have a missing or empty alt attribute.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1hJYwlj3UP0e0LXF6zKQiU/cef26ad93e9017fd1c1dea494a2eea70/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/5xXpgTX8OK9gkTQEq933pv/f4b21ec6988f070e36d3f6e3212a403e/Mask_group.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/4TYQDmjDzU2BZ0P38N5C2R/0b442a1b2c5b5b99523e3ad84930bcd1/logo_cards_databri"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1Lv9zOqHoSso75u8f5BCHF/167999330afd1e3f4401e8bf6bcaffdb/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/1cjk9unyOBwGck9B0eJIaZ/56930a73d0028f25d2b16f631ef9016c/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/2YCiJ5Q3SHLXSw9d5fGr6j/91dbecbba93cd785d9bed6f0040c1aec/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/3UfZ4nZKuieQFvMnIuQ7En/19ad431da521430c737cf849fce5d599/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/74AYxsZJqG33NG9GByAMbJ/b59f5333030f6cd0e3779b3f149dfc2a/Group_3466538.png"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/69YZAsAGFz2cGMdaixNNfC/5df6d7afeba6881a7275fbab9be2bec6/logo.svg"
+          },
+          {
+            "url": "https://www.grammarly.com/",
+            "src": "https://static-web.grammarly.com/1e6ajr2k4140/5LFPjNeMJf06Ehl1LzqNcc/66b1ab2d80c1ff91b0226f537409ba99/Group_3466538.png"
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 152,
+      "sampled_count": 419,
+      "mechanism": "Alt text is the only description of an image available to a text reader, and it is one of the few places where an image's meaning enters the page's extractable content. Its absence also makes the page unusable with a screen reader, which is an engagement failure as much as a discoverability one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add descriptive alt text to meaningful images and empty alt to decorative ones.",
+        "priority": "medium",
+        "how": [
+          "Describe what the image conveys in context, in a sentence fragment.",
+          "Use alt=\"\" for decoration so readers skip it rather than announcing a filename.",
+          "Add an alt field to the CMS image component so authors cannot omit it silently."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-007 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "RND-011",
+      "title": "Much of the page text is hidden behind tabs or accordions at load time",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "3 sampled pages hide more than 40% of their body text in collapsed regions, e.g. https://www.grammarly.com/docs keeps 524 of 1186 words in {'details': 16}.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.grammarly.com/docs",
+            "hidden_words": 524,
+            "total_words": 1186,
+            "regions": {
+              "details": 16
+            }
+          },
+          {
+            "url": "https://www.grammarly.com/case-study-generator",
+            "hidden_words": 1018,
+            "total_words": 1974,
+            "regions": {
+              "details": 3,
+              "tabpanel": 2
+            }
+          },
+          {
+            "url": "https://www.grammarly.com/privacy",
+            "hidden_words": 795,
+            "total_words": 1317,
+            "regions": {
+              "details": 8
+            }
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.grammarly.com/docs",
+        "https://www.grammarly.com/case-study-generator",
+        "https://www.grammarly.com/privacy"
+      ],
+      "affected_count": 3,
+      "sampled_count": 30,
+      "mechanism": "The text is in the HTML, so this is milder than a render gap - but content hidden at load time is weighted down or dropped by some extractors, and a visitor who does not click never reads it. Specifications, FAQs and shipping terms are the usual casualties, and they are exactly the facts people ask assistants about.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Show the highest-value content expanded by default and keep collapsing for genuine overflow.",
+        "priority": "high",
+        "how": [
+          "Expand the first panel of each accordion or tab group by default.",
+          "Move facts people search for - price, dimensions, delivery, compatibility, hours - into always-visible text.",
+          "Where an FAQ is collapsed for layout, add FAQPage structured data so the pairs remain machine-readable."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check RND-011 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "RND-002",
+      "reason": "superseded by the measured render-gap comparison (RND-001)"
+    },
+    {
+      "check_id": "RND-008",
+      "reason": "no PDF documents were linked from the sampled pages"
+    }
+  ],
+  "notes": []
+}

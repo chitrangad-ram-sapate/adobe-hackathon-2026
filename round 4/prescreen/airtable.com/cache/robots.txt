@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+Disallow: /sanity-documentation
+
+Sitemap: https://www.airtable.com/sitemap.xml

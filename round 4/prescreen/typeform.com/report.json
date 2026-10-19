@@ -1,0 +1,923 @@
+{
+  "site": "typeform.com",
+  "site_url": "https://www.typeform.com/",
+  "audited_at": "2026-09-24T19:02:01Z",
+  "summary": {
+    "total_findings": 16,
+    "critical": 0,
+    "high": 4,
+    "medium": 6,
+    "low": 6,
+    "info": 0,
+    "by_category": {
+      "discoverability": 12,
+      "engagement": 4
+    },
+    "headline": "16 findings on typeform.com: the most severe is high and sits at the render gate - machines cannot read what visitors can see. Start with \"Facts appear to be locked inside images with no text equivalent\"."
+  },
+  "scores": {
+    "overall": 67.7,
+    "gates": {
+      "access": 100,
+      "render": 72,
+      "extract": 23,
+      "trust": 86,
+      "engagement": 73
+    }
+  },
+  "audit": {
+    "marketplace_version": "1.0.0",
+    "duration_seconds": 122.5,
+    "pages_crawled": 30,
+    "pages_requested": 30,
+    "site_profile": {
+      "site_type": "ecommerce",
+      "site_type_confidence": "high",
+      "platform": "unknown",
+      "platform_confidence": "low",
+      "hosting_stack": [
+        "Cloudflare"
+      ],
+      "analytics": [
+        "Amplitude",
+        "Google Analytics 4",
+        "Google Tag Manager"
+      ],
+      "primary_language": "en",
+      "page_types_seen": [
+        "about",
+        "article",
+        "careers",
+        "case_study",
+        "category",
+        "contact",
+        "docs",
+        "faq",
+        "home",
+        "legal",
+        "other",
+        "pricing",
+        "product",
+        "section_home"
+      ]
+    },
+    "checks_run": [
+      "access",
+      "answer",
+      "engagement",
+      "entity",
+      "render",
+      "schema"
+    ],
+    "detector_finding_counts": {
+      "access": 0,
+      "answer": 3,
+      "engagement": 4,
+      "entity": 3,
+      "render": 2,
+      "schema": 7
+    },
+    "checks_skipped": [
+      {
+        "check_id": "ANS-002",
+        "reason": "no H1 on the homepage; covered by RND-012"
+      },
+      {
+        "check_id": "ENT-010",
+        "reason": "site is not a local business; NAP consistency is not applicable"
+      },
+      {
+        "check_id": "ENT-012",
+        "reason": "only 1 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+      },
+      {
+        "check_id": "ENT-013",
+        "reason": "no fetched profile carried enough text to compare against the site's own description"
+      },
+      {
+        "check_id": "RND-002",
+        "reason": "superseded by the measured render-gap comparison (RND-001)"
+      },
+      {
+        "check_id": "RND-008",
+        "reason": "no PDF documents were linked from the sampled pages"
+      },
+      {
+        "check_id": "SDA-005",
+        "reason": "only 1 faq page(s) lacked expected markup - too few to conclude a pattern"
+      }
+    ],
+    "capabilities": {
+      "javascript_rendering": true,
+      "web_search": false,
+      "pdf_text_extraction": false,
+      "offsite_verification": true
+    },
+    "limitations": [
+      "4 of 5 declared external profile(s) could not be verified because the host blocked the request, disallows it in robots.txt, or the time budget ran out. Those profiles are reported as unverified, never as defects. Run with --no-offsite to skip off-site verification entirely."
+    ],
+    "notes": [
+      "engagement timings are transport-level proxies measured from the audit's network location; no browser paint or field measurement was performed",
+      "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+    ]
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "check_id": "RND-006",
+      "title": "Facts appear to be locked inside images with no text equivalent",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "9 images whose filename or position indicates they carry words (charts, price lists, banners, heading graphics) have no alt text, e.g. https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d25dca9f26a7de418_Chart-Line.svg on https://www.typeform.com/.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.typeform.com/",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d25dca9f26a7de418_Chart-Line.svg"
+          },
+          {
+            "url": "https://www.typeform.com/",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/69fc834d52930ad151d0b763_Chart-Bar-Vertical.svg"
+          },
+          {
+            "url": "https://www.typeform.com/blog-category/product",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a2706b26dc9027f5ed98a4c_Usability%20testing%20tools%20compa"
+          },
+          {
+            "url": "https://www.typeform.com/contact-us",
+            "src": "https://cdn.prod.website-files.com/66ffe2174aa8e8d5661c2708/6a7c3e5cc7249a8a017c1f93_LeadCapture_MostImplementable_Total"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/contact",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/677f9ee6d52d56e17e001a59_673b6ca995891fea8d7ba339_real-estat"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/contact",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/677f9ec8f877409408767b19_673b6caa40a23b4c1d8f11cc_Photograph"
+          },
+          {
+            "url": "https://www.typeform.com/blog",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a2706b26dc9027f5ed98a4c_Usability%20testing%20tools%20compa"
+          },
+          {
+            "url": "https://www.typeform.com/blog-category/news",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/674882ba170ebb6f7c07b654_Banner-Typeform-Linktree-01.webp"
+          },
+          {
+            "url": "https://www.typeform.com/templates-sub-category/customers-subcategory",
+            "src": "https://cdn.prod.website-files.com/6718da5ecf694c9af0e8d5d7/6a42651e69261fc24d05436b_Real%20Estate%20Counter%20Offer%20F"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://www.typeform.com/blog",
+        "https://www.typeform.com/blog-category/news",
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/contact-us",
+        "https://www.typeform.com/templates-sub-category/contact",
+        "https://www.typeform.com/templates-sub-category/customers-subcategory"
+      ],
+      "affected_count": 9,
+      "sampled_count": 2008,
+      "mechanism": "Text drawn inside an image is invisible to every text-based reader. When a price list, an opening-hours table or a specification chart exists only as a picture, the facts on it cannot be extracted, cited, or read by assistive technology - the information is published and simultaneously unavailable.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish the facts these images carry as real text, and give every image meaningful alt text.",
+        "priority": "high",
+        "how": [
+          "For each image carrying data - prices, hours, specifications, comparisons - add the same content as HTML text or a table next to it. The image becomes the illustration, not the source.",
+          "Write alt text that states what the image communicates, not what it depicts.",
+          "Where an image is purely decorative, use alt=\"\" so readers skip it deliberately."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check RND-006; data-bearing images should have alt text and an HTML equivalent."
+      }
+    },
+    {
+      "id": "F-002",
+      "check_id": "ANS-001",
+      "title": "The homepage never states in plain words what the organisation is",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "None of the first 6 sentences on the homepage, the meta description, or any Organization description combines the brand name with a descriptive verb and a category noun. Opening line: \"AI forms & automation Your favorite forms.\".",
+      "evidence_detail": {
+        "opening_sentences": [
+          "AI forms & automation Your favorite forms.",
+          "Now with AI automation.",
+          "Combine AI forms and automated workflows to drive revenue growth."
+        ],
+        "headline_text": "Form Builder with AI Automation | Typeform Platform Tools TEMPLATES",
+        "meta_description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free."
+      },
+      "affected_urls": [
+        "https://www.typeform.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "When an assistant is asked what a company does, it looks for a sentence that says so. If the page communicates identity through imagery, layout and implication instead, there is nothing to lift - so the assistant either declines to describe the brand or reconstructs a description from third parties, which is where misrepresentation begins.",
+      "confidence": "medium",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Add one plain declarative sentence near the top of the homepage stating what the organisation is, who it serves, and where.",
+        "priority": "high",
+        "how": [
+          "Write a sentence of the form: \"Typeform is a <category> that <does what> for <who>, based in <where>.\"",
+          "Place it in the first screen of the homepage as body text - not inside an image, a video, or a carousel.",
+          "Mirror the same sentence in the meta description and in the Organization schema `description` field so all three agree.",
+          "Keep it literal. A slogan can sit above it; the literal sentence is what gets quoted."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-001; a sentence naming the brand, a verb and a category noun should appear in the homepage's opening text."
+      }
+    },
+    {
+      "id": "F-003",
+      "check_id": "ANS-006",
+      "title": "Pricing pages contain no readable price",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "3 of 5 sampled pricing/product pages contain no numeric price in their text, e.g. https://www.typeform.com/blog-category/product.",
+      "evidence_detail": {
+        "pages": [
+          {
+            "url": "https://www.typeform.com/blog-category/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.typeform.com/blog-tag/product",
+            "quote_language": false
+          },
+          {
+            "url": "https://www.typeform.com/careers/product",
+            "quote_language": false
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/blog-tag/product",
+        "https://www.typeform.com/careers/product"
+      ],
+      "affected_count": 3,
+      "sampled_count": 5,
+      "mechanism": "Cost is among the most common things asked about any commercial brand. With no number on the page, an assistant cannot answer from the brand's own site and turns to resellers, review sites and forums - sources that are often out of date and never in the brand's control. Publishing a figure is what makes the brand's own page the citable one.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Publish a real figure or an indicative range, even where final pricing is negotiated.",
+        "priority": "high",
+        "how": [
+          "State a starting price, a typical range, or a worked example: \"from 4,500 GBP per unit per year\".",
+          "Put it in body text, not in an image or a downloadable PDF.",
+          "Mirror it in Offer/AggregateOffer structured data with price and priceCurrency.",
+          "If pricing genuinely cannot be published, state what it depends on in plain text - that is still an extractable, quotable answer, where silence is not."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "marketing",
+        "verify": "Re-run check ANS-006 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-004",
+      "check_id": "SDA-005",
+      "title": "Article pages have no Article/BlogPosting/NewsArticle structured data",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "3 of 3 sampled article pages carry no Article or BlogPosting or NewsArticle markup, e.g. https://www.typeform.com/blog.",
+      "evidence_detail": {
+        "page_type": "article",
+        "expected": [
+          "Article",
+          "BlogPosting",
+          "NewsArticle"
+        ],
+        "site_type": "ecommerce"
+      },
+      "affected_urls": [
+        "https://www.typeform.com/blog",
+        "https://www.typeform.com/blog-category/news",
+        "https://www.typeform.com/blog-tag/press-release"
+      ],
+      "affected_count": 3,
+      "sampled_count": 3,
+      "mechanism": "The Article type is how a machine learns what does this say, when was it said, and who said it. Without it the page competes on prose alone against sources that state the same facts in a form that needs no interpretation.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add Article JSON-LD to the article page template.",
+        "priority": "high",
+        "how": [
+          "Add a `Article` JSON-LD block to the article template, populated from the same data the page already renders.",
+          "Include the fields that make it answerable: headline, datePublished, author, dateModified, image.",
+          "Emit it once per page from the template so new pages inherit it automatically."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-005 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-005",
+      "check_id": "RND-004",
+      "title": "The site tells non-JavaScript clients that it will not work",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "render",
+      "evidence": "2 of 30 sampled pages contain a <noscript> block stating JavaScript is required, e.g. \"You need to enable JavaScript to run Typeform.\".",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "This message is the fallback a non-JavaScript client actually receives. Where it appears, it confirms the page's real content is unavailable without script execution - and for a text extractor, this sentence may be the most prominent text on the page.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Provide real content in <noscript>, or server-render the page so the fallback is unnecessary.",
+        "priority": "medium",
+        "how": [
+          "Server-render the primary content (see RND-001/RND-002).",
+          "Until then, put the page's core text - headline, description, key facts, links - inside <noscript> so something meaningful is readable."
+        ],
+        "platform_specific": [
+          "Render the content on the server for the affected routes and verify with `curl -s <url>` that the text is in the response body."
+        ],
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check RND-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-006",
+      "check_id": "SDA-009",
+      "title": "Question-and-answer content is not marked up as an FAQ",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "4 pages contain 9+ question-shaped headings with no FAQPage markup, e.g. https://www.typeform.com/pricing asks \"What are the benefits of a paid vs free plan?\".",
+      "evidence_detail": {
+        "examples": [
+          {
+            "url": "https://www.typeform.com/pricing",
+            "questions": [
+              "What are the benefits of a paid vs free plan?",
+              "What’s included in the free plan?",
+              "Can I upgrade, downgrade or switch between plans?",
+              "Can I pause a paid subscription?"
+            ],
+            "count": 9
+          },
+          {
+            "url": "https://www.typeform.com/pricing/talent",
+            "questions": [
+              "What are the benefits of a paid vs free plan?",
+              "What’s included in the free plan?",
+              "Can I upgrade, downgrade or switch between plans?",
+              "Can I pause a paid subscription?"
+            ],
+            "count": 9
+          },
+          {
+            "url": "https://www.typeform.com/templates/faq",
+            "questions": [
+              "What is an FAQ form?",
+              "Why should I use an FAQ form?",
+              "What questions should I include in an FAQ form?",
+              "How should I use the submitted questions?"
+            ],
+            "count": 5
+          },
+          {
+            "url": "https://www.typeform.com/templates/testimonial-form-template",
+            "questions": [
+              "What is a testimonial form?",
+              "Why are testimonials so important for my business?",
+              "What questions should I include in a testimonial form?",
+              "How do I encourage customers to fill out a testimonial form?"
+            ],
+            "count": 5
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/pricing",
+        "https://www.typeform.com/pricing/talent",
+        "https://www.typeform.com/templates/faq",
+        "https://www.typeform.com/templates/testimonial-form-template"
+      ],
+      "affected_count": 4,
+      "sampled_count": 30,
+      "mechanism": "Question-and-answer pairs are the most directly quotable content a site can publish, because the question already matches the shape of what users ask. Marking them up hands a retrieval system a pre-matched pair instead of asking it to locate the answer inside a page of prose.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add FAQPage structured data wrapping the existing questions and answers.",
+        "priority": "high",
+        "how": [
+          "Emit `FAQPage` with a `mainEntity` array of `Question`/`acceptedAnswer` pairs built from the headings and body already on the page.",
+          "Keep the answers self-contained: each should make sense quoted on its own, without the question above it or the paragraph before it.",
+          "Only mark up genuine questions the page answers - inventing pairs for markup's sake is treated as spam by consumers."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check SDA-009 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-007",
+      "check_id": "ENT-001",
+      "title": "The brand describes itself differently in different places on the same page",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 pair(s) of self-descriptions on the homepage share little vocabulary; the Organization schema description and the meta description overlap by only 13% (\"Build beautiful, interactive forms — get more responses. No coding nee\" vs \"Build AI-powered forms that get 3.5x more data — then trigger automate\").",
+      "evidence_detail": {
+        "descriptions": {
+          "meta description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "og:description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "twitter:description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "Organization schema description": "Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE."
+        },
+        "divergent_pairs": [
+          {
+            "a": "Organization schema description",
+            "b": "meta description",
+            "similarity": 0.13
+          },
+          {
+            "a": "Organization schema description",
+            "b": "og:description",
+            "similarity": 0.13
+          },
+          {
+            "a": "Organization schema description",
+            "b": "twitter:description",
+            "similarity": 0.13
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "These fields are read by different consumers, and together they form the brand's self-description. When they disagree, a system has no single authoritative account of what the brand is; it either hedges, blends them into something the brand never said, or prefers a third-party description that at least appears consistently.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Write one canonical description of the organisation and use it in every one of these fields.",
+        "priority": "high",
+        "how": [
+          "Agree a single sentence describing what the organisation is, who it serves and where.",
+          "Use it verbatim in the meta description, og:description, twitter:description and the Organization schema `description`.",
+          "Use the same sentence in off-site profiles - LinkedIn, Crunchbase, directories - so the description the wider web repeats matches the site."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-001 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-008",
+      "check_id": "ENG-005",
+      "title": "Pages load many render-blocking or third-party scripts",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "26 of 30 sampled pages load 17 render-blocking scripts from up to 7 third-party hosts, e.g. https://www.typeform.com/templates-sub-category/contact.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://community.typeform.com/",
+        "https://www.typeform.com/about-us",
+        "https://www.typeform.com/pricing",
+        "https://www.typeform.com/pricing/talent",
+        "https://www.typeform.com/blog-category/product",
+        "https://www.typeform.com/blog-tag/product",
+        "https://www.typeform.com/careers/product",
+        "https://www.typeform.com/contact-us",
+        "https://www.typeform.com/templates-sub-category/contact"
+      ],
+      "affected_count": 26,
+      "sampled_count": 30,
+      "mechanism": "A render-blocking script stops the page being displayed until it has downloaded and executed, and each additional third-party host adds a DNS lookup and TLS handshake before that can even begin. The visitor sees nothing while this happens, and any one of those third parties being slow makes the brand's own site feel slow.",
+      "confidence": "medium",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Defer non-essential scripts and cut the number of third-party origins.",
+        "priority": "medium",
+        "how": [
+          "Add `defer` or `async` to every script that is not required for first paint.",
+          "Audit the tag list and remove anything nobody is acting on - marketing tags accumulate silently.",
+          "Load remaining third-party scripts through a single tag manager, after first paint.",
+          "Self-host small critical dependencies to remove a connection setup from the critical path."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-005 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-009",
+      "check_id": "ENG-009",
+      "title": "Media is set to play automatically",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "2 of 30 sampled pages contain a video or audio element with the autoplay attribute, e.g. https://www.typeform.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/",
+        "https://www.typeform.com/ai"
+      ],
+      "affected_count": 2,
+      "sampled_count": 30,
+      "mechanism": "Autoplaying media consumes bandwidth before the visitor has decided to watch anything, delays the content they came for, and - where sound is involved - is a common reason for closing a tab immediately.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Require an explicit play action, or at minimum keep autoplay muted and deferred.",
+        "priority": "high",
+        "how": [
+          "Remove autoplay and show a poster image with a visible play control.",
+          "If a background video is essential to the design, keep it muted, short, and loaded after the primary content.",
+          "Respect prefers-reduced-motion."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "design",
+        "verify": "Re-run check ENG-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-010",
+      "check_id": "ENG-010",
+      "title": "A consent or subscription overlay may be gating the page content",
+      "severity": "medium",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "Overlay markup appears on 27 of 30 sampled pages, and 5 of those pages carry under 120 words of body text, e.g. https://admin.typeform.com/.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true",
+        "https://community.typeform.com/",
+        "https://www.typeform.com/agencies",
+        "https://www.typeform.com/legal"
+      ],
+      "affected_count": 5,
+      "sampled_count": 30,
+      "mechanism": "When content is only assembled after a consent choice, both the visitor and any machine reader see the overlay rather than the page. Visitors who decline or ignore the prompt get nothing, and the page's real content never enters the crawl.",
+      "confidence": "low",
+      "method": "heuristic",
+      "suggested_action": {
+        "summary": "Render page content beneath the consent layer rather than after it.",
+        "priority": "medium",
+        "how": [
+          "Serve the full page content regardless of consent state, and gate only the tracking that genuinely requires consent.",
+          "Never block the document behind the banner for non-browser clients.",
+          "Delay newsletter and subscription prompts until the visitor has engaged, and never show them on first paint."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "engineering",
+        "verify": "Re-run check ENG-010 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-011",
+      "check_id": "ANS-003",
+      "title": "Different pages share the same title",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "4 of 30 sampled pages share 2 repeated title(s), e.g. \"Typeform\".",
+      "evidence_detail": {
+        "duplicates": [
+          "Typeform",
+          "Plans & Pricing | Typeform"
+        ]
+      },
+      "affected_urls": [
+        "https://admin.typeform.com/",
+        "https://admin.typeform.com/?cello-open=true",
+        "https://www.typeform.com/pricing",
+        "https://www.typeform.com/pricing/talent"
+      ],
+      "affected_count": 4,
+      "sampled_count": 30,
+      "mechanism": "The title is how a page is named in a citation and is one of the strongest topic signals a retrieval system has. Identical titles make pages indistinguishable to it, so they compete with one another and the most relevant one is not reliably chosen.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Give every page a unique title describing that page's specific subject.",
+        "priority": "medium",
+        "how": [
+          "Template titles as `<specific page subject> - <brand>`.",
+          "Derive the first part from the page's own H1 or product/article name, never from the site name alone."
+        ],
+        "platform_specific": [
+          "Set the values in the shared layout with a per-page override, so a new page cannot ship without them."
+        ],
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ANS-003 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-012",
+      "check_id": "SDA-007",
+      "title": "Organization structured data is missing required fields",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "1 Organization nodes omit url (1x), e.g. on https://www.typeform.com/ai.",
+      "evidence_detail": {
+        "type": "Organization",
+        "missing_counts": {
+          "url": 1
+        }
+      },
+      "affected_urls": [
+        "https://www.typeform.com/ai"
+      ],
+      "affected_count": 1,
+      "sampled_count": 19,
+      "mechanism": "The block is present and parses, so it appears to be working - but without url it cannot answer who is this company, and is it the same entity as the one on Wikipedia/LinkedIn. Consumers that require these fields discard the node entirely, leaving the page in the same position as one with no markup at all.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Populate the required Organization fields: url.",
+        "priority": "medium",
+        "how": [
+          "Add url to the Organization block, sourced from the same data the page renders.",
+          "Leave a field out entirely rather than emitting an empty string or a placeholder - an empty value is treated as an assertion that the value is empty.",
+          "Validate the output against the type's requirements as part of the build."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-007 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-013",
+      "check_id": "SDA-010",
+      "title": "Nested pages carry no breadcrumb structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "extract",
+      "evidence": "16 of 16 sampled nested pages have no BreadcrumbList markup.",
+      "evidence_detail": {},
+      "affected_urls": [],
+      "affected_count": 16,
+      "sampled_count": 16,
+      "mechanism": "Breadcrumbs tell a machine where a page sits in the site, which is how an isolated page - the kind an assistant links someone straight into - acquires context about what it is part of. They also give the brand a labelled path in results rather than a bare URL.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add BreadcrumbList markup, and a visible breadcrumb trail, to nested page templates.",
+        "priority": "medium",
+        "how": [
+          "Emit `BreadcrumbList` with an ordered `itemListElement` from the site root to the current page.",
+          "Render a matching visible trail; it serves the same orientation purpose for the reader.",
+          "Keep the markup and the visible trail identical."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check SDA-010 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-014",
+      "check_id": "ENT-004",
+      "title": "Some brand profiles linked on the site are missing from sameAs",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "1 external profile(s) linked from the homepage are not declared in sameAs: https://www.linkedin.com/company/typeform-com/.",
+      "evidence_detail": {
+        "undeclared": [
+          "https://www.linkedin.com/company/typeform-com/"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "A link in the footer is a hint; a sameAs entry is an assertion. Profiles left out of the declaration are not connected to the entity, so whatever they corroborate is not counted.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add the remaining profiles to the sameAs array.",
+        "priority": "medium",
+        "how": [
+          "Add https://www.linkedin.com/company/typeform-com/ to the Organization sameAs list.",
+          "Keep the two in sync whenever a profile is added or retired."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "F-015",
+      "check_id": "ENT-009",
+      "title": "Articles have no named author in structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 of 3 sampled articles declare no author.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/blog",
+        "https://www.typeform.com/blog-category/news",
+        "https://www.typeform.com/blog-tag/press-release"
+      ],
+      "affected_count": 3,
+      "sampled_count": 3,
+      "mechanism": "Attribution is part of how a claim's weight is assessed. Named, described authors connect content to a person whose expertise can be established elsewhere; anonymous content has only the domain behind it.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Attribute articles to named authors with linked profiles.",
+        "priority": "low",
+        "how": [
+          "Add `author` as a Person object with `name`, `url` and `sameAs` to the article's structured data.",
+          "Publish author profile pages describing relevant expertise.",
+          "Show the byline visibly as well as in markup."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ENT-009 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "F-016",
+      "check_id": "ENG-003",
+      "title": "Navigation relies on repeated, undescriptive link text",
+      "severity": "low",
+      "category": "engagement",
+      "gate": "engagement",
+      "evidence": "The link text \"learn more →\" appears 10 times across the sampled pages, alongside 2 such repeated labels in total.",
+      "evidence_detail": {
+        "labels": {
+          "learn more →": 10,
+          "learn more": 4,
+          "see more →": 3
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 17,
+      "sampled_count": 13,
+      "mechanism": "Identical undescriptive labels force the visitor to work out where each one goes from its surroundings, which is slow on a screen and impossible for anyone navigating by links alone with a screen reader. The same text also gives search and retrieval systems no signal about what the linked page contains.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Replace repeated generic labels with text naming the destination.",
+        "priority": "medium",
+        "how": [
+          "Rewrite as the destination: 'Read the AMR-200 specification' rather than 'Learn more'.",
+          "Where the visual design requires a short label, add an aria-label carrying the full description."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "content",
+        "verify": "Re-run check ENG-003 and confirm it no longer fires."
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "P-001",
+      "title": "Publish a facts-and-figures page that other sources can cite",
+      "rationale": "A claim repeated across many independent sources is treated as reliable; one that exists in a single place is fragile. Journalists, directories, analysts and assistants can only repeat facts that are stated somewhere quotable, in a stable location, with a date attached. Most organisations never publish this, and then wonder why the web describes them inaccurately.",
+      "priority": "medium",
+      "how": [
+        "Create a page carrying the organisation's canonical facts: legal name, founding year, headquarters, leadership, size, key figures - each as a short declarative sentence.",
+        "Date every figure and update them on a fixed schedule.",
+        "Give it a stable URL and link it from the About page, the footer and any press materials.",
+        "Mirror the same values in Organization structured data so they are machine-readable too."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-002",
+      "title": "Publish honest comparison and 'is this right for me' pages",
+      "rationale": "A large share of the questions put to assistants are comparative or qualifying. If the brand does not answer them, review sites and competitors' comparison pages do - and those are the sources that get cited. Even-handed pages that say where an alternative is the better fit are cited more often than promotional ones, because they read as reliable.",
+      "priority": "medium",
+      "how": [
+        "Write comparisons against the alternatives buyers genuinely evaluate, including the cases where the alternative wins.",
+        "Publish `for <industry>` or `for <role>` pages describing the specific situation each serves.",
+        "Title each page as the question it answers.",
+        "Keep them current - a comparison against an outdated competitor version damages credibility."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "high"
+    },
+    {
+      "id": "P-003",
+      "title": "Make every fact that appears in an image, video or PDF also available as text",
+      "rationale": "Facts carried only by non-textual media are invisible to text-based readers, and this is systematically true of the highest-value facts - price lists, specifications, opening hours, menus - because those are the ones designers most often set as graphics. Publishing the text alongside costs little and removes an entire class of invisibility.",
+      "priority": "medium",
+      "how": [
+        "Adopt a rule that no fact may exist only in a non-text asset: if it is in an image, a diagram, a video or a PDF, it is also in HTML text on the same page.",
+        "Give data-bearing images alt text that states what they communicate, and put the underlying data in a table beside them.",
+        "Publish transcripts and summaries for video and audio.",
+        "Where a PDF is the canonical document, publish an HTML summary of its key facts as well."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-004",
+      "title": "Strengthen the brand's identity graph across authoritative sources",
+      "rationale": "Entity confusion is one of the main causes of an assistant describing a brand inaccurately. The defence is a consistent, mutually linked set of identity records: the same canonical description, the same legal name, the same location, asserted in several places that reference one another.",
+      "priority": "medium",
+      "how": [
+        "Create or claim a Wikidata item; it is openly editable and widely consumed as an identity reference.",
+        "Align the description on LinkedIn, Crunchbase, GitHub and industry directories with the site's canonical sentence, word for word.",
+        "Declare each of them in the site's Organization `sameAs`, and link back where the platform allows.",
+        "Use the qualified brand name consistently - `<Brand>, the <category> for <audience>` - so the distinguishing phrase is what gets repeated."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "medium"
+    },
+    {
+      "id": "P-005",
+      "title": "Design interior pages for visitors who arrive without context",
+      "rationale": "Assistant referrals land deep in a site rather than on the homepage, and they arrive with no idea whose site they are on. Pages built on the assumption that the visitor came through the front door lose them immediately - so the more successful the discoverability work, the more traffic this wastes.",
+      "priority": "medium",
+      "how": [
+        "Ensure every page states the organisation's name and what it does, in text.",
+        "Add breadcrumbs so a visitor can see where they have landed.",
+        "End each page with a next step chosen for that page's subject.",
+        "Review the pages assistants most often cite and treat each as a potential first impression."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    },
+    {
+      "id": "P-006",
+      "title": "Segment assistant-referred traffic so this work can be evaluated",
+      "rationale": "AI-referred visits behave differently from search visits: they land deeper, arrive with more context, and convert on different pages. Without a separate segment they are averaged into search traffic and the effect of any discoverability work is invisible.",
+      "priority": "low",
+      "how": [
+        "Create an analytics segment for known assistant referrers and review it separately.",
+        "Report on landing page, onward navigation and conversion for that segment specifically.",
+        "Watch server logs for the AI crawler user agents to confirm the site is actually being fetched."
+      ],
+      "applies_to_site_types": [
+        "*"
+      ],
+      "effort": "low"
+    }
+  ]
+}

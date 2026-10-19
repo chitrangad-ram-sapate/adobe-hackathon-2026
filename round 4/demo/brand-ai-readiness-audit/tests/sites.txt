@@ -1,0 +1,104 @@
+# Generalization corpus for tests/generalization_batch.py
+#
+# Format:  <segment>  <url>
+#
+# These sites are NOT used to tune thresholds and none of them appears in any
+# fixture. They exist to answer one question: does the marketplace behave
+# sensibly on sites it was never built against? The corpus is deliberately
+# skewed towards things that break auditors - bot-managed origins, client-
+# rendered apps, non-Latin scripts, enormous navigations, and sites with almost
+# no content at all.
+#
+# Everything here is a public homepage, fetched read-only with robots.txt
+# obeyed and a 10-page cap per site.
+
+# --- ecommerce ---------------------------------------------------------------
+ecommerce        https://www.allbirds.com
+ecommerce        https://www.patagonia.com
+ecommerce        https://www.gymshark.com
+ecommerce        https://uk.huel.com
+ecommerce        https://www.everlane.com
+ecommerce        https://www.warbyparker.com
+ecommerce        https://www.nike.com
+ecommerce        https://www.ikea.com
+ecommerce        https://www.etsy.com
+ecommerce        https://www.lush.com
+
+# --- saas / product marketing ------------------------------------------------
+saas             https://www.notion.com
+saas             https://linear.app
+saas             https://www.figma.com
+saas             https://stripe.com
+saas             https://vercel.com
+saas             https://supabase.com
+saas             https://posthog.com
+saas             https://basecamp.com
+saas             https://www.atlassian.com
+saas             https://slack.com
+
+# --- publishers / media ------------------------------------------------------
+publisher        https://www.theguardian.com
+publisher        https://arstechnica.com
+publisher        https://www.theverge.com
+publisher        https://www.economist.com
+publisher        https://www.wired.com
+publisher        https://www.smashingmagazine.com
+
+# --- documentation / developer ----------------------------------------------
+docs             https://developer.mozilla.org
+docs             https://docs.python.org/3/
+docs             https://kubernetes.io
+docs             https://www.rust-lang.org
+docs             https://www.postgresql.org
+docs             https://nodejs.org
+
+# --- institutional: government, academic, charity ----------------------------
+institutional    https://www.irs.gov
+institutional    https://www.gov.uk
+institutional    https://www.ox.ac.uk
+institutional    https://web.mit.edu
+institutional    https://www.redcross.org
+institutional    https://www.wwf.org.uk
+institutional    https://www.nhs.uk
+institutional    https://www.unicef.org
+institutional    https://www.who.int
+institutional    https://www.nasa.gov
+
+# --- non-English / non-Latin script ------------------------------------------
+non-english      https://www.lemonde.fr
+non-english      https://www.zeit.de
+non-english      https://www.asahi.com
+non-english      https://elpais.com
+non-english      https://www.corriere.it
+non-english      https://www.spiegel.de
+non-english      https://www.lefigaro.fr
+non-english      https://www3.nhk.or.jp
+
+# --- small / personal / brochure ---------------------------------------------
+small            https://sive.rs
+small            https://danluu.com
+small            https://jvns.ca
+small            https://simonwillison.net
+small            https://craigmod.com
+small            https://example.com
+
+# --- platform coverage -------------------------------------------------------
+platform         https://wordpress.org
+platform         https://ghost.org
+platform         https://webflow.com
+platform         https://www.shopify.com
+platform         https://www.squarespace.com
+platform         https://www.wix.com
+platform         https://business.adobe.com
+platform         https://www.drupal.org
+
+# --- known-hostile: heavy bot management, paywalls, hard JS -------------------
+hostile          https://www.ticketmaster.com
+hostile          https://www.expedia.com
+hostile          https://www.walmart.com
+hostile          https://www.zillow.com
+
+# --- error paths (must degrade, not crash) -----------------------------------
+error-path       https://this-domain-does-not-exist-audit-9f2c1.com
+error-path       https://expired.badssl.com
+error-path       https://httpstat.us/500

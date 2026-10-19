@@ -1,0 +1,144 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ENT-001",
+      "title": "The brand describes itself differently in different places on the same page",
+      "severity": "medium",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 pair(s) of self-descriptions on the homepage share little vocabulary; the Organization schema description and the meta description overlap by only 13% (\"Build beautiful, interactive forms — get more responses. No coding nee\" vs \"Build AI-powered forms that get 3.5x more data — then trigger automate\").",
+      "evidence_detail": {
+        "descriptions": {
+          "meta description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "og:description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "twitter:description": "Build AI-powered forms that get 3.5x more data — then trigger automated workflows to enrich leads, follow up, and grow revenue. No code. Start free.",
+          "Organization schema description": "Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE."
+        },
+        "divergent_pairs": [
+          {
+            "a": "Organization schema description",
+            "b": "meta description",
+            "similarity": 0.13
+          },
+          {
+            "a": "Organization schema description",
+            "b": "og:description",
+            "similarity": 0.13
+          },
+          {
+            "a": "Organization schema description",
+            "b": "twitter:description",
+            "similarity": 0.13
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.typeform.com/"
+      ],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "These fields are read by different consumers, and together they form the brand's self-description. When they disagree, a system has no single authoritative account of what the brand is; it either hedges, blends them into something the brand never said, or prefers a third-party description that at least appears consistently.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Write one canonical description of the organisation and use it in every one of these fields.",
+        "priority": "high",
+        "how": [
+          "Agree a single sentence describing what the organisation is, who it serves and where.",
+          "Use it verbatim in the meta description, og:description, twitter:description and the Organization schema `description`.",
+          "Use the same sentence in off-site profiles - LinkedIn, Crunchbase, directories - so the description the wider web repeats matches the site."
+        ],
+        "platform_specific": null,
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-001 and confirm it no longer fires."
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-004",
+      "title": "Some brand profiles linked on the site are missing from sameAs",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "1 external profile(s) linked from the homepage are not declared in sameAs: https://www.linkedin.com/company/typeform-com/.",
+      "evidence_detail": {
+        "undeclared": [
+          "https://www.linkedin.com/company/typeform-com/"
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 1,
+      "sampled_count": 1,
+      "mechanism": "A link in the footer is a hint; a sameAs entry is an assertion. Profiles left out of the declaration are not connected to the entity, so whatever they corroborate is not counted.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Add the remaining profiles to the sameAs array.",
+        "priority": "medium",
+        "how": [
+          "Add https://www.linkedin.com/company/typeform-com/ to the Organization sameAs list.",
+          "Keep the two in sync whenever a profile is added or retired."
+        ],
+        "platform_specific": [
+          "Emit the markup from the shared page template so every page of that class inherits it, and build it from the same data the page renders."
+        ],
+        "effort": "low",
+        "owner": "marketing",
+        "verify": "Re-run check ENT-004 and confirm it no longer fires.",
+        "platform": "this stack"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ENT-009",
+      "title": "Articles have no named author in structured data",
+      "severity": "low",
+      "category": "discoverability",
+      "gate": "trust",
+      "evidence": "3 of 3 sampled articles declare no author.",
+      "evidence_detail": {},
+      "affected_urls": [
+        "https://www.typeform.com/blog",
+        "https://www.typeform.com/blog-category/news",
+        "https://www.typeform.com/blog-tag/press-release"
+      ],
+      "affected_count": 3,
+      "sampled_count": 3,
+      "mechanism": "Attribution is part of how a claim's weight is assessed. Named, described authors connect content to a person whose expertise can be established elsewhere; anonymous content has only the domain behind it.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Attribute articles to named authors with linked profiles.",
+        "priority": "low",
+        "how": [
+          "Add `author` as a Person object with `name`, `url` and `sameAs` to the article's structured data.",
+          "Publish author profile pages describing relevant expertise.",
+          "Show the byline visibly as well as in markup."
+        ],
+        "platform_specific": null,
+        "effort": "medium",
+        "owner": "content",
+        "verify": "Re-run check ENT-009 and confirm it no longer fires."
+      }
+    }
+  ],
+  "checks_skipped": [
+    {
+      "check_id": "ENT-010",
+      "reason": "site is not a local business; NAP consistency is not applicable"
+    },
+    {
+      "check_id": "ENT-012",
+      "reason": "only 1 declared profile(s) could be fetched; a reciprocity rate needs at least two"
+    },
+    {
+      "check_id": "ENT-013",
+      "reason": "no fetched profile carried enough text to compare against the site's own description"
+    }
+  ],
+  "notes": [
+    "entity-corroboration-audit verified the external profiles this site declares as its own (sameAs and homepage profile links) for reachability and reciprocity; it never searched for the brand elsewhere, so corroboration beyond those declared profiles is still assessed by whether the site enables it, not by observing it"
+  ]
+}

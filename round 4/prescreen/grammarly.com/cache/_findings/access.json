@@ -1,0 +1,61 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-018",
+      "title": "Canonical tags point to a different domain",
+      "severity": "critical",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "4 of 30 sampled pages declare a canonical URL on another host, e.g. https://www.grammarly.com/careers -> https://superhuman.com/company/careers.",
+      "evidence_detail": {
+        "examples": [
+          {
+            "page": "https://www.grammarly.com/careers",
+            "canonical": "https://superhuman.com/company/careers"
+          },
+          {
+            "page": "https://www.grammarly.com/jobs",
+            "canonical": "https://superhuman.com/company/careers"
+          },
+          {
+            "page": "https://www.grammarly.com/careers/culture",
+            "canonical": "https://superhuman.com/company/careers"
+          },
+          {
+            "page": "https://www.grammarly.com/careers/inclusion",
+            "canonical": "https://superhuman.com/company/careers"
+          }
+        ]
+      },
+      "affected_urls": [
+        "https://www.grammarly.com/careers",
+        "https://www.grammarly.com/jobs",
+        "https://www.grammarly.com/careers/culture",
+        "https://www.grammarly.com/careers/inclusion"
+      ],
+      "affected_count": 4,
+      "sampled_count": 30,
+      "mechanism": "A cross-domain canonical instructs indexing systems to attribute the content to the other domain entirely. The brand's own pages are then treated as duplicates, and any citation goes to the other site.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Point canonical tags at the page's own URL on this domain.",
+        "priority": "critical",
+        "how": [
+          "Set a self-referencing canonical on every indexable page.",
+          "If the content is genuinely syndicated from elsewhere, keep the cross-domain canonical only on the syndicated copies, never on original pages."
+        ],
+        "platform_specific": [
+          "Set `alternates.canonical` in each route's metadata to the page's own absolute URL."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-018 and confirm it no longer fires.",
+        "platform": "Next.js"
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": []
+}

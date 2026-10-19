@@ -1,0 +1,97 @@
+{
+  "findings": [
+    {
+      "id": "",
+      "check_id": "ACC-008",
+      "title": "The site serves content to browsers but blocks non-browser clients",
+      "severity": "critical",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "The same URL returned 200 with 1131 words to a browser user-agent, and 429 to a plain client (server: Vercel).",
+      "evidence_detail": {
+        "default_ua": {
+          "status": 429,
+          "words": 18,
+          "bytes": 33942,
+          "error": null,
+          "server": "Vercel"
+        },
+        "browser_ua": {
+          "status": 200,
+          "words": 1131,
+          "bytes": 1234970,
+          "error": null,
+          "server": "Vercel"
+        }
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "A CDN, WAF or bot-management rule is filtering by user-agent or TLS fingerprint. Every AI retrieval fetcher and most search crawlers arrive as non-browser clients, so they receive the challenge page instead of the content. The site looks perfectly healthy to its owners, who only ever visit it in a browser, which is why this failure can persist for years unnoticed.",
+      "confidence": "high",
+      "method": "probe",
+      "suggested_action": {
+        "summary": "Allow verified search and AI crawler traffic through the bot-management rules at the edge.",
+        "priority": "critical",
+        "how": [
+          "In the CDN/WAF bot-management configuration, add an allow rule for verified search and AI crawlers rather than relying on user-agent strings alone.",
+          "Verify by reverse-DNS or the vendors' published IP ranges so the allowance cannot be spoofed.",
+          "Re-test with `curl -A 'GPTBot' https://<site>/` and confirm a 200 with real content, not a challenge page.",
+          "Check rate-limit thresholds separately: a 429 to crawlers has the same effect as a block."
+        ],
+        "platform_specific": [
+          "Make this change in the CDN or WAF configuration rather than in application code."
+        ],
+        "effort": "medium",
+        "owner": "ops",
+        "verify": "Re-run check ACC-008; both user agents should return 200 with comparable word counts.",
+        "platform": "Shopify"
+      }
+    },
+    {
+      "id": "",
+      "check_id": "ACC-011",
+      "title": "The sitemap declared in robots.txt does not work",
+      "severity": "high",
+      "category": "discoverability",
+      "gate": "access",
+      "evidence": "https://bombas.com/sitemap.xml returned status 429.",
+      "evidence_detail": {
+        "sitemaps": [
+          {
+            "url": "https://bombas.com/sitemap.xml",
+            "status": 429,
+            "declared_in_robots": true,
+            "error": null,
+            "url_count": 0,
+            "with_lastmod": 0
+          }
+        ]
+      },
+      "affected_urls": [],
+      "affected_count": 0,
+      "sampled_count": 0,
+      "mechanism": "robots.txt advertises a sitemap that crawlers then fail to retrieve or parse. Discovery falls back to link-following, so any page not linked from a crawled page - which on most sites means deep product, location and article pages - is never found.",
+      "confidence": "high",
+      "method": "static",
+      "suggested_action": {
+        "summary": "Fix or remove the broken sitemap reference and publish a valid XML sitemap.",
+        "priority": "high",
+        "how": [
+          "Serve the declared sitemap URL with a 200 and a valid <urlset> or <sitemapindex> body.",
+          "Validate it parses as XML and every <loc> is an absolute URL on this site.",
+          "If the sitemap no longer exists, remove its Sitemap: line from robots.txt."
+        ],
+        "platform_specific": [
+          "Shopify generates /sitemap.xml automatically; if pages are missing, check they are published and not excluded from the sales channel."
+        ],
+        "effort": "low",
+        "owner": "engineering",
+        "verify": "Re-run check ACC-011 and confirm it no longer fires.",
+        "platform": "Shopify"
+      }
+    }
+  ],
+  "checks_skipped": [],
+  "notes": []
+}
